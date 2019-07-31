@@ -1,4 +1,9 @@
 <form>
+  <div class="error-message" *ngIf="errors">
+    <ul>
+      <li *ngFor="let error in erros">{{ error }}</li>
+    </ul>
+  </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Имейл</label>
     <input type="email" class="form-control" name="email" [(ngModel)]="userData.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Въведете имейл">
