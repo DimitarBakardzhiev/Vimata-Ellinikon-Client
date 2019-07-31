@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoginModel } from '../../models/login-model';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   private userData: LoginModel;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    private router: Router) {
     this.userData = new LoginModel();
   }
 
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   private login() : void {
     this.authService.authenticate(this.userData).subscribe((data) => {
-      console.log(data);
+      this.authService.setSession(data.token);
+      this.router.navigate(['']);
     });
   }
 }
