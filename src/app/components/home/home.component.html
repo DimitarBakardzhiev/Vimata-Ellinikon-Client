@@ -2,3 +2,9 @@
   home works!
   <button (click)="test()">test</button>
 </p>
+
+<div class="row">
+  <div *ngFor="let topic of topics"  class="col-md-3 topic-container">
+    <topic [topic]="topic"></topic>
+  </div>
+</div>

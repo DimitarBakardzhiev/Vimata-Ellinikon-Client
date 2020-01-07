@@ -10,6 +10,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
+import { TopicComponent } from './components/lessons/topic/topic.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -20,7 +22,9 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    ClosedExerciseComponent,
+    TopicComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
