@@ -14,6 +14,7 @@ import { ClosedExerciseComponent } from './components/lessons/closed-exercise/cl
 import { TopicComponent } from './components/lessons/topic/topic.component';
 import { CreateTopicComponent } from './components/lessons/topic/create-topic/create-topic.component';
 import { TopicDetailsComponent } from './components/lessons/topic/topic-details/topic-details.component';
+import { SpeakComponent } from './components/lessons/topic/speak/speak.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -28,7 +29,8 @@ const routes: Routes = [
     ClosedExerciseComponent,
     TopicComponent,
     CreateTopicComponent,
-    TopicDetailsComponent
+    TopicDetailsComponent,
+    SpeakComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

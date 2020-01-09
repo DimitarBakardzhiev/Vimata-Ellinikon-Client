@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import * as responsiveVoice from '../../../../../assets/js/responsivevoice.js';
 
 declare var responsiveVoice: any;
 @Component({
@@ -16,9 +15,5 @@ export class TopicDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  asd() {
-    responsiveVoice.speak('hello');
   }
 }
