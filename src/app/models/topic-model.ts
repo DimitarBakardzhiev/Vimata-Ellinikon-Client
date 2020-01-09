@@ -1,3 +1,3 @@
 export class TopicModel {
-    constructor(public title: string, public base64Image: string) {}
+    constructor(public title: string, public image: any) {}
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
 import { TopicComponent } from './components/lessons/topic/topic.component';
+import { CreateTopicComponent } from './components/lessons/topic/create-topic/create-topic.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -24,7 +25,8 @@ const routes: Routes = [
     SignupComponent,
     HomeComponent,
     ClosedExerciseComponent,
-    TopicComponent
+    TopicComponent,
+    CreateTopicComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
