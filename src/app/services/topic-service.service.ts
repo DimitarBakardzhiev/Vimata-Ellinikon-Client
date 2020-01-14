@@ -16,4 +16,8 @@ export class TopicServiceService {
   public all() : Observable<any> {
     return this.http.get('https://localhost:5001/api/topics/all');
   }
+
+  public details(id: number) : Observable<any> {
+    return this.http.get(`https://localhost:5001/api/topics/details/${id}`);
+  }
 }

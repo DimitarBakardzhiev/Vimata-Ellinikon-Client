@@ -14,10 +14,14 @@ export class HomeComponent implements OnInit {
   topics: TopicModel[];
 
   constructor(private auth: AuthService, private topicService: TopicServiceService, private sanitizer: DomSanitizer) {
-    this.topicService.all().subscribe(data => {
-      this.topics = data;
-      this.topics.forEach(t => t.image = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + t.image))
-    });
+    // this.topicService.all().subscribe(data => {
+    //   this.topics = data;
+    //   this.topics.forEach(t => t.image = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + t.image))
+    // });
+
+    this.topics = [
+      new TopicModel('Азбука', '../../../assets/imgs/alfa_omega.png', '/azbuka')
+    ];
   }
 
   ngOnInit() {

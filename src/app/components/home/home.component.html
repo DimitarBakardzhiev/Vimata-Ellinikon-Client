@@ -3,12 +3,8 @@
   <button (click)="test()">test</button>
 </p>
 
-<div>
-  <a [routerLink]="['/topic/create']">Добави тема</a>
-</div>
-
 <div class="row">
   <div *ngFor="let topic of topics"  class="col-md-3 topic-container">
-    <a [routerLink]="['/topic/details']"><topic [topic]="topic"></topic></a>
+    <a [routerLink]="[topic.routerLink]"><topic [topic]="topic"></topic></a>
   </div>
 </div>

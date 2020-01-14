@@ -8,18 +8,17 @@ declare var responsiveVoice: any;
 })
 export class SpeakComponent implements OnInit {
 
-  @Input() content: string;
+  @Input() text: string;
   @Input() voice: string;
 
   constructor() {
-    console.log(this.content);
   }
 
   ngOnInit() {
   }
 
   speak() {
-    responsiveVoice.speak(this.content, `Greek ${this.voice || 'Female'}`, {
+    responsiveVoice.speak(this.text, `Greek ${this.voice || 'Female'}`, {
       pitch: 1,
       volume: 1,
       rate: 1
