@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 declare var responsiveVoice: any;
 @Component({
-  selector: 'app-topic-details',
-  templateUrl: './topic-details.component.html',
-  styleUrls: ['./topic-details.component.scss']
+  selector: 'app-alphabet',
+  templateUrl: './alphabet.component.html',
+  styleUrls: ['./alphabet.component.scss']
 })
-export class TopicDetailsComponent implements OnInit {
+export class AlphabetComponent implements OnInit {
 
   alphabet: { letter: string, pronunciation: string, example: string, transcription: string }[] = [];
-  voice: string = 'Male';
+  voice: string = 'Female';
 
   constructor() {
       this.alphabet = [

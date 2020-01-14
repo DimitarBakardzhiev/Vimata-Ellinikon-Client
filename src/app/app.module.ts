@@ -12,8 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
 import { TopicComponent } from './components/lessons/topic/topic.component';
-import { CreateTopicComponent } from './components/lessons/topic/create-topic/create-topic.component';
-import { TopicDetailsComponent } from './components/lessons/topic/topic-details/topic-details.component';
+import { AlphabetComponent } from './components/lessons/topic/alphabet/alphabet.component';
 import { SpeakComponent } from './components/lessons/topic/speak/speak.component';
 
 const routes: Routes = [
@@ -28,8 +27,7 @@ const routes: Routes = [
     HomeComponent,
     ClosedExerciseComponent,
     TopicComponent,
-    CreateTopicComponent,
-    TopicDetailsComponent,
+    AlphabetComponent,
     SpeakComponent
   ],
   imports: [
