@@ -1,12 +1,12 @@
-<div class="container" *ngIf="exercise">
+<div class="container">
   <h1>{{exercise.description}}</h1>
   <div *ngIf="!isHearingExercise">
     <speak *ngIf="exercise.isGreekContent" [text]="exercise.content"></speak>
     <span *ngIf="!exercise.isGreekContent">{{exercise.content}}</span>
   </div>
   <speaker-button *ngIf="isHearingExercise" [text]="exercise.content"></speaker-button>
-  <div>
-    <div *ngFor="let option of exercise.options" class="exercise-option" [class.marked]="option.isMarked" (click)="mark(option)">{{option.content}}</div>
+  <div class="form-group">
+    <textarea class="form-control" [(ngModel)]="exercise.userAnswer" cols="30" rows="10"></textarea>
   </div>
-  <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!hasMarkedAnswer || hasAnswered">Провери</button>
+  <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!exercise.userAnswer || hasAnswered">Провери</button>
 </div>

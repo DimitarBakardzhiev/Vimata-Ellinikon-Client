@@ -1,0 +1,14 @@
+@import '../../../variables.scss';
+
+.speaker-icon {
+    background-color: $primary;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    border-radius: 13px;
+
+    i {
+        color: white;
+        font-size: 5rem;
+    }
+}

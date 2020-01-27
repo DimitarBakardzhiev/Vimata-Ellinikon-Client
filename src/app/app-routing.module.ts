@@ -9,7 +9,7 @@ import { AlphabetComponent } from './components/lessons/topic/alphabet/alphabet.
 const routes: Routes = [
   { path: 'vhod', component: LoginComponent },
   { path: 'registratsiya', component: SignupComponent },
-  { path: 'azbuka', component: AlphabetComponent },
+  { path: 'azbuka', component: AlphabetComponent, canActivate: [AuthGuard] },
   
   { path: '', component: HomeComponent, canActivate: [AuthGuard] }
 ];

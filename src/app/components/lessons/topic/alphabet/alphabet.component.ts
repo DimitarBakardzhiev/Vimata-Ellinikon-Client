@@ -19,7 +19,7 @@ export class AlphabetComponent implements OnInit {
         { letter: 'Δ δ', pronunciation: 'Δέλτα', example: 'Δανία', transcription: '[ð]' },
         { letter: 'Ε ε', pronunciation: 'Έψιλον', example: 'Ελλάδα', transcription: '[e]' },
         { letter: 'Ζ ζ', pronunciation: 'Ζήτα', example: 'Ζάμπια', transcription: '[z]' },
-        { letter: 'Η η', pronunciation: 'Ήτα', example: 'ΗΠΑ', transcription: '[i]' },
+        { letter: 'Η η', pronunciation: 'Ήτα', example: 'Ηνωμένες Πολιτίες Αμερικής', transcription: '[i]' },
         { letter: 'Θ θ', pronunciation: 'Θήτα', example: 'Θεσσαλονίκη', transcription: '[θ]' },
         { letter: 'Ι ι', pronunciation: 'Γιώτα', example: 'Ιαπωνία', transcription: '[i]' },
         { letter: 'Κ κ', pronunciation: 'Κάπα', example: 'Καναδάς', transcription: '[k]' },

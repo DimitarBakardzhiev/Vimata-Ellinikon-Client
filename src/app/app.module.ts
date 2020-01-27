@@ -10,10 +10,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
+import { OpenExerciseComponent } from './components/lessons/open-exercise/open-exercise.component';
 import { TopicComponent } from './components/lessons/topic/topic.component';
 import { AlphabetComponent } from './components/lessons/topic/alphabet/alphabet.component';
 import { SpeakComponent } from './components/lessons/topic/speak/speak.component';
+import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
+import { DragAndDropExerciseComponent } from './components/lessons/drag-and-drop-exercise/drag-and-drop-exercise.component';
+import { SpeakerButtonComponent } from './components/lessons/speaker-button/speaker-button.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -25,10 +28,13 @@ const routes: Routes = [
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    ClosedExerciseComponent,
+    OpenExerciseComponent,
     TopicComponent,
     AlphabetComponent,
-    SpeakComponent
+    SpeakComponent,
+    ClosedExerciseComponent,
+    DragAndDropExerciseComponent,
+    SpeakerButtonComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
