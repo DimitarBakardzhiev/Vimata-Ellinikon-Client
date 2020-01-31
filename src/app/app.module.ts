@@ -20,6 +20,9 @@ import { SpeakerButtonComponent } from './components/lessons/speaker-button/spea
 import { ExercisesComponent } from './components/lessons/exercises/exercises.component';
 import { DidYouKnowComponent } from './components/did-you-know/did-you-know.component';
 
+import { MatCardModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
 ]
@@ -46,6 +49,8 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   exports: [RouterModule],
   providers: [
