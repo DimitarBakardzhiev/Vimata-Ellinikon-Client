@@ -3,8 +3,8 @@ export class OpenExercise {
         public description: string,
         public content: string,
         public isGreekContent: boolean,
-        public userAnswer: string,
-        public correctAnswer: string) {
+        public correctAnswer: string,
+        public isHearingExercise: boolean) {
 
     }
 }

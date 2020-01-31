@@ -9,7 +9,7 @@
   </div>
 </div>
 <br>
-<div>
+<!-- <div>
   <open-exercise></open-exercise>
 </div>
 <div>
@@ -17,4 +17,9 @@
 </div>
 <div>
   <drag-and-drop-exercise></drag-and-drop-exercise>
+</div> -->
+<div *ngFor="let exercise of exercises">
+  <open-exercise *ngIf="isOpenExercise(exercise)" [exercise]="exercise"></open-exercise>
+  <closed-exercise *ngIf=isClosedExercise(exercise) [exercise]="exercise"></closed-exercise>
+  <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise)" [exercise]="exercise"></drag-and-drop-exercise>
 </div>

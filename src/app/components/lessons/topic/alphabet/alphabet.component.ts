@@ -10,6 +10,7 @@ export class AlphabetComponent implements OnInit {
 
   alphabet: { letter: string, pronunciation: string, example: string, transcription: string }[] = [];
   voice: string = 'Female';
+  vocabulary: { word: string, translation: string }[] = [];
 
   constructor() {
       this.alphabet = [
@@ -37,6 +38,11 @@ export class AlphabetComponent implements OnInit {
         { letter: 'Χ χ', pronunciation: 'Χι', example: 'Χιλή', transcription: '[h]' },
         { letter: 'Ψ ψ', pronunciation: 'Ψι', example: 'Ψυχολογία', transcription: '[ps]' },
         { letter: 'Ω ω', pronunciation: 'Ωμέγα', example: 'Ωκεανός', transcription: '[o]' }
+      ];
+
+      this.vocabulary = [
+        { word: 'γράμμα', translation: 'буква' },
+        { word: 'το γράμμα', translation: 'буквата' },
       ];
   }
 

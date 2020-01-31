@@ -17,6 +17,8 @@ import { SpeakComponent } from './components/lessons/topic/speak/speak.component
 import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
 import { DragAndDropExerciseComponent } from './components/lessons/drag-and-drop-exercise/drag-and-drop-exercise.component';
 import { SpeakerButtonComponent } from './components/lessons/speaker-button/speaker-button.component';
+import { ExercisesComponent } from './components/lessons/exercises/exercises.component';
+import { DidYouKnowComponent } from './components/did-you-know/did-you-know.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -34,7 +36,9 @@ const routes: Routes = [
     SpeakComponent,
     ClosedExerciseComponent,
     DragAndDropExerciseComponent,
-    SpeakerButtonComponent
+    SpeakerButtonComponent,
+    ExercisesComponent,
+    DidYouKnowComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

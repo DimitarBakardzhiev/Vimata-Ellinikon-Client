@@ -5,11 +5,13 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './infrastructure/auth.guard';
 import { AlphabetComponent } from './components/lessons/topic/alphabet/alphabet.component';
+import { ExercisesComponent } from './components/lessons/exercises/exercises.component';
 
 const routes: Routes = [
   { path: 'vhod', component: LoginComponent },
   { path: 'registratsiya', component: SignupComponent },
   { path: 'azbuka', component: AlphabetComponent, canActivate: [AuthGuard] },
+  { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
   
   { path: '', component: HomeComponent, canActivate: [AuthGuard] }
 ];

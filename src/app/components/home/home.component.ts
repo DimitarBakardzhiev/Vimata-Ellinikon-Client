@@ -3,6 +3,10 @@ import { AuthService } from '../../services/auth.service';
 import { TopicModel } from '../../models/topic-model';
 import { TopicServiceService } from '../../services/topic-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OpenExercise } from '../../models/open-exercise';
+import { ClosedExercise } from '../../models/closed-exercise';
+import { DragAndDropExercise } from '../../models/drag-and-drop-exercise';
+import { ClosedExerciseOption } from '../../models/closed-exercise-option';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
 
   topics: TopicModel[];
+  exercises: any[] = [];
 
   constructor(private auth: AuthService, private topicService: TopicServiceService, private sanitizer: DomSanitizer) {
     // this.topicService.all().subscribe(data => {
@@ -22,9 +27,49 @@ export class HomeComponent implements OnInit {
     this.topics = [
       new TopicModel('Азбука', '../../../assets/imgs/alfa_omega.png', '/azbuka')
     ];
+
+    this.exercises.push(new OpenExercise(
+      'Преведете на български',
+      'Καφές',
+      true,
+      'кафе',
+      false));
+
+      this.exercises.push(new ClosedExercise(
+        'Преведете израза',
+        'Το γράμμα ν', [
+          new ClosedExerciseOption('Буквата фи'), 
+          new ClosedExerciseOption('Буквата ни'),
+          new ClosedExerciseOption('Буквата вита')
+        ],
+        'Буквата ни',
+        true,
+        false,
+        false));
+
+      this.exercises.push(new DragAndDropExercise(
+        'Преведете на гръцки',
+        'буквата кси',
+        ['ξ', 'ω', 'σ', 'το', 'γράμμα', 'άλφα', 'λέξη', 'η', 'χ'],
+        'το γράμμα ξ',
+        false,
+        true,
+        false));
+
+      this.exercises.push(new DragAndDropExercise(
+        'Преведете на български',
+        'Μαθαίνω Ελληνικά',
+        [ 'уча', 'пиша', 'чета', 'гръцки', 'писмо', 'знам'],
+        'уча гръцки', 
+        true, 
+        false, 
+        false));
   }
 
   ngOnInit() {
+    console.log(this.exercises);
+    console.log(this.exercises[0] instanceof OpenExercise);
+    
   }
 
   test() : void {
@@ -39,5 +84,17 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       this.topics.push(this.topics[i % 2]);
     }
+  }
+
+  private isOpenExercise(exercise: any): boolean {
+    return exercise instanceof OpenExercise;
+  }
+
+  private isClosedExercise(exercise: any): boolean {
+    return exercise instanceof ClosedExercise;
+  }
+
+  private isDragAndDropExercise(exercise: any): boolean {
+    return exercise instanceof DragAndDropExercise;
   }
 }

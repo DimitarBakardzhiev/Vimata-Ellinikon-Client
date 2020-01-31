@@ -1,40 +1,47 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { ClosedExercise } from '../../../models/closed-exercise';
 import { SpeakerService } from '../../../services/speaker.service';
 import { Exercise } from '../exercise';
+import { ClosedExerciseOption } from '../../../models/closed-exercise-option';
+import { ShufflerService } from '../../../services/shuffler.service';
 
 @Component({
   selector: 'closed-exercise',
   templateUrl: './closed-exercise.component.html',
-  styleUrls: ['./closed-exercise.component.scss']
+  styleUrls: ['./closed-exercise.component.scss'],
 })
 export class ClosedExerciseComponent implements OnInit, Exercise {
 
-  public exercise: ClosedExercise = new ClosedExercise(null, null, null, null, null, null);
+  @Input() exercise: ClosedExercise = new ClosedExercise(null, null, null, null, null, null, null);
+
+  @Output() isDoneEvent = new EventEmitter<void>();
+
   hasMarkedAnswer: boolean = false;
   hasAnswered: boolean = false;
-  isHearingExercise: boolean = false;
 
   constructor(
     private elem: ElementRef,
-    private speakerService: SpeakerService) {
+    private speakerService: SpeakerService,
+    private shuffler: ShufflerService) {
 
     this.exercise.description = 'Преведете израза';
     this.exercise.content = 'Το γράμμα ν';
     this.exercise.isGreekContent = true;
     this.exercise.options = [
-      { content: 'Буквата фи', isMarked: false}, 
-      { content: 'Буквата ни', isMarked: false}, 
-      { content: 'Буквата вита', isMarked: false }
+      new ClosedExerciseOption('Буквата фи'),
+      new ClosedExerciseOption('Буквата ни'),
+      new ClosedExerciseOption('Буквата вита')
     ];
     this.exercise.areOptionsInGreek = false;
     this.exercise.correctAnswer = 'Буквата ни';
+    this.exercise.isHearingExercise = false;
   }
 
   ngOnInit() {
+    this.exercise.options = this.shuffler.shuffle(this.exercise.options);
   }
 
-  mark(option) {
+  mark(option: ClosedExerciseOption) {
     this.exercise.options.forEach(option => option.isMarked = false);
     option.isMarked = true;
     this.hasMarkedAnswer = true;
@@ -81,5 +88,9 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     });
 
     return correct;
+  }
+
+  private nextExercise() {
+    this.isDoneEvent.emit();
   }
 }

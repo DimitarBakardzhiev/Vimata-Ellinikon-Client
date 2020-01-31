@@ -5,6 +5,7 @@ export class DragAndDropExercise {
         public pieces: string[],
         public correctAnswer: string,
         public isGreekContent: boolean,
-        public arePiecesInGreek: boolean
+        public arePiecesInGreek: boolean,
+        public isHearingExercise: boolean
     ) {}
 }

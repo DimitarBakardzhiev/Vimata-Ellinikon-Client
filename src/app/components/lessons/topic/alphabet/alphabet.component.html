@@ -1,6 +1,6 @@
 <div class="container" *ngIf="alphabet">
   <h1><speak [text]="'Το ελληνικό αλφάβητο'" [voice]="voice"></speak></h1>
-  <table class="table table-hover">
+  <table class="table table-hover col-md-8">
     <tbody>
       <tr *ngFor="let letter of alphabet">
         <th>{{letter.letter}}</th>
@@ -12,4 +12,16 @@
   </table>
   
   * ς е крайна сигма и се използва само в края на думата. Пример: Καναδάς.
+
+  <h1><speak [text]="'Λεξιλόγιο'"></speak></h1>
+  <table class="table table-hover col-md-4">
+    <tbody>
+      <tr *ngFor="let word of vocabulary">
+        <td><speak [text]="word.word" [voice]="voice"></speak></td>
+        <!-- <td><speak [text]="word.translation" [voice]="voice"></speak></td> -->
+        <td>{{word.translation}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+<a [routerLink]="['/exercises']">Упражнения</a>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OpenExercise } from '../../../models/open-exercise';
 import { Exercise } from '../exercise';
 
@@ -9,26 +9,36 @@ import { Exercise } from '../exercise';
 })
 export class OpenExerciseComponent implements OnInit, Exercise {
 
-  exercise: OpenExercise = {};
+  @Input() exercise: OpenExercise = new OpenExercise(null, null, null, null, null);
+
+  @Output() isDoneEvent = new EventEmitter<void>();
+  
   hasAnswered: boolean = false;
-  isHearingExercise: boolean = false;
+  userAnswer: string = '';
+  hasAnsweredCorrectly: boolean = null;
 
   constructor() {
     this.exercise.description = 'Преведете на български';
     this.exercise.content = 'Καφέ';
     this.exercise.isGreekContent = true;
     this.exercise.correctAnswer = 'кафе';
+    this.exercise.isHearingExercise = false;
   }
 
   ngOnInit() {
   }
 
   isCorrectAnswer() : Boolean {
-    return this.exercise.userAnswer.toLocaleLowerCase() === this.exercise.correctAnswer.toLocaleLowerCase();
+    this.hasAnsweredCorrectly = this.userAnswer.toLocaleLowerCase() === this.exercise.correctAnswer.toLocaleLowerCase();
+    return this.hasAnsweredCorrectly;
   }
 
   checkAnswer() {
     this.hasAnswered = true;
     console.log(this.isCorrectAnswer());
+  }
+
+  nextExercise() {
+    this.isDoneEvent.emit();
   }
 }

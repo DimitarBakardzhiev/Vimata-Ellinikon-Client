@@ -1,0 +1,10 @@
+<div *ngFor="let exercise of exercises; let i = index">
+  <open-exercise *ngIf="isOpenExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise()"></open-exercise>
+  <closed-exercise *ngIf="isClosedExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise()"></closed-exercise>
+  <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise()"></drag-and-drop-exercise>
+</div>
+<h1 *ngIf="!exercises || exercises.length === 0">No exercises</h1>
+<button (click)="previous()">previous</button>
+<button (click)="next()">next</button>
+<button (click)="test()">check</button>
+<did-you-know></did-you-know>
