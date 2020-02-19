@@ -23,3 +23,6 @@
   <closed-exercise *ngIf=isClosedExercise(exercise) [exercise]="exercise"></closed-exercise>
   <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise)" [exercise]="exercise"></drag-and-drop-exercise>
 </div>
+<div *ngIf="speech">{{speech}}</div>
+<button (click)="listen()">Listen</button>
+<button (click)="change()">change</button>

@@ -10,4 +10,28 @@ form.authentication-form {
     border-bottom: 2px dashed $primary;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: column;
+
+    section {
+        flex-grow: 1;
+    }
+    
+    footer {
+        min-width: auto;
+        text-align: right;
+        background-color: $primary;
+
+        #responsivevoice {
+            span {
+                font-family: Open Sans,Helvetica,sans-serif;
+                color: white;
+                font-weight: bold;
+                vertical-align: middle;
+                font-size: 2rem;
+            }
+        }
+    }
+}

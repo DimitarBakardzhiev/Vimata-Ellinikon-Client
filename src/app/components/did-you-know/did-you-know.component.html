@@ -1,13 +1,12 @@
-<mat-card class="example-card">
+<mat-card class="fact-card">
   <mat-card-header>
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
     <mat-card-title><speak [text]="'Ξέρατε ότι...'"></speak></mat-card-title>
     <mat-card-subtitle>Знаете ли че...</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://i.ytimg.com/vi/Y7Zgp-EzfOU/maxresdefault.jpg">
+  <img mat-card-image src="{{facts[factIndex].img}}">
   <mat-card-content>
     <p>
-      Химнът на свободата е химн на Гърция от 1865 и на Кипър от 1966 и е най-дългият национален химн по големина на текста.
+      {{facts[factIndex].content}}
     </p>
   </mat-card-content>
 </mat-card>

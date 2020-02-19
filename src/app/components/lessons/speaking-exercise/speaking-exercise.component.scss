@@ -1,0 +1,16 @@
+@import '../exercises.scss';
+@import '../../../variables.scss';
+
+.microphone-icon {
+    background-color: $primary;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    border-radius: 13px;
+    margin: 1rem 0;
+
+    i {
+        color: white;
+        font-size: 5rem;
+    }
+}

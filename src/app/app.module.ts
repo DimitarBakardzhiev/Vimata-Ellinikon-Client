@@ -22,6 +22,8 @@ import { DidYouKnowComponent } from './components/did-you-know/did-you-know.comp
 
 import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResultBoxComponent } from './components/result-box/result-box.component';
+import { SpeakingExerciseComponent } from './components/lessons/speaking-exercise/speaking-exercise.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -41,7 +43,9 @@ const routes: Routes = [
     DragAndDropExerciseComponent,
     SpeakerButtonComponent,
     ExercisesComponent,
-    DidYouKnowComponent
+    DidYouKnowComponent,
+    ResultBoxComponent,
+    SpeakingExerciseComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -4,6 +4,8 @@ import { ClosedExercise } from '../../../models/closed-exercise';
 import { DragAndDropExercise } from '../../../models/drag-and-drop-exercise';
 import { Topic } from '../../../models/topic';
 import { ClosedExerciseOption } from '../../../models/closed-exercise-option';
+import { ShufflerService } from '../../../services/shuffler.service';
+import { SpeakingExercise } from '../../../models/speaking-exercise';
 
 @Component({
   selector: 'app-exercises',
@@ -15,7 +17,9 @@ export class ExercisesComponent implements OnInit {
   exercises: any[] = [];
   currentExerciseIndex: number = 0;
 
-  constructor() {
+  correctAnswers: number = 0;
+
+  constructor(private shuffler: ShufflerService) {
     // this.exercises.push(new ClosedExercise(
     //   'Преведете на гръцки',
     //   'Буквата вита', [
@@ -65,6 +69,12 @@ export class ExercisesComponent implements OnInit {
       ['казвам', 'се', 'Мария', 'аз', 'съм', 'не', 'тя', 'е', 'здравей'],
       'Казвам се Мария',
       true, false, true));
+
+    this.exercises.push(new SpeakingExercise('Прочетете изречението', 'Με λένε Γιώργο', 'Με λένε Γιώργο', false));
+    this.exercises.push(new SpeakingExercise('Повторете', 'Το γράμμα ξ', 'Το γράμμα ξ', true));
+    this.exercises.push(new SpeakingExercise('Повторете', 'Είμαι καλά', 'Είμαι καλά', true));
+
+    this.exercises = this.shuffler.shuffle(this.exercises);
   }
 
   ngOnInit() {
@@ -82,6 +92,10 @@ export class ExercisesComponent implements OnInit {
     return exercise instanceof DragAndDropExercise;
   }
 
+  private isSpeakingExercise(exercise: any): boolean {
+    return exercise instanceof SpeakingExercise;
+  }
+
   private test() {
     console.log(this.currentExerciseIndex);
   }
@@ -94,7 +108,16 @@ export class ExercisesComponent implements OnInit {
     this.currentExerciseIndex++;
   }
 
-  private nextExercise() {
+  private nextExercise(wasCorrectAnswer: Boolean) {
     this.currentExerciseIndex++;
+    if (wasCorrectAnswer === true) {
+      this.correctAnswers++;
+    }
+
+    if (this.currentExerciseIndex === this.exercises.length) {
+      console.log(`${this.correctAnswers / this.exercises.length * 100} %`);
+      // send result to server
+      return;
+    }
   }
 }

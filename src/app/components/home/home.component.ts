@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
   topics: TopicModel[];
   exercises: any[] = [];
 
+  speech: any;
+  recognition = new ((<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition || (<any>window).mozSpeechRecognition || (<any>window).msSpeechRecognition)();
+
   constructor(private auth: AuthService, private topicService: TopicServiceService, private sanitizer: DomSanitizer) {
     // this.topicService.all().subscribe(data => {
     //   this.topics = data;
@@ -28,42 +31,53 @@ export class HomeComponent implements OnInit {
       new TopicModel('Азбука', '../../../assets/imgs/alfa_omega.png', '/azbuka')
     ];
 
-    this.exercises.push(new OpenExercise(
-      'Преведете на български',
-      'Καφές',
-      true,
-      'кафе',
-      false));
+    // this.exercises.push(new OpenExercise(
+    //   'Преведете на български',
+    //   'Καφές',
+    //   true,
+    //   'кафе',
+    //   false));
 
-      this.exercises.push(new ClosedExercise(
-        'Преведете израза',
-        'Το γράμμα ν', [
-          new ClosedExerciseOption('Буквата фи'), 
-          new ClosedExerciseOption('Буквата ни'),
-          new ClosedExerciseOption('Буквата вита')
-        ],
-        'Буквата ни',
-        true,
-        false,
-        false));
+    //   this.exercises.push(new ClosedExercise(
+    //     'Преведете израза',
+    //     'Το γράμμα ν', [
+    //       new ClosedExerciseOption('Буквата фи'), 
+    //       new ClosedExerciseOption('Буквата ни'),
+    //       new ClosedExerciseOption('Буквата вита')
+    //     ],
+    //     'Буквата ни',
+    //     true,
+    //     false,
+    //     false));
 
-      this.exercises.push(new DragAndDropExercise(
-        'Преведете на гръцки',
-        'буквата кси',
-        ['ξ', 'ω', 'σ', 'το', 'γράμμα', 'άλφα', 'λέξη', 'η', 'χ'],
-        'το γράμμα ξ',
-        false,
-        true,
-        false));
+    //   this.exercises.push(new DragAndDropExercise(
+    //     'Преведете на гръцки',
+    //     'буквата кси',
+    //     ['ξ', 'ω', 'σ', 'το', 'γράμμα', 'άλφα', 'λέξη', 'η', 'χ'],
+    //     'το γράμμα ξ',
+    //     false,
+    //     true,
+    //     false));
 
-      this.exercises.push(new DragAndDropExercise(
-        'Преведете на български',
-        'Μαθαίνω Ελληνικά',
-        [ 'уча', 'пиша', 'чета', 'гръцки', 'писмо', 'знам'],
-        'уча гръцки', 
-        true, 
-        false, 
-        false));
+    //   this.exercises.push(new DragAndDropExercise(
+    //     'Преведете на български',
+    //     'Μαθαίνω Ελληνικά',
+    //     [ 'уча', 'пиша', 'чета', 'гръцки', 'писмо', 'знам'],
+    //     'уча гръцки', 
+    //     true, 
+    //     false, 
+    //     false));
+
+    
+    this.recognition.lang = 'el';
+    this.recognition.interimResults = false;
+    this.recognition.maxAlternatives = 5;
+
+    this.recognition.onresult = (event) => {
+      this.speech = event.results[0][0].transcript;
+      console.log(this)
+      console.log('You said: ', this.speech);
+    };
   }
 
   ngOnInit() {
@@ -96,5 +110,13 @@ export class HomeComponent implements OnInit {
 
   private isDragAndDropExercise(exercise: any): boolean {
     return exercise instanceof DragAndDropExercise;
+  }
+
+  listen() {
+    this.recognition.start();
+  }
+
+  change() {
+    this.speech = this.speech;
   }
 }

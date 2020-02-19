@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-declare var responsiveVoice: any;
+declare const responsiveVoice: any;
 
 @Injectable({
   providedIn: 'root'

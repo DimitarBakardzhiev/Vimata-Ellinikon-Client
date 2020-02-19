@@ -13,7 +13,7 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
 
   @Input() exercise: DragAndDropExercise = new DragAndDropExercise(null, null, null, null, null, null, null);
 
-  @Output() isDoneEvent = new EventEmitter<void>();
+  @Output() isDoneEvent = new EventEmitter<Boolean>();
 
   answer: string[] = [];
   hasAnswered: boolean = false;
@@ -62,7 +62,7 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
   }
 
   nextExercise() {
-    this.isDoneEvent.emit();
+    this.isDoneEvent.emit(this.hasAnsweredCorrectly);
   }
   
   private removeFromArray(array: any[], element: any) {

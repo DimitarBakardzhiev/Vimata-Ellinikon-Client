@@ -8,6 +8,11 @@
   <div>
     <div *ngFor="let option of exercise.options" class="exercise-option" [class.marked]="option.isMarked" (click)="mark(option)">{{option.content}}</div>
   </div>
-  <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!hasMarkedAnswer || hasAnswered">Провери</button>
-  <button *ngIf="hasAnswered" class="btn btn-success" (click)="nextExercise()">Продължи</button>
+  <result-box
+    [hasAnsweredCorrectly]="hasAnsweredCorrectly"
+    [hasAnswered]="hasAnswered"
+    [hasAnswer]="hasMarkedAnswer"
+    [correctAnswer]="exercise.correctAnswer"
+    (isDoneEvent)="nextExercise()"
+    (checkAnswerEvent)="checkAnswer()"></result-box>
 </div>

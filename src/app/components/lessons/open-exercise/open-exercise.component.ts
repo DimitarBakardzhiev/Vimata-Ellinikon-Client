@@ -11,7 +11,7 @@ export class OpenExerciseComponent implements OnInit, Exercise {
 
   @Input() exercise: OpenExercise = new OpenExercise(null, null, null, null, null);
 
-  @Output() isDoneEvent = new EventEmitter<void>();
+  @Output() isDoneEvent = new EventEmitter<Boolean>();
   
   hasAnswered: boolean = false;
   userAnswer: string = '';
@@ -39,6 +39,6 @@ export class OpenExerciseComponent implements OnInit, Exercise {
   }
 
   nextExercise() {
-    this.isDoneEvent.emit();
+    this.isDoneEvent.emit(this.hasAnsweredCorrectly);
   }
 }

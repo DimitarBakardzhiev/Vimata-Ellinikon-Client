@@ -14,10 +14,11 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
 
   @Input() exercise: ClosedExercise = new ClosedExercise(null, null, null, null, null, null, null);
 
-  @Output() isDoneEvent = new EventEmitter<void>();
+  @Output() isDoneEvent = new EventEmitter<Boolean>();
 
   hasMarkedAnswer: boolean = false;
   hasAnswered: boolean = false;
+  hasAnsweredCorrectly: boolean = null;
 
   constructor(
     private elem: ElementRef,
@@ -55,12 +56,12 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     if (selectedOption.content === this.exercise.correctAnswer) {
       this.markCorrect(markedHtmlOption);
     
-      return true;
+      this.hasAnsweredCorrectly = true;
     } else {
       this.markWrong(markedHtmlOption);
       this.markCorrect(this.getCorrectOption());
 
-      return false;
+      this.hasAnsweredCorrectly = false;
     }
   }
 
@@ -91,6 +92,6 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
   }
 
   private nextExercise() {
-    this.isDoneEvent.emit();
+    this.isDoneEvent.emit(this.hasAnsweredCorrectly);
   }
 }

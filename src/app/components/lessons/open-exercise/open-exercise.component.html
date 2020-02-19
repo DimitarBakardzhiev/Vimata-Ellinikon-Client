@@ -1,6 +1,4 @@
 <div class="container" *ngIf="exercise">
-  <div class="row">
-    <div class="col-md-6">
       <h1>{{exercise.description}}</h1>
       <div class="exercise-content" *ngIf="!exercise.isHearingExercise">
         <speak *ngIf="exercise.isGreekContent" [text]="exercise.content"></speak>
@@ -10,10 +8,16 @@
       <div class="form-group">
         <textarea class="form-control" [(ngModel)]="userAnswer" cols="30" rows="10"></textarea>
       </div>
-      <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!userAnswer || hasAnswered">Провери</button>
-      <button *ngIf="hasAnswered" class="btn btn-success" (click)="nextExercise()">Продължи</button>
-    </div>
-    <div class="col-md-6">
+      <!-- <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!userAnswer || hasAnswered">Провери</button>
+      <button *ngIf="hasAnswered" class="btn btn-success" (click)="nextExercise()">Продължи</button> -->
+      <result-box
+      [hasAnsweredCorrectly]="hasAnsweredCorrectly"
+      [hasAnswered]="hasAnswered"
+      [hasAnswer]="userAnswer?.length > 0"
+      [correctAnswer]="exercise.correctAnswer"
+      (isDoneEvent)="nextExercise()"
+      (checkAnswerEvent)="checkAnswer()"></result-box>
+    <!-- <div class="col-md-6">
       <div *ngIf="hasAnsweredCorrectly === false" class="alert alert-dismissible alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Грешка: </strong>{{exercise.correctAnswer}}
@@ -22,6 +26,5 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Браво!</strong> Верен отговор.
       </div>
-    </div>
-  </div>
+    </div> -->
 </div>

@@ -3,12 +3,14 @@
 .draggables-container {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .answer-container {
     border: 2px solid gray;
     width: auto;
     min-height: 3rem;
+    margin: 1rem 0;
 }
 
 .draggable-box {

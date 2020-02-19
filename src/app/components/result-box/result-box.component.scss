@@ -1,0 +1,21 @@
+@import '../../variables.scss';
+
+.success {
+    border: 2px solid $success !important;
+}
+
+.failure {
+    border: 2px solid $failure !important;
+}
+
+.result-box {
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid $primary;
+
+    button {
+        margin-left: auto;        
+    }
+}
