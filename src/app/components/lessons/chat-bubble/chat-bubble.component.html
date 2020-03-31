@@ -1,0 +1,6 @@
+<div class="bubble-container" [class.answer-container]="isAnswer">
+    <div [class.speech-bubble]="!isAnswer" [class.answer]="isAnswer">
+        <speak *ngIf="!isTranslation" [text]="text"></speak>
+        <span *ngIf="isTranslation">{{text}}</span>
+    </div>
+</div>

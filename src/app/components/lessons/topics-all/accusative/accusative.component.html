@@ -1,0 +1,74 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Мъжки род - <speak [text]="'Αρσενικό'"></speak></th>
+                <th>Женски род - <speak [text]="'Θηλυκό'"></speak></th>
+                <th>Среден род - <speak [text]="'Ουδέτερο'"></speak></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Именителен падеж - <speak [text]="'Ονομαστική'"></speak></th>
+                <td><speak [text]="'ο Αντρέας'"></speak></td>
+                <td><speak [text]="'η Άννα'"></speak></td>
+                <td><speak [text]="'το παιδί'"></speak></td>
+            </tr>
+            <tr>
+                <th>Винителен падеж - <speak [text]="'Αιτιατική'"></speak></th>
+                <td><speak [text]="'τον Αντρέα'"></speak></td>
+                <td><speak [text]="'την Άννα'"></speak></td>
+                <td><speak [text]="'το παιδί'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Изразът <speak [text]="'με λένε'"></speak> / <speak [text]="'τον λένε'"></speak> се превежда ме наричат / го наричат и се използва с <strong>винителен падеж</strong>.</p>
+        <p>В мъжки род винителен падеж крайната сигма отпада - Ο Χρίστο<strong>ς</strong> / Τον Χρίστο</p>
+    </div>
+
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td><speak [text]="'Πώς τον λένε;'"></speak></td>
+                <td>(Той) как се казва?</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Πώς την λένε;'"></speak></td>
+                <td>(Тя) как се казва?</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Τον λένε Χρίστο'"></speak></td>
+                <td>Казва се Христос</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Την λένε Αναστασία'"></speak></td>
+                <td>Казва се Анастасия</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Τι είναι αυτό;'"></speak></td>
+                <td>Какво е това?</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Ποιος είναι αυτός;'"></speak></td>
+                <td>Кой е това (този)?</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Ποια είναι αυτή;'"></speak></td>
+                <td>Коя е тази?</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Αυτός είναι ο μπαμπάς μου'"></speak></td>
+                <td>Това (този) е баща ми</td>
+            </tr>
+            <tr>
+                <td><speak [text]="'Αυτή είναι η μαμά μου'"></speak></td>
+                <td>Това (тази) е майка ми</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

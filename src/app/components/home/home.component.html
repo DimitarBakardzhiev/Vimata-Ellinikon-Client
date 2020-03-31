@@ -1,3 +1,4 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
 <p>
   home works!
   <button (click)="test()">test</button>
@@ -5,19 +6,10 @@
 
 <div class="row">
   <div *ngFor="let topic of topics"  class="col-md-3 topic-container">
-    <a [routerLink]="[topic.routerLink]"><topic [topic]="topic"></topic></a>
+    <a [routerLink]="[topic.routerLink]" [state]="{breadcrumbs: breadcrumbs}"><topic-box [topic]="topic"></topic-box></a>
   </div>
 </div>
 <br>
-<!-- <div>
-  <open-exercise></open-exercise>
-</div>
-<div>
-  <closed-exercise></closed-exercise>
-</div>
-<div>
-  <drag-and-drop-exercise></drag-and-drop-exercise>
-</div> -->
 <div *ngFor="let exercise of exercises">
   <open-exercise *ngIf="isOpenExercise(exercise)" [exercise]="exercise"></open-exercise>
   <closed-exercise *ngIf=isClosedExercise(exercise) [exercise]="exercise"></closed-exercise>

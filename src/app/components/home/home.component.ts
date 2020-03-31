@@ -7,6 +7,7 @@ import { OpenExercise } from '../../models/open-exercise';
 import { ClosedExercise } from '../../models/closed-exercise';
 import { DragAndDropExercise } from '../../models/drag-and-drop-exercise';
 import { ClosedExerciseOption } from '../../models/closed-exercise-option';
+import { BreadCrumb } from '../breadcrumb/bread-crumb';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
   speech: any;
   recognition = new ((<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition || (<any>window).mozSpeechRecognition || (<any>window).msSpeechRecognition)();
 
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/')];
+
   constructor(private auth: AuthService, private topicService: TopicServiceService, private sanitizer: DomSanitizer) {
     // this.topicService.all().subscribe(data => {
     //   this.topics = data;
@@ -28,46 +31,21 @@ export class HomeComponent implements OnInit {
     // });
 
     this.topics = [
-      new TopicModel('Азбука', '../../../assets/imgs/alfa_omega.png', '/azbuka')
+      new TopicModel('Азбука', '../../../assets/imgs/lessons/alfa_omega.png', '/азбука'),
+      new TopicModel('Четене', '../../../assets/imgs/lessons/book.png', '/четене'),
+      new TopicModel('Глагол съм', '../../../assets/imgs/lessons/to-be.png', '/съм'),
+      new TopicModel('Поздрави', '../../../assets/imgs/lessons/greetings.png', '/поздрави'),
+      new TopicModel('Числа', '../../../assets/imgs/lessons/numbers.png', '/числа'),
+      new TopicModel('Изрази', '../../../assets/imgs/lessons/greetings.png', '/изрази'),
+      new TopicModel('Четене 2', '../../../assets/imgs/lessons/book.png', '/четене-2'),
+      new TopicModel('Първо спрежение', '../../../assets/imgs/lessons/conjugation1.png', '/спрежение-1'),
+      new TopicModel('Родове и членуване', '../../../assets/imgs/lessons/genders.png', '/родове'),
+      new TopicModel('Винителен падеж', '../../../assets/imgs/lessons/accusative.png', '/винителен-падеж'),
+      new TopicModel('Второ спрежение', '../../../assets/imgs/lessons/conjugation2.png', '/спрежение-2'),
+      new TopicModel('Отрицание', '../../../assets/imgs/lessons/yes-no.png', '/отрицание'),
+      new TopicModel('Притежание', '../../../assets/imgs/lessons/possessive.png', '/притежание'),
+      new TopicModel('Часовник', '../../../assets/imgs/lessons/clocks/5.jpg', '/часовник')
     ];
-
-    // this.exercises.push(new OpenExercise(
-    //   'Преведете на български',
-    //   'Καφές',
-    //   true,
-    //   'кафе',
-    //   false));
-
-    //   this.exercises.push(new ClosedExercise(
-    //     'Преведете израза',
-    //     'Το γράμμα ν', [
-    //       new ClosedExerciseOption('Буквата фи'), 
-    //       new ClosedExerciseOption('Буквата ни'),
-    //       new ClosedExerciseOption('Буквата вита')
-    //     ],
-    //     'Буквата ни',
-    //     true,
-    //     false,
-    //     false));
-
-    //   this.exercises.push(new DragAndDropExercise(
-    //     'Преведете на гръцки',
-    //     'буквата кси',
-    //     ['ξ', 'ω', 'σ', 'το', 'γράμμα', 'άλφα', 'λέξη', 'η', 'χ'],
-    //     'το γράμμα ξ',
-    //     false,
-    //     true,
-    //     false));
-
-    //   this.exercises.push(new DragAndDropExercise(
-    //     'Преведете на български',
-    //     'Μαθαίνω Ελληνικά',
-    //     [ 'уча', 'пиша', 'чета', 'гръцки', 'писмо', 'знам'],
-    //     'уча гръцки', 
-    //     true, 
-    //     false, 
-    //     false));
-
     
     this.recognition.lang = 'el';
     this.recognition.interimResults = false;
@@ -80,11 +58,7 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-    console.log(this.exercises);
-    console.log(this.exercises[0] instanceof OpenExercise);
-    
-  }
+  ngOnInit() {}
 
   test() : void {
     this.auth.test().subscribe(res => console.log(res),

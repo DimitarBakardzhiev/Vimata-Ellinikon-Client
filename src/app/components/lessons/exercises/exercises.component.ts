@@ -6,9 +6,24 @@ import { Topic } from '../../../models/topic';
 import { ClosedExerciseOption } from '../../../models/closed-exercise-option';
 import { ShufflerService } from '../../../services/shuffler.service';
 import { SpeakingExercise } from '../../../models/speaking-exercise';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-exercises',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateY(-100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateY(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(-100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
   templateUrl: './exercises.component.html',
   styleUrls: ['./exercises.component.scss']
 })
@@ -18,6 +33,8 @@ export class ExercisesComponent implements OnInit {
   currentExerciseIndex: number = 0;
 
   correctAnswers: number = 0;
+  result: number = 55;
+  show: boolean = true;
 
   constructor(private shuffler: ShufflerService) {
     // this.exercises.push(new ClosedExercise(
@@ -63,15 +80,15 @@ export class ExercisesComponent implements OnInit {
     // this.exercises.push(new OpenExercise('Преведете на български', 'εγωισμός', true, 'егоизъм', false));
     // this.exercises.push(new OpenExercise('Напишете на гръцки', 'Τουρκία', true, 'Τουρκία', true));
 
-    this.exercises.push(new DragAndDropExercise(
-      'Преведете на български',
-      'Με λένε Μαρία',
-      ['казвам', 'се', 'Мария', 'аз', 'съм', 'не', 'тя', 'е', 'здравей'],
-      'Казвам се Мария',
-      true, false, true));
+    // this.exercises.push(new DragAndDropExercise(
+    //   'Преведете на български',
+    //   'Με λένε Μαρία',
+    //   ['казвам', 'се', 'Мария', 'аз', 'съм', 'не', 'тя', 'е', 'здравей'],
+    //   'Казвам се Мария',
+    //   true, false, false));
 
-    this.exercises.push(new SpeakingExercise('Прочетете изречението', 'Με λένε Γιώργο', 'Με λένε Γιώργο', false));
-    this.exercises.push(new SpeakingExercise('Повторете', 'Το γράμμα ξ', 'Το γράμμα ξ', true));
+    // this.exercises.push(new SpeakingExercise('Прочетете изречението', 'Με λένε Γιώργο', 'Με λένε Γιώργο', false));
+    // this.exercises.push(new SpeakingExercise('Повторете', 'Το γράμμα ξ', 'Το γράμμα ξ', true));
     this.exercises.push(new SpeakingExercise('Повторете', 'Είμαι καλά', 'Είμαι καλά', true));
 
     this.exercises = this.shuffler.shuffle(this.exercises);
@@ -115,9 +132,28 @@ export class ExercisesComponent implements OnInit {
     }
 
     if (this.currentExerciseIndex === this.exercises.length) {
-      console.log(`${this.correctAnswers / this.exercises.length * 100} %`);
+      this.result = this.correctAnswers / this.exercises.length * 100;
+      console.log(`${this.result} %`);
       // send result to server
       return;
+    }
+  }
+
+  private showToggle() {
+    this.show = !this.show;
+  }
+
+  private nextMedal() {
+    switch (this.result) {
+      case 55:
+        this.result = 88;
+        break;
+      case 88:
+        this.result = 100;
+        break;
+      default:
+        this.result = 55;
+        break;
     }
   }
 }

@@ -1,0 +1,53 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Глаголи завършващи на -άω или на -ώ в основна форма са от второ спрежение: <speak [text]="'μιλάω'"></speak> - говоря; <speak [text]="'αγαπώ'"></speak> - обичам</p>
+    </div>
+    <table class="table table-hover col-md-4 verb-template">
+        <tbody>
+            <tr>
+                <th>-άω / -ώ</th>
+                <th>-άμε</th>
+            </tr>
+            <tr>
+                <th>-άς</th>
+                <th>-άτε</th>
+            </tr>
+            <tr>
+                <th>-άς / -ά</th>
+                <th>-άνε / -ούν</th>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Единствено число - <speak [text]="'Ενικός'"></speak></th>
+                <th></th>
+                <th>Множествено число - <speak [text]="'Πληθυντικός'"></speak></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Εγώ</td>
+                <td><speak [text]="'μιλάω'"></speak> / <speak [text]="'μιλώ'"></speak></td>
+                <td>Εμείς</td>
+                <td><speak [text]="'μιλάμε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Εσύ</td>
+                <td><speak [text]="'μιλάς'"></speak></td>
+                <td>Εσείς</td>
+                <td><speak [text]="'μιλάτε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Αυτός / Αυτή / Αυτό</td>
+                <td><speak [text]="'μιλάει'"></speak> / <speak [text]="'μιλά'"></speak></td>
+                <td>Αυτοί / Αυτές / Αυτά</td>
+                <td><speak [text]="'μιλάνε'"></speak> / <speak [text]="'μιλούν'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

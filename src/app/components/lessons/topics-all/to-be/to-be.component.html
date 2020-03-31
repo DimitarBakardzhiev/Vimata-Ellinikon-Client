@@ -1,0 +1,13 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let form of forms">
+              <td><speak [text]="form.pronoun"></speak></td>
+              <td><speak [text]="form.verbForm"></speak></td>
+              <td><speak [text]="form.example"></speak></td>
+              <td>{{form.translation}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>

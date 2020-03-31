@@ -1,0 +1,9 @@
+@import '../../../../variables.scss';
+
+hr.dashed {
+    border-top-style: dashed;
+}
+
+hr.end {
+    border-top-color: $primary;
+}

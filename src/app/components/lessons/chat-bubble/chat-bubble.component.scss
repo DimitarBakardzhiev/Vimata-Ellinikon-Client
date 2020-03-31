@@ -1,0 +1,60 @@
+@import '../../../variables.scss';
+
+$answer-color: #e9ecef;
+
+.speech-bubble {
+	position: relative;
+	background: $primary;
+    border-radius: .4em;
+    width: max-content;
+    padding: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: $primary;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -10px;
+	margin-left: -20px;
+}
+
+.answer {
+    position: relative;
+	background: $answer-color;
+	border-radius: .4em;
+    width: max-content;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.answer:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-left-color: $answer-color;
+	border-right: 0;
+	border-top: 0;
+	margin-top: -10px;
+	margin-right: -20px;
+}
+
+.bubble-container {
+    display: flex;
+}
+
+.answer-container {
+    justify-content: flex-end;
+}

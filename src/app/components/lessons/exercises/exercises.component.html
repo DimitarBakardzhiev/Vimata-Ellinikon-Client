@@ -1,5 +1,22 @@
 <div class="row">
   <div class="col-md-6">
+    <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">
+      <figure *ngIf="result === 100"  class="figure">
+        <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
+        <img src="/assets/imgs/medals/gold.png" alt="Златен медал" class="figure-img img-fluid rounded">
+        <figcaption class="figure-caption">Поздравления завършихте урока безгрешно!</figcaption>
+      </figure>
+      <figure *ngIf="result >= 75 && result < 100" class="figure">
+        <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
+        <img src="/assets/imgs/medals/silver.png" alt="Сребърен медал" class="figure-img img-fluid rounded">
+        <figcaption class="figure-caption">Поздравления завършихте урока с висок резултат!</figcaption>
+      </figure>
+      <figure *ngIf="result >= 50 && result < 75" class="figure">
+        <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
+        <img src="/assets/imgs/medals/bronze.png" alt="Бронзов медал" class="figure-img img-fluid rounded">
+        <figcaption class="figure-caption">Поздравления завършихте урока успешно!</figcaption>
+      </figure>
+    </div>
     <div *ngFor="let exercise of exercises; let i = index">
       <open-exercise *ngIf="isOpenExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></open-exercise>
       <closed-exercise *ngIf="isClosedExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></closed-exercise>
@@ -15,3 +32,5 @@
 <button (click)="previous()">previous</button>
 <button (click)="next()">next</button>
 <button (click)="test()">check</button>
+<button (click)="showToggle()">show</button>
+<button (click)="nextMedal()">next medal</button>

@@ -10,12 +10,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { OpenExerciseComponent } from './components/lessons/open-exercise/open-exercise.component';
-import { TopicComponent } from './components/lessons/topic/topic.component';
-import { AlphabetComponent } from './components/lessons/topic/alphabet/alphabet.component';
-import { SpeakComponent } from './components/lessons/topic/speak/speak.component';
-import { ClosedExerciseComponent } from './components/lessons/closed-exercise/closed-exercise.component';
-import { DragAndDropExerciseComponent } from './components/lessons/drag-and-drop-exercise/drag-and-drop-exercise.component';
+import { TopicComponent } from './components/lessons/topic-box/topic-box.component';
+import { AlphabetComponent } from './components/lessons/topics-all/alphabet/alphabet.component';
+import { SpeakComponent } from './components/lessons/speak/speak.component';
 import { SpeakerButtonComponent } from './components/lessons/speaker-button/speaker-button.component';
 import { ExercisesComponent } from './components/lessons/exercises/exercises.component';
 import { DidYouKnowComponent } from './components/did-you-know/did-you-know.component';
@@ -23,7 +20,25 @@ import { DidYouKnowComponent } from './components/did-you-know/did-you-know.comp
 import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultBoxComponent } from './components/result-box/result-box.component';
-import { SpeakingExerciseComponent } from './components/lessons/speaking-exercise/speaking-exercise.component';
+import { OpenExerciseComponent } from './components/lessons/exercise-types/open-exercise/open-exercise.component';
+import { ClosedExerciseComponent } from './components/lessons/exercise-types/closed-exercise/closed-exercise.component';
+import { DragAndDropExerciseComponent } from './components/lessons/exercise-types/drag-and-drop-exercise/drag-and-drop-exercise.component';
+import { SpeakingExerciseComponent } from './components/lessons/exercise-types/speaking-exercise/speaking-exercise.component';
+import { ReadingComponent } from './components/lessons/topics-all/reading/reading.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { GreetingsComponent } from './components/lessons/topics-all/greetings/greetings.component';
+import { ToBeComponent } from './components/lessons/topics-all/to-be/to-be.component';
+import { ExpressionsComponent } from './components/lessons/topics-all/expressions/expressions.component';
+import { GendersComponent } from './components/lessons/topics-all/genders/genders.component';
+import { ReadingPart2Component } from './components/lessons/topics-all/reading-part2/reading-part2.component';
+import { AccusativeComponent } from './components/lessons/topics-all/accusative/accusative.component';
+import { VerbsComponent } from './components/lessons/topics-all/verbs/verbs.component';
+import { Verbs2Component } from './components/lessons/topics-all/verbs2/verbs2.component';
+import { NegationComponent } from './components/lessons/topics-all/negation/negation.component';
+import { ChatBubbleComponent } from './components/lessons/chat-bubble/chat-bubble.component';
+import { NumbersComponent } from './components/lessons/topics-all/numbers/numbers.component';
+import { PossessivePronounsComponent } from './components/lessons/topics-all/possessive-pronouns/possessive-pronouns.component';
+import { ClockComponent } from './components/lessons/topics-all/clock/clock.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -45,7 +60,22 @@ const routes: Routes = [
     ExercisesComponent,
     DidYouKnowComponent,
     ResultBoxComponent,
-    SpeakingExerciseComponent
+    SpeakingExerciseComponent,
+    ReadingComponent,
+    BreadcrumbComponent,
+    GreetingsComponent,
+    ToBeComponent,
+    ExpressionsComponent,
+    GendersComponent,
+    ReadingPart2Component,
+    AccusativeComponent,
+    VerbsComponent,
+    Verbs2Component,
+    NegationComponent,
+    ChatBubbleComponent,
+    NumbersComponent,
+    PossessivePronounsComponent,
+    ClockComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

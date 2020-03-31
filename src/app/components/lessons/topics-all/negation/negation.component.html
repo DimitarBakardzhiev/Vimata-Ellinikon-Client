@@ -1,0 +1,28 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let vocab of vocabulary">
+                <td><speak [text]="vocab.expression"></speak></td>
+                <td>{{vocab.translation}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Отрицание в гръцки език се образува с частицата <speak [text]="'δεν'"></speak> пред глагол.</p>
+    </div>
+    <chat-bubble [text]="'Μιλάτε Ελληνικά;'"></chat-bubble>
+    <chat-bubble [text]="'Ναι.'" [isAnswer]="true"></chat-bubble>
+    <chat-bubble [text]="'Είστε από την Αλβανία;'"></chat-bubble>
+    <chat-bubble [text]="'Όχι, δεν είμαι από την Αλβανία.'" [isAnswer]="true"></chat-bubble>
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Ξέρεις <strong>τον</strong> Αλέξανδρο;</p>
+        <p>Ναι, <strong>τον</strong> ξέρω / Όχι, δεν <strong>τον</strong> ξέρω</p>
+    </div>
+    <chat-bubble [text]="'Ξέρεις την Άννα;'"></chat-bubble>
+    <chat-bubble [text]="'Ναι, την ξέρω.'" [isAnswer]="true"></chat-bubble>
+    <chat-bubble [text]="'Ξέρεις την Φωτεινή;'"></chat-bubble>
+    <chat-bubble [text]="'Όχι, δεν την ξέρω.'" [isAnswer]="true"></chat-bubble>
+</div>

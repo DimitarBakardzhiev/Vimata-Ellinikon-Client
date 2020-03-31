@@ -1,0 +1,9 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let clock of clocks" class="row col-md-4">
+            <div class="col-md-6 time"><speak [text]="clock.time"></speak></div>
+            <div class="col-md-6"><img class="img-fluid" src="{{clock.img}}" alt="Часът е пет"></div>
+        </div>
+    </div>
+</div>

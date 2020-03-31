@@ -1,0 +1,55 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>В гръцкия език сричките на думите се броят <strong>отзад напред</strong>.</p>
+        <p>Глаголът <speak [text]="'μένω'"></speak> (живея) е ударен на <strong>втора сричка</strong>.</p>
+        <p>Глаголи ударени на <strong>втора сричка</strong> в основна форма (първо лице единствено число) са от <strong>първо спрежение</strong>.</p>
+    </div>
+    <table class="table table-hover col-md-4 verb-template">
+        <tbody>
+            <tr>
+                <th>-ω</th>
+                <th>-ουμε</th>
+            </tr>
+            <tr>
+                <th>-εις</th>
+                <th>-ετε</th>
+            </tr>
+            <tr>
+                <th>-ει</th>
+                <th>-ουν</th>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Единствено число - <speak [text]="'Ενικός'"></speak></th>
+                <th></th>
+                <th>Множествено число - <speak [text]="'Πληθυντικός'"></speak></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Εγώ</td>
+                <td><speak [text]="'κάνω'"></speak></td>
+                <td>Εμείς</td>
+                <td><speak [text]="'κάνουμε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Εσύ</td>
+                <td><speak [text]="'κάνεις'"></speak></td>
+                <td>Εσείς</td>
+                <td><speak [text]="'κάνετε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Αυτός / Αυτή / Αυτό</td>
+                <td><speak [text]="'κάνει'"></speak></td>
+                <td>Αυτοί / Αυτές / Αυτά</td>
+                <td><speak [text]="'κάνουν'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

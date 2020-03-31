@@ -1,0 +1,15 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <table class="table table-hover">
+      <tbody>
+        <tr *ngFor="let vocab of vocabulary">
+          <td><speak [text]="vocab.expression"></speak></td>
+          <td>{{vocab.translation}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Изразът <speak [text]="'Τι κάνεις'"></speak>, преведен на български, означава какво правиш, но се използва със значението <strong>как си</strong>.</p>
+    </div>
+</div>

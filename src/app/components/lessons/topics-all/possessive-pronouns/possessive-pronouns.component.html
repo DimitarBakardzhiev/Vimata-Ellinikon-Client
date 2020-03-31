@@ -1,0 +1,56 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <h1>Притежателни местоимения</h1>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <td>
+                    <speak [text]="'μου'"></speak>
+                </td>
+                <td>
+                    <speak [text]="'μας'"></speak>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <speak [text]="'σου'"></speak>
+                </td>
+                <td>
+                    <speak [text]="'σας'"></speak>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <speak [text]="'του'"></speak> / <speak [text]="'της'"></speak> / <speak [text]="'του'"></speak>
+                </td>
+                <td>
+                    <speak [text]="'τους'"></speak>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <chat-bubble [text]="'Ποιοι είναι αυτοί;'"></chat-bubble>
+            <chat-bubble [text]="'Αυτός είναι ο Λιονέλ Μέσι, η γυναίκα του και τα παιδιά τους.'" [isAnswer]="true"></chat-bubble>
+            <hr class="dashed">
+            <chat-bubble [text]="'Кои са тези?'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Това е Лионел Меси, жена му и децата им.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+            <hr class="end">
+            <chat-bubble [text]="'Ποια είναι αυτή;'"></chat-bubble>
+            <chat-bubble [text]="'Αυτή είναι η Αντονέλα και ο Μέσι είναι ο άνδρας της.'" [isAnswer]="true"></chat-bubble>
+            <hr class="dashed">
+            <chat-bubble [text]="'Коя е тази?'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Това е Антонела и Меси е мъжът ѝ.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+            <hr class="end">
+            <chat-bubble [text]="'Πόσα παιδιά έχουν;'"></chat-bubble>
+            <chat-bubble [text]="'Έχουν τρία παιδιά.'" [isAnswer]="true"></chat-bubble>
+            <hr class="dashed">
+            <chat-bubble [text]="'Колко деца имат?'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Имат три деца.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+        </div>
+        <div class="col-md-6">
+            <img class="img-fluid rounded" src="assets/imgs/lessons/messi.jpg" alt="">
+        </div>
+    </div>
+</div>
