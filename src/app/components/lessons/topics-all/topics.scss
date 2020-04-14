@@ -1,4 +1,14 @@
+@import '../../../variables.scss';
+
 table.verb-template {
     margin: 2rem auto;
     text-align: center;
+}
+
+hr.dashed {
+    border-top-style: dashed;
+}
+
+hr {
+    border-top-color: $primary;
 }

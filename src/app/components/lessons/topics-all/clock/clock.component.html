@@ -1,9 +1,96 @@
 <breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
 <div class="container">
+    <h1>
+        <speak [text]="'Τι ώρα είναι;'"></speak> - Колко е часът?
+    </h1>
     <div class="row">
         <div *ngFor="let clock of clocks" class="row col-md-4">
             <div class="col-md-6 time"><speak [text]="clock.time"></speak></div>
             <div class="col-md-6"><img class="img-fluid" src="{{clock.img}}" alt="Часът е пет"></div>
         </div>
     </div>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>11</th>
+                <td><speak [text]="'έντεκα'"></speak></td>
+            </tr>
+            <tr>
+                <th>12</th>
+                <td><speak [text]="'δώδεκα'"></speak></td>
+            </tr>
+            <tr>
+                <th>13</th>
+                <td><speak [text]="'δεκατρία'"></speak></td>
+            </tr>
+            <tr>
+                <th>14</th>
+                <td><speak [text]="'δεκατέσσερα'"></speak></td>
+            </tr>
+            <tr>
+                <th>15</th>
+                <td><speak [text]="'δεκαπέντε'"></speak></td>
+            </tr>
+            <tr>
+                <th>16</th>
+                <td><speak [text]="'δεκαέξι'"></speak></td>
+            </tr>
+            <tr>
+                <th>17</th>
+                <td><speak [text]="'δεκαεφτά'"></speak> / <speak [text]="'δεκαεπτά'"></speak></td>
+            </tr>
+            <tr>
+                <th>18</th>
+                <td><speak [text]="'δεκαοχτώ'"></speak> / <speak [text]="'δεκαοκτώ'"></speak></td>
+            </tr>
+            <tr>
+                <th>19</th>
+                <td><speak [text]="'δεκαεννιά'"></speak> / <speak [text]="'δεκαεννέα'"></speak></td>
+            </tr>
+            <tr>
+                <th>20</th>
+                <td><speak [text]="'είκοσι'"></speak></td>
+            </tr>
+            <tr>
+                <th>21</th>
+                <td><speak [text]="'είκοσι ένα'"></speak></td>
+            </tr>
+            <tr>
+                <th>32</th>
+                <td><speak [text]="'τριάντα δύο'"></speak></td>
+            </tr>
+            <tr>
+                <th>43</th>
+                <td><speak [text]="'σαράντα τρία'"></speak></td>
+            </tr>
+            <tr>
+                <th>54</th>
+                <td><speak [text]="'πενήντα τέσσερα'"></speak></td>
+            </tr>
+            <tr>
+                <th>65</th>
+                <td><speak [text]="'εξήντα πέντε'"></speak></td>
+            </tr>
+            <tr>
+                <th>76</th>
+                <td><speak [text]="'εβδομήντα έξι'"></speak></td>
+            </tr>
+            <tr>
+                <th>87</th>
+                <td><speak [text]="'ογδόντα εφτά'"></speak></td>
+            </tr>
+            <tr>
+                <th>98</th>
+                <td><speak [text]="'ενενήντα οχτώ'"></speak></td>
+            </tr>
+            <tr>
+                <th>100</th>
+                <td><speak [text]="'εκατό'"></speak></td>
+            </tr>
+            <tr>
+                <th>101</th>
+                <td><speak [text]="'εκατόν ένα'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

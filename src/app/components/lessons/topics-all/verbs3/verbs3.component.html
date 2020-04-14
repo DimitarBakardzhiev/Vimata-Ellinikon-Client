@@ -1,0 +1,62 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>В тази група влизат само 7, но често срещани глаголи.</p>
+    </div>
+    <table class="table table-hover col-md-4 verb-template">
+        <tbody>
+            <tr>
+                <th>-ω</th>
+                <th>-με</th>
+            </tr>
+            <tr>
+                <th>-ς</th>
+                <th>-τε</th>
+            </tr>
+            <tr>
+                <th>-ει</th>
+                <th>-νε</th>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Единствено число - <speak [text]="'Ενικός'"></speak></th>
+                <th></th>
+                <th>Множествено число - <speak [text]="'Πληθυντικός'"></speak></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Εγώ</td>
+                <td><speak [text]="'λέω'"></speak></td>
+                <td>Εμείς</td>
+                <td><speak [text]="'λέμε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Εσύ</td>
+                <td><speak [text]="'λες'"></speak></td>
+                <td>Εσείς</td>
+                <td><speak [text]="'λέτε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Αυτός / Αυτή / Αυτό</td>
+                <td><speak [text]="'λέει'"></speak></td>
+                <td>Αυτοί / Αυτές / Αυτά</td>
+                <td><speak [text]="'λένε'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+    <h1><speak [text]="'Λεξιλόγιο'"></speak></h1>
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let vocab of vocabulary">
+                <td><speak [text]="vocab.word"></speak></td>
+                <td>{{vocab.translation}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

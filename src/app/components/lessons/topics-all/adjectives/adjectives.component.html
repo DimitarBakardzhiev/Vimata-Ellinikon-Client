@@ -1,0 +1,98 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <h1><speak [text]="'Επίθετα'"></speak> - Прилагателни</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Мъжки род - <speak [text]="'Αρσενικό'"></speak></th>
+                <th>Женски род - <speak [text]="'Θυλικό'"></speak></th>
+                <th>Среден род - <speak [text]="'Ουδέτερο'"></speak></th>
+            </tr>
+            <tr>
+                <th>-ος</th>
+                <th>-η</th>
+                <th>-ο</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><speak [text]="'καλός'"></speak></td>
+                <td><speak [text]="'καλή'"></speak></td>
+                <td><speak [text]="'καλό'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'κακός'"></speak></td>
+                <td><speak [text]="'κακή'"></speak></td>
+                <td><speak [text]="'κακό'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'ακριβός'"></speak></td>
+                <td><speak [text]="'ακριβή'"></speak></td>
+                <td><speak [text]="'ακριβό'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'φτηνός'"></speak></td>
+                <td><speak [text]="'φτηνή'"></speak></td>
+                <td><speak [text]="'φτηνό'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Обърнете внимание на прилагателни, които завършват на гласен звук преди окончанието.</p>
+        <ul>
+            <li>ν<strong>έ</strong>ος</li>
+            <li>παλ<strong>ι</strong>ός</li>
+            <li>ωρ<strong>αί</strong>ος</li>
+            <li>καινούργ<strong>ι</strong>ος</li>
+        </ul>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Мъжки род - <speak [text]="'Αρσενικό'"></speak></th>
+                <th>Женски род - <speak [text]="'Θυλικό'"></speak></th>
+                <th>Среден род - <speak [text]="'Ουδέτερο'"></speak></th>
+            </tr>
+            <tr>
+                <th>-ος</th>
+                <th>-α</th>
+                <th>-ο</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><speak [text]="'νέος'"></speak></td>
+                <td><speak [text]="'νέα'"></speak></td>
+                <td><speak [text]="'νέο'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'παλιός'"></speak></td>
+                <td><speak [text]="'παλιά'"></speak></td>
+                <td><speak [text]="'παλιό'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'ωραίος'"></speak></td>
+                <td><speak [text]="'ωραία'"></speak></td>
+                <td><speak [text]="'ωραίο'"></speak></td>
+            </tr>
+            <tr>
+                <td><speak [text]="'καινούργιος'"></speak></td>
+                <td><speak [text]="'καινούργια'"></speak></td>
+                <td><speak [text]="'καινούργιο'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr class="dashed">
+    <h3><speak [text]="'Λεξιλόγιο'"></speak></h3>
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let vocab of vocabulary">
+                <td><speak [text]="vocab.word"></speak></td>
+                <td>{{vocab.translation}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

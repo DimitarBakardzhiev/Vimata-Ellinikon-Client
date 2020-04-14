@@ -1,5 +1,6 @@
 <breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
 <div class="container">
+    <h3>Първа група</h3>
     <div class="alert alert-dismissible alert-warning">
         <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
         <p>Глаголи завършващи на -άω или на -ώ в основна форма са от второ спрежение: <speak [text]="'μιλάω'"></speak> - говоря; <speak [text]="'αγαπώ'"></speak> - обичам</p>
@@ -47,6 +48,58 @@
                 <td><speak [text]="'μιλάει'"></speak> / <speak [text]="'μιλά'"></speak></td>
                 <td>Αυτοί / Αυτές / Αυτά</td>
                 <td><speak [text]="'μιλάνε'"></speak> / <speak [text]="'μιλούν'"></speak></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr class="dashed">
+    <h3>Втора група</h3>
+    <div class="alert alert-dismissible alert-warning">
+        <h4 class="alert-heading"><speak [text]="'Προσοχή!'"></speak></h4>
+        <p>Глаголи завършващи на -ώ в основна форма без дублетна форма, завършваща на -άω, са от второ спрежение втора група: <speak [text]="'οδηγώ'"></speak> - шофирам; <speak [text]="'μπορώ'"></speak> - мога; <speak [text]="'ζω'"></speak> - живея</p>
+    </div>
+    <table class="table table-hover col-md-4 verb-template">
+        <tbody>
+            <tr>
+                <th>-ώ</th>
+                <th>-ούμε</th>
+            </tr>
+            <tr>
+                <th>-είς</th>
+                <th>-είτε</th>
+            </tr>
+            <tr>
+                <th>-εί</th>
+                <th>-ούν</th>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Единствено число - <speak [text]="'Ενικός'"></speak></th>
+                <th></th>
+                <th>Множествено число - <speak [text]="'Πληθυντικός'"></speak></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Εγώ</td>
+                <td><speak [text]="'μπορώ'"></speak></td>
+                <td>Εμείς</td>
+                <td><speak [text]="'μπορούμε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Εσύ</td>
+                <td><speak [text]="'μπορείς'"></speak></td>
+                <td>Εσείς</td>
+                <td><speak [text]="'μπορείτε'"></speak></td>
+            </tr>
+            <tr>
+                <td>Αυτός / Αυτή / Αυτό</td>
+                <td><speak [text]="'μπορεί'"></speak></td>
+                <td>Αυτοί / Αυτές / Αυτά</td>
+                <td><speak [text]="'μπορούν'"></speak></td>
             </tr>
         </tbody>
     </table>

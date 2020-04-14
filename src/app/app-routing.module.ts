@@ -19,6 +19,10 @@ import { NegationComponent } from './components/lessons/topics-all/negation/nega
 import { NumbersComponent } from './components/lessons/topics-all/numbers/numbers.component';
 import { PossessivePronounsComponent } from './components/lessons/topics-all/possessive-pronouns/possessive-pronouns.component';
 import { ClockComponent } from './components/lessons/topics-all/clock/clock.component';
+import { Verbs3Component } from './components/lessons/topics-all/verbs3/verbs3.component';
+import { ShoppingComponent } from './components/lessons/topics-all/shopping/shopping.component';
+import { PluralComponent } from './components/lessons/topics-all/plural/plural.component';
+import { AdjectivesComponent } from './components/lessons/topics-all/adjectives/adjectives.component';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
@@ -38,6 +42,10 @@ const routes: Routes = [
   { path: 'числа', component: NumbersComponent, canActivate: [AuthGuard] },
   { path: 'притежание', component: PossessivePronounsComponent, canActivate: [AuthGuard] },
   { path: 'часовник', component: ClockComponent, canActivate: [AuthGuard] },
+  { path: 'глаголи-изключения', component: Verbs3Component, canActivate: [AuthGuard] },
+  { path: 'на-пазар', component: ShoppingComponent, canActivate: [AuthGuard] },
+  { path: 'множествено-число', component: PluralComponent, canActivate: [AuthGuard] },
+  { path: 'прилагателни', component: AdjectivesComponent, canActivate: [AuthGuard] },
 
   { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
   

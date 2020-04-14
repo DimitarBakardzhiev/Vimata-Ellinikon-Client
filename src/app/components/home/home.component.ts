@@ -44,7 +44,11 @@ export class HomeComponent implements OnInit {
       new TopicModel('Второ спрежение', '../../../assets/imgs/lessons/conjugation2.png', '/спрежение-2'),
       new TopicModel('Отрицание', '../../../assets/imgs/lessons/yes-no.png', '/отрицание'),
       new TopicModel('Притежание', '../../../assets/imgs/lessons/possessive.png', '/притежание'),
-      new TopicModel('Часовник', '../../../assets/imgs/lessons/clocks/5.jpg', '/часовник')
+      new TopicModel('Часовник', '../../../assets/imgs/lessons/clocks/5.jpg', '/часовник'),
+      new TopicModel('Глаголи изключения', '../../../assets/imgs/lessons/leo.png', '/глаголи-изключения'),
+      new TopicModel('На пазар', '../../../assets/imgs/lessons/shopping-icon.webp', '/на-пазар'),
+      new TopicModel('Множествено число', '../../../assets/imgs/lessons/plural.png', '/множествено-число'),
+      new TopicModel('Прилагателни', '../../../assets/imgs/lessons/good-bad.png', '/прилагателни')
     ];
     
     this.recognition.lang = 'el';

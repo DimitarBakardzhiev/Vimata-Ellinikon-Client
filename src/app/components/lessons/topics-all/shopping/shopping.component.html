@@ -1,0 +1,82 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Определителен член</h3>
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Именителен падеж</th>
+                        <td><speak [text]="'ο'"></speak></td>
+                        <td><speak [text]="'η'"></speak></td>
+                        <td><speak [text]="'το'"></speak></td>
+                    </tr>
+                    <tr>
+                        <th>Винителен падеж</th>
+                        <td><speak [text]="'τον'"></speak></td>
+                        <td><speak [text]="'την'"></speak></td>
+                        <td><speak [text]="'το'"></speak></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h3>Неопределителен член</h3>
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td><speak [text]="'ένας'"></speak></td>
+                        <td><speak [text]="'μια'"></speak></td>
+                        <td><speak [text]="'ένα'"></speak></td>
+                    </tr>
+                    <tr>
+                        <td><speak [text]="'έναν'"></speak></td>
+                        <td><speak [text]="'μια'"></speak></td>
+                        <td><speak [text]="'ένα'"></speak></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <img class="img-fluid rounded col-md-6" src="assets/imgs/lessons/periptero.jpg" alt="Павильон">
+        <img class="img-fluid rounded col-md-6" src="assets/imgs/lessons/periptero2.webp" alt="Павильон 2">
+    </div>
+    <hr class="dashed">
+    <div class="row">
+        <div class="col-md-6">
+            <chat-bubble [text]="'Γεια σας, θέλω ένα νερό και ένα πακέτο τσιγάρα.'"></chat-bubble>
+            <chat-bubble [text]="'Θέλετε κατί άλλο;'" [isAnswer]="true"></chat-bubble>
+            <chat-bubble [text]="'Και έναν αναπτήρα, παρακαλώ'"></chat-bubble>
+            <chat-bubble [text]="'Πόσο κάνουν;'"></chat-bubble>
+            <chat-bubble [text]="'Είναι 6 ευρώ και 50 λεπτά.'" [isAnswer]="true"></chat-bubble>
+            <chat-bubble [text]="'Ορίστε, 10 ευρώ'"></chat-bubble>
+            <chat-bubble [text]="'Και τα ρέστα σας.'" [isAnswer]="true"></chat-bubble>
+            <chat-bubble [text]="'Ευχαριστώ.'"></chat-bubble>
+            <chat-bubble [text]="'Παρακαλώ.'" [isAnswer]="true"></chat-bubble>
+        </div>
+        <div class="col-md-6">
+            <chat-bubble [text]="'Здравейте, искам една вода и една кутия цигари.'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Желаете ли още нещо?'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'И една запалка, моля'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Колко струват?'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'6 евра и 50 цента.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Заповядайте, 10 евра.'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'И рестото ви.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Благодаря.'" [isTranslation]="true"></chat-bubble>
+            <chat-bubble [text]="'Моля.'" [isAnswer]="true" [isTranslation]="true"></chat-bubble>
+        </div>
+    </div>
+    <hr>
+    <h1><speak [text]="'Λεξιλόγιο'"></speak></h1>
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let vocab of vocabulary">
+                <td><speak [text]="vocab.word"></speak></td>
+                <td>{{vocab.translation}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

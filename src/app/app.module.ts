@@ -39,6 +39,10 @@ import { ChatBubbleComponent } from './components/lessons/chat-bubble/chat-bubbl
 import { NumbersComponent } from './components/lessons/topics-all/numbers/numbers.component';
 import { PossessivePronounsComponent } from './components/lessons/topics-all/possessive-pronouns/possessive-pronouns.component';
 import { ClockComponent } from './components/lessons/topics-all/clock/clock.component';
+import { Verbs3Component } from './components/lessons/topics-all/verbs3/verbs3.component';
+import { ShoppingComponent } from './components/lessons/topics-all/shopping/shopping.component';
+import { PluralComponent } from './components/lessons/topics-all/plural/plural.component';
+import { AdjectivesComponent } from './components/lessons/topics-all/adjectives/adjectives.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -75,7 +79,11 @@ const routes: Routes = [
     ChatBubbleComponent,
     NumbersComponent,
     PossessivePronounsComponent,
-    ClockComponent
+    ClockComponent,
+    Verbs3Component,
+    ShoppingComponent,
+    PluralComponent,
+    AdjectivesComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
