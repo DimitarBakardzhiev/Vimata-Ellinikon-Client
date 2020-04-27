@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="form-group">
+        <label for="description">Условие</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="exercise.description">
+        <div *ngIf="!exercise.isDescriptionValid()" class="text-danger">Минимум 4 символа</div>
+    </div>
+    <div class="form-group">
+        <label for="content">Съдържание</label>
+        <input type="text" class="form-control" id="content" [(ngModel)]="exercise.content">
+        <div *ngIf="!exercise.isContentValid()" class="text-danger">Минимум 4 символа</div>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="exercise.textToSpeechContent">
+          Text-to-speech в съдържанието
+        </label>
+    </div>
+    <div *ngIf="lessons" class="form-group">
+        <label for="lesson">Урок</label>
+        <select class="form-control" id="lesson" [(ngModel)]="exercise.lesson">
+          <option *ngFor="let lesson of lessons">{{lesson}}</option>
+        </select>
+    </div>
+    <fieldset class="form-group">
+        <legend>Отговори</legend>
+        <div class="form-check">
+            <div *ngFor="let option of options; let i = index">
+                <label class="form-check-label row">
+                    <input type="text" class="form-control col-md-4" [(ngModel)]="option.value">
+                    <button (click)="remove(i)">x</button>
+                    <div *ngIf="option.value.length < 1" class="text-danger">Минимум 1 символ</div>
+                </label>
+            </div>
+            <button (click)="add()">Добави отговор</button>
+            <div *ngIf="options.length < 2" class="text-danger">Нужни са поне 2 отговора</div>
+        </div>
+    </fieldset>
+    <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="exercise.textToSpeechOptions">
+          Text-to-speech в отговорите
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="answer">Верен отговор</label>
+        <input type="text" class="form-control" id="answer" [(ngModel)]="exercise.correctAnswer">
+        <div *ngIf="!exercise.isCorrectAnswerValid()" class="text-danger">Минимум 1 символ</div>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="exercise.isHearingExercise">
+            Упражнение за слушане
+        </label>
+    </div>
+    <button (click)="submit()">Качи</button>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OpenExercise } from '../../../../models/open-exercise';
 import { Exercise } from '../../exercise';
+import { ExericiseService } from '../../../../services/exericise.service';
 
 @Component({
   selector: 'open-exercise',
@@ -17,25 +18,23 @@ export class OpenExerciseComponent implements OnInit, Exercise {
   userAnswer: string = '';
   hasAnsweredCorrectly: boolean = null;
 
-  constructor() {
+  constructor(private exerciseService: ExericiseService) {
     this.exercise.description = 'Преведете на български';
     this.exercise.content = 'Καφέ';
-    this.exercise.isGreekContent = true;
-    this.exercise.correctAnswer = 'кафе';
+    this.exercise.textToSpeechContent = true;
     this.exercise.isHearingExercise = false;
   }
 
   ngOnInit() {
   }
 
-  isCorrectAnswer() : Boolean {
-    this.hasAnsweredCorrectly = this.userAnswer.toLocaleLowerCase() === this.exercise.correctAnswer.toLocaleLowerCase();
-    return this.hasAnsweredCorrectly;
-  }
-
   checkAnswer() {
     this.hasAnswered = true;
-    console.log(this.isCorrectAnswer());
+    
+    this.exerciseService.checkOpenExercise({ exerciseId: this.exercise.id, answer: this.userAnswer }).subscribe(data => {
+      this.hasAnsweredCorrectly = data.isCorrect;
+    },
+    err => console.error(err));
   }
 
   nextExercise() {

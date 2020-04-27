@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SpeakingExercise } from '../../../../models/speaking-exercise';
+import { ExericiseService } from '../../../../services/exericise.service';
 
 @Component({
   selector: 'speaking-exercise',
@@ -18,7 +19,7 @@ export class SpeakingExerciseComponent implements OnInit {
   recognition = new ((<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition || (<any>window).mozSpeechRecognition || (<any>window).msSpeechRecognition)();
   speech: any;
 
-  constructor() {
+  constructor(private exerciseService: ExericiseService) {
     this.prepareSpeechRecognition();
   }
 
@@ -30,10 +31,11 @@ export class SpeakingExerciseComponent implements OnInit {
       return;
     }
 
-    let result = this.speech.toLocaleLowerCase() === this.exercise.correctAnswer.toLocaleLowerCase();
     this.hasAnswered = true;
-    this.hasAnsweredCorrectly = result;
-    console.log(result);
+    this.exerciseService.checkSpeakingExercise({ exerciseId: this.exercise.id, answer: this.speech }).subscribe(data => {
+      this.hasAnsweredCorrectly = data.isCorrect;
+    },
+    err => console.error(err));
   }
 
   listen() {

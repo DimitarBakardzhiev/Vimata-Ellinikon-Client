@@ -1,8 +1,8 @@
 <div class="container" *ngIf="exercise">
       <h1>{{exercise.description}}</h1>
       <div class="exercise-content" *ngIf="!exercise.isHearingExercise">
-        <speak *ngIf="exercise.isGreekContent" [text]="exercise.content"></speak>
-        <span *ngIf="!exercise.isGreekContent">{{exercise.content}}</span>
+        <speak *ngIf="exercise.textToSpeechContent" [text]="exercise.content"></speak>
+        <span *ngIf="!exercise.textToSpeechContent">{{exercise.content}}</span>
       </div>
       <speaker-button *ngIf="exercise.isHearingExercise" [text]="exercise.content"></speaker-button>
       <div class="form-group">

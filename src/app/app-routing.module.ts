@@ -23,10 +23,15 @@ import { Verbs3Component } from './components/lessons/topics-all/verbs3/verbs3.c
 import { ShoppingComponent } from './components/lessons/topics-all/shopping/shopping.component';
 import { PluralComponent } from './components/lessons/topics-all/plural/plural.component';
 import { AdjectivesComponent } from './components/lessons/topics-all/adjectives/adjectives.component';
+import { AdministrationComponent } from './components/admin/administration/administration.component';
+import { CreateExerciseComponent } from './components/admin/exercises/create-exercise/create-exercise.component';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
   { path: 'регистрация', component: SignupComponent },
+
+  { path: 'администрация' , component: AdministrationComponent },
+  { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent },
 
   { path: 'азбука', component: AlphabetComponent, canActivate: [AuthGuard] },
   { path: 'четене', component: ReadingComponent, canActivate: [AuthGuard] },

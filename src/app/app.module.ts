@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,13 @@ import { Verbs3Component } from './components/lessons/topics-all/verbs3/verbs3.c
 import { ShoppingComponent } from './components/lessons/topics-all/shopping/shopping.component';
 import { PluralComponent } from './components/lessons/topics-all/plural/plural.component';
 import { AdjectivesComponent } from './components/lessons/topics-all/adjectives/adjectives.component';
+import { AdministrationComponent } from './components/admin/administration/administration.component';
+import { CreateExerciseComponent } from './components/admin/exercises/create-exercise/create-exercise.component';
+import { from } from 'rxjs';
+import { CreateClosedComponent } from './components/admin/exercises/create-closed/create-closed.component';
+import { CreateOpenComponent } from './components/admin/exercises/create-open/create-open.component';
+import { CreateDragAndDropComponent } from './components/admin/exercises/create-drag-and-drop/create-drag-and-drop.component';
+import { CreateSpeakingComponent } from './components/admin/exercises/create-speaking/create-speaking.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -83,7 +91,13 @@ const routes: Routes = [
     Verbs3Component,
     ShoppingComponent,
     PluralComponent,
-    AdjectivesComponent
+    AdjectivesComponent,
+    AdministrationComponent,
+    CreateExerciseComponent,
+    CreateClosedComponent,
+    CreateOpenComponent,
+    CreateDragAndDropComponent,
+    CreateSpeakingComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -92,7 +106,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   exports: [RouterModule],
   providers: [

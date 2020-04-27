@@ -12,15 +12,16 @@ export class AuthService {
 
   private readonly TokenKey = 'token';
   private readonly PORT = '5001';
+  private readonly HOST = 'https://localhost';
 
   constructor(private http: HttpClient) { }
 
   public authenticate(userData: LoginModel) : Observable<any> {
-    return this.http.post(`https://localhost:${this.PORT}/api/users/authenticate`, userData);
+    return this.http.post(`${this.HOST}:${this.PORT}/api/users/authenticate`, userData);
   }
 
   public signup(userData: SignupModel) : Observable<any> {
-    return this.http.post(`https://localhost:${this.PORT}/api/users/signup`, userData);
+    return this.http.post(`${this.HOST}:${this.PORT}/api/users/signup`, userData);
   }
 
   public isAuthenticated() : boolean {
@@ -36,7 +37,7 @@ export class AuthService {
   }
 
   public test() : Observable<any> {
-    return this.http.get(`https://localhost:${this.PORT}/api/users/testAuth`);
+    return this.http.get(`${this.HOST}:${this.PORT}/api/users/testAuth`);
   }
 
   public getToken() : string {

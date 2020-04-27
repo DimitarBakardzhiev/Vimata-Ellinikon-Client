@@ -1,4 +1,5 @@
 <div class="row">
+  <button (click)="check()">check</button>
   <div class="col-md-6">
     <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">
       <figure *ngIf="result === 100"  class="figure">

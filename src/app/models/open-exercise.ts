@@ -1,9 +1,9 @@
 export class OpenExercise {
     constructor(
+        public id: number,
         public description: string,
         public content: string,
-        public isGreekContent: boolean,
-        public correctAnswer: string,
+        public textToSpeechContent: boolean,
         public isHearingExercise: boolean) {
 
     }

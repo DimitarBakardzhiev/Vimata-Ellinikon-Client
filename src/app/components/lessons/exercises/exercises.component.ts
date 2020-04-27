@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OpenExercise } from '../../../models/open-exercise';
 import { ClosedExercise } from '../../../models/closed-exercise';
 import { DragAndDropExercise } from '../../../models/drag-and-drop-exercise';
@@ -7,6 +7,7 @@ import { ClosedExerciseOption } from '../../../models/closed-exercise-option';
 import { ShufflerService } from '../../../services/shuffler.service';
 import { SpeakingExercise } from '../../../models/speaking-exercise';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { ExericiseService } from '../../../services/exericise.service';
 
 @Component({
   selector: 'app-exercises',
@@ -29,6 +30,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class ExercisesComponent implements OnInit {
 
+  @Input() lesson: string;
+
   exercises: any[] = [];
   currentExerciseIndex: number = 0;
 
@@ -36,60 +39,51 @@ export class ExercisesComponent implements OnInit {
   result: number = 55;
   show: boolean = true;
 
-  constructor(private shuffler: ShufflerService) {
-    // this.exercises.push(new ClosedExercise(
-    //   'Преведете на гръцки',
-    //   'Буквата вита', [
-    //     new ClosedExerciseOption('το γράμμα β'),
-    //     new ClosedExerciseOption('το γράμμα φ'),
-    //     new ClosedExerciseOption('το γράμμα ν'),
-    //     new ClosedExerciseOption('το γράμμα γ'),
-    //   ],
-    //   'το γράμμα β',
-    //   false,
-    //   true,
-    //   false));
+  constructor(private shuffler: ShufflerService,
+    private exerciseService: ExericiseService) {
+    // this.exercises.push(new SpeakingExercise(0, 'Повторете', 'Είμαι καλά', true));
+    this.exerciseService.getClosedExercises('азбука').subscribe(data => {
+      data.forEach(exercise => {
+        this.exercises.push(new ClosedExercise(exercise.id,
+          exercise.description,
+          exercise.content,
+          exercise.options.map(o => new ClosedExerciseOption(o)),
+          exercise.isGreekContent,
+          exercise.areOptionsInGreek,
+          exercise.isHearingExercise))
+      });
+    }, err => console.error(err));
 
-    // this.exercises.push(new ClosedExercise(
-    //   'Преведете на гръцки',
-    //   'Буквата зита', [
-    //     new ClosedExerciseOption('το γράμμα σ'),
-    //     new ClosedExerciseOption('το γράμμα ζ'),
-    //     new ClosedExerciseOption('το γράμμα μ'),
-    //     new ClosedExerciseOption('το γράμμα γ'),
-    //   ],
-    //   'το γράμμα ζ',
-    //   false,
-    //   true,
-    //   false));
+    // this.exerciseService.getOpenExercises('азбука').subscribe(data => {
+    //   data.forEach(exercise => {
+    //     this.exercises.push(new OpenExercise(exercise.id,
+    //       exercise.description,
+    //       exercise.content,
+    //       exercise.isGreekContent,
+    //       exercise.IsHearingExercise));
+    //   });
+    // });
 
-    // this.exercises.push(new ClosedExercise(
-    //   'Преведете на български',
-    //   'το γράμμα ω', [
-    //     new ClosedExerciseOption('буквата омега'),
-    //     new ClosedExerciseOption('буквата йота'),
-    //     new ClosedExerciseOption('буквата омикрон'),
-    //     new ClosedExerciseOption('буквата сигма'),
-    //   ],
-    //   'буквата омега', 
-    //   true,
-    //   false,
-    //   false));
+    // this.exerciseService.getDragAndDropExercises('азбука').subscribe(data => {
+    //   data.forEach(exercise => {
+    //     this.exercises.push(new DragAndDropExercise(exercise.id,
+    //       exercise.description,
+    //       exercise.content,
+    //       exercise.options,
+    //       exercise.isGreekContent,
+    //       exercise.areOptionsInGreek,
+    //       exercise.IsHearingExercise));
+    //   });
+    // });
 
-    // this.exercises.push(new OpenExercise('Преведете на български', 'ωκεανός', true, 'океан', false));
-    // this.exercises.push(new OpenExercise('Преведете на български', 'εγωισμός', true, 'егоизъм', false));
-    // this.exercises.push(new OpenExercise('Напишете на гръцки', 'Τουρκία', true, 'Τουρκία', true));
-
-    // this.exercises.push(new DragAndDropExercise(
-    //   'Преведете на български',
-    //   'Με λένε Μαρία',
-    //   ['казвам', 'се', 'Мария', 'аз', 'съм', 'не', 'тя', 'е', 'здравей'],
-    //   'Казвам се Мария',
-    //   true, false, false));
-
-    // this.exercises.push(new SpeakingExercise('Прочетете изречението', 'Με λένε Γιώργο', 'Με λένε Γιώργο', false));
-    // this.exercises.push(new SpeakingExercise('Повторете', 'Το γράμμα ξ', 'Το γράμμα ξ', true));
-    this.exercises.push(new SpeakingExercise('Повторете', 'Είμαι καλά', 'Είμαι καλά', true));
+    // this.exerciseService.getSpeakingExercises('азбука').subscribe(data => {
+    //   data.forEach(exercise => {
+    //     this.exercises.push(new SpeakingExercise(exercise.id,
+    //       exercise.description,
+    //       exercise.content,
+    //       exercise.IsHearingExercise));
+    //   });
+    // });
 
     this.exercises = this.shuffler.shuffle(this.exercises);
   }
@@ -155,5 +149,9 @@ export class ExercisesComponent implements OnInit {
         this.result = 55;
         break;
     }
+  }
+
+  check() {
+    console.log(this.exercises);
   }
 }

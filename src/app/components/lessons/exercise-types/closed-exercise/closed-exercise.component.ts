@@ -4,6 +4,7 @@ import { SpeakerService } from '../../../../services/speaker.service';
 import { Exercise } from '../../exercise';
 import { ClosedExerciseOption } from '../../../../models/closed-exercise-option';
 import { ShufflerService } from '../../../../services/shuffler.service';
+import { ExericiseService } from '../../../../services/exericise.service';
 
 @Component({
   selector: 'closed-exercise',
@@ -23,19 +24,8 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
   constructor(
     private elem: ElementRef,
     private speakerService: SpeakerService,
-    private shuffler: ShufflerService) {
-
-    this.exercise.description = 'Преведете израза';
-    this.exercise.content = 'Το γράμμα ν';
-    this.exercise.isGreekContent = true;
-    this.exercise.options = [
-      new ClosedExerciseOption('Буквата фи'),
-      new ClosedExerciseOption('Буквата ни'),
-      new ClosedExerciseOption('Буквата вита')
-    ];
-    this.exercise.areOptionsInGreek = false;
-    this.exercise.correctAnswer = 'Буквата ни';
-    this.exercise.isHearingExercise = false;
+    private shuffler: ShufflerService,
+    private exerciseService: ExericiseService) {
   }
 
   ngOnInit() {
@@ -53,16 +43,17 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     let selectedOption = this.exercise.options.find(option => option.isMarked);
     let markedHtmlOption = this.elem.nativeElement.querySelector('.marked');
 
-    if (selectedOption.content === this.exercise.correctAnswer) {
-      this.markCorrect(markedHtmlOption);
-    
-      this.hasAnsweredCorrectly = true;
-    } else {
-      this.markWrong(markedHtmlOption);
-      this.markCorrect(this.getCorrectOption());
-
-      this.hasAnsweredCorrectly = false;
-    }
+    this.exerciseService.checkClosedExercise({ exerciseId: this.exercise.id, answer: selectedOption.content }).subscribe(data => {
+      if (data.isCorrect) {
+        this.hasAnsweredCorrectly = true;
+        this.markCorrect(markedHtmlOption);
+      } else {
+        this.hasAnsweredCorrectly = false;
+        this.markWrong(markedHtmlOption);
+        this.markCorrect(this.getCorrectOption(data.correctAnswer));
+      }
+    },
+    err => console.error(err));
   }
 
   speak(text: string) {
@@ -79,11 +70,11 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     element.style['color'] = 'white';
   }
 
-  private getCorrectOption() {
+  private getCorrectOption(correctAnswer: string) {
     let options = this.elem.nativeElement.querySelectorAll('.exercise-option');
     let correct = {};
     options.forEach(element => {
-      if (element.innerText === this.exercise.correctAnswer) {
+      if (element.innerText === correctAnswer) {
         correct = element;
       }
     });

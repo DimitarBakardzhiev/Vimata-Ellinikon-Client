@@ -1,12 +1,15 @@
 <div class="container" *ngIf="exercise">
   <h1>{{exercise.description}}</h1>
   <div *ngIf="!exercise.isHearingExercise">
-    <speak *ngIf="exercise.isGreekContent" [text]="exercise.content"></speak>
-    <span *ngIf="!exercise.isGreekContent">{{exercise.content}}</span>
+    <speak *ngIf="exercise.textToSpeechContent" [text]="exercise.content"></speak>
+    <span *ngIf="!exercise.textToSpeechContent">{{exercise.content}}</span>
   </div>
   <speaker-button *ngIf="exercise.isHearingExercise" [text]="exercise.content"></speaker-button>
   <div>
-    <div *ngFor="let option of exercise.options" class="exercise-option" [class.marked]="option.isMarked" (click)="mark(option)">{{option.content}}</div>
+    <div *ngFor="let option of exercise.options" class="exercise-option" [class.marked]="option.isMarked" (click)="mark(option)">
+      <span *ngIf="!exercise.textToSpeechOptions">{{option.content}}</span>
+      <speak *ngIf="exercise.textToSpeechOptions" [text]="option.content"></speak>
+    </div>
   </div>
   <result-box
     [hasAnsweredCorrectly]="hasAnsweredCorrectly"
