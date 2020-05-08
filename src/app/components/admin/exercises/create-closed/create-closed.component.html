@@ -25,17 +25,17 @@
     <fieldset class="form-group">
         <legend>Отговори</legend>
         <div class="form-check">
-            <div *ngFor="let option of options; let i = index">
+            <div class="answers" *ngFor="let option of options; let i = index">
                 <label class="form-check-label row">
-                    <input type="radio" class="form-check-input" [(ngModel)]="optionsRadios" value="{{i}}">
+                    <input type="radio" class="form-check-input" [(ngModel)]="optionsRadios" value="{{i}}" [checked]="optionsRadios == i">
                     <input type="text" class="form-control col-md-4" [(ngModel)]="option.value">
-                    <button (click)="remove(i)">x</button>
+                    <button class="btn-remove" (click)="remove(i)">x</button>
                     <div *ngIf="option.value.length < 1" class="text-danger">Минимум 1 символ</div>
                 </label>
             </div>
             <div *ngIf="options.length < 2" class="text-danger">Нужни са поне 2 отговора</div>
             <div *ngIf="optionsRadios < 0" class="text-danger">Маркирайте верния отговор</div>
-            <button (click)="add()">Добави отговор</button>
+            <button class="btn btn-secondary" (click)="add()">Добави отговор</button>
         </div>
     </fieldset>
     <div class="form-check">
@@ -50,5 +50,6 @@
             Упражнение за слушане
         </label>
     </div>
-    <button class="btn btn-primary" (click)="submit()">Качи</button>
+    <button *ngIf="!isEditMode()" class="btn btn-primary" (click)="submit()">Качи</button>
+    <button *ngIf="isEditMode()" class="btn btn-primary" (click)="edit()">Редактирай</button>
 </div>

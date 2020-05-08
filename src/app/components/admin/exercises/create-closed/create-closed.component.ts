@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ExericiseService } from '../../../../services/exericise.service';
 import { CreateClosedExercise } from '../../../../models/create-exercise/create-closed-exercise';
 import {Router} from '@angular/router';
@@ -16,16 +16,45 @@ export class CreateClosedComponent implements OnInit {
 
   exercise: CreateClosedExercise = new CreateClosedExercise('', '', '', [], '', false, false, false);
 
+  @Input() editId: number;
+  @Input() editModel: any;
+
   constructor(private exerciseService: ExericiseService,
     private router: Router) {
     this.exerciseService.getAllLessons().subscribe(data => { 
       this.lessons = data;
-      this.exercise.lesson = this.lessons[0];
     }, 
     err => console.error(err));
+
   }
 
   ngOnInit() {
+    if (this.editModel != undefined) {
+
+      console.log(this.editModel);
+
+      this.exercise = new CreateClosedExercise(
+        this.editModel.description,
+        this.editModel.content,
+        '',
+        [],
+        this.editModel.lesson,
+        this.editModel.textToSpeechContent,
+        this.editModel.textToSpeechOptions,
+        this.editModel.isHearingExercise
+      );
+
+      console.log(this.exercise.lesson)
+      this.options = this.editModel.options.map(o => { return { value: o } });
+      for (let i = 0; i < this.editModel.options.length; i++) {
+        if (this.editModel.options[i] == this.editModel.correctAnswer) {
+          this.optionsRadios = i;
+          break;
+        }
+      }
+      
+      console.log(this.optionsRadios)
+    }
   }
 
   check() {
@@ -55,6 +84,17 @@ export class CreateClosedComponent implements OnInit {
     this.exerciseService.createClosedExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
+  edit() {
+    if (!this.isUserInputValid()) {
+      alert('Попълнете полетата правилно!');
+      return;
+    }
+
+    this.exercise.options = this.options.map(o => o.value);
+    this.exercise.correctAnswer = this.options[this.optionsRadios].value;
+    this.exerciseService.editClosedExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+  }
+
   isUserInputValid() : boolean {
     return this.exercise.isDescriptionValid() && 
     this.exercise.isContentValid() && 
@@ -75,5 +115,9 @@ export class CreateClosedComponent implements OnInit {
     }
 
     return true;
+  }
+
+  private isEditMode() : boolean {
+    return this.editId != undefined && this.editModel != undefined;
   }
 }

@@ -30,7 +30,7 @@ import { ExericiseService } from '../../../services/exericise.service';
 })
 export class ExercisesComponent implements OnInit {
 
-  @Input() lesson: string;
+  @Input() lesson: string = 'азбука';
 
   exercises: any[] = [];
   currentExerciseIndex: number = 0;
@@ -42,48 +42,48 @@ export class ExercisesComponent implements OnInit {
   constructor(private shuffler: ShufflerService,
     private exerciseService: ExericiseService) {
     // this.exercises.push(new SpeakingExercise(0, 'Повторете', 'Είμαι καλά', true));
-    this.exerciseService.getClosedExercises('азбука').subscribe(data => {
+    this.exerciseService.getClosedExercises(this.lesson).subscribe(data => {
       data.forEach(exercise => {
         this.exercises.push(new ClosedExercise(exercise.id,
           exercise.description,
           exercise.content,
           exercise.options.map(o => new ClosedExerciseOption(o)),
-          exercise.isGreekContent,
-          exercise.areOptionsInGreek,
+          exercise.textToSpeechContent,
+          exercise.textToSpeechOptions,
           exercise.isHearingExercise))
       });
     }, err => console.error(err));
 
-    // this.exerciseService.getOpenExercises('азбука').subscribe(data => {
-    //   data.forEach(exercise => {
-    //     this.exercises.push(new OpenExercise(exercise.id,
-    //       exercise.description,
-    //       exercise.content,
-    //       exercise.isGreekContent,
-    //       exercise.IsHearingExercise));
-    //   });
-    // });
+    this.exerciseService.getOpenExercises(this.lesson).subscribe(data => {
+      data.forEach(exercise => {
+        this.exercises.push(new OpenExercise(exercise.id,
+          exercise.description,
+          exercise.content,
+          exercise.textToSpeechContent,
+          exercise.isHearingExercise));
+      });
+    });
 
-    // this.exerciseService.getDragAndDropExercises('азбука').subscribe(data => {
-    //   data.forEach(exercise => {
-    //     this.exercises.push(new DragAndDropExercise(exercise.id,
-    //       exercise.description,
-    //       exercise.content,
-    //       exercise.options,
-    //       exercise.isGreekContent,
-    //       exercise.areOptionsInGreek,
-    //       exercise.IsHearingExercise));
-    //   });
-    // });
+    this.exerciseService.getDragAndDropExercises(this.lesson).subscribe(data => {
+      data.forEach(exercise => {
+        this.exercises.push(new DragAndDropExercise(exercise.id,
+          exercise.description,
+          exercise.content,
+          exercise.options,
+          exercise.textToSpeechContent,
+          exercise.textToSpeechOptions,
+          exercise.isHearingExercise));
+      });
+    });
 
-    // this.exerciseService.getSpeakingExercises('азбука').subscribe(data => {
-    //   data.forEach(exercise => {
-    //     this.exercises.push(new SpeakingExercise(exercise.id,
-    //       exercise.description,
-    //       exercise.content,
-    //       exercise.IsHearingExercise));
-    //   });
-    // });
+    this.exerciseService.getSpeakingExercises(this.lesson).subscribe(data => {
+      data.forEach(exercise => {
+        this.exercises.push(new SpeakingExercise(exercise.id,
+          exercise.description,
+          exercise.content,
+          exercise.isHearingExercise));
+      });
+    });
 
     this.exercises = this.shuffler.shuffle(this.exercises);
   }

@@ -1,4 +1,48 @@
 <breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
 <div class="container">
-    <a [routerLink]="['./ново-упражнение']">Ново упражнение</a>
+    <!-- <a (click)="editRedirect()">Редактиране</a> -->
+    <div class="form-group">
+        <label for="description">Условие</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="criteria.description">
+    </div>
+    <div class="form-group">
+        <label for="content">Съдържание</label>
+        <input type="text" class="form-control" id="content" [(ngModel)]="criteria.content">
+    </div>
+    <div *ngIf="lessons" class="form-group">
+        <label for="lesson">Урок</label>
+        <select class="form-control" id="lesson" [(ngModel)]="criteria.lesson">
+          <option *ngFor="let lesson of lessons">{{lesson}}</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" (click)="search()">Филтрирай</button>
+    <button class="btn btn-secondary" (click)="clear()">Изчистване</button>
+    <button class="btn btn-link" [routerLink]="['./ново-упражнение']">Ново упражнение</button>
+
+    <hr>
+    <table *ngIf="exercises" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Условие</th>
+                <th>Съдържание</th>
+                <th>Урок</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exercise of exercises">
+                <td>{{exercise.description}}</td>
+                <td>{{exercise.content}}</td>
+                <td>{{exercise.lesson}}</td>
+                <td>
+                    <button class="btn btn-link"
+                        [routerLink]="['./упражнения/редактиране']"
+                        [queryParams]="{ exerciseId: exercise.exerciseId, exerciseType: exercise.type }">
+                        Редактиране
+                    </button>
+                </td>
+                <td><button class="btn btn-link" (click)="delete(exercise)">Изтриване</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 *ngIf="exercises?.length === 0">Не бяха намерени упражнения</h3>
 </div>

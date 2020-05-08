@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ExericiseService } from '../../../../services/exericise.service';
 import { CreateOpenExercise } from '../../../../models/create-exercise/create-open-exercise';
 import { Router } from '@angular/router';
@@ -16,16 +16,35 @@ export class CreateOpenComponent implements OnInit {
 
   alternativeAnswers: { value: string }[] = [];
 
+  @Input() editId: number;
+  @Input() editModel: any;
+
   constructor(private exerciseService: ExericiseService,
     private router: Router) {
     this.exerciseService.getAllLessons().subscribe(data => { 
       this.lessons = data;
-      this.exercise.lesson = this.lessons[0];
     },
     err => console.error(err));
   }
 
   ngOnInit() {
+    if (this.isEditMode()) {
+      this.exercise = new CreateOpenExercise(
+        this.editModel.description,
+        this.editModel.content,
+        this.editModel.correctAnswer,
+        this.editModel.lesson,
+        this.editModel.textToSpeechContent,
+        this.editModel.isHearingExercise,
+        this.editModel.alternativeAnswers
+      );
+
+      if (this.editModel.alternativeAnswers.length > 0) {
+        this.alternativeAnswers = this.editModel.alternativeAnswers.map(a => { return { value: a } });
+      }
+
+      console.log(this.exercise);
+    }
   }
 
   submit() {
@@ -33,9 +52,21 @@ export class CreateOpenComponent implements OnInit {
       alert('Попълнете полетата правилно!');
       return;
     }
+
     this.exercise.alternativeAnswers = this.alternativeAnswers.map(a => a.value);
     console.log(this.exercise);
     this.exerciseService.createOpenExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+  }
+
+  edit() {
+    if (!this.isUserInputValid) {
+      alert('Попълнете полетата правилно!');
+      return;
+    }
+    
+    this.exercise.alternativeAnswers = this.alternativeAnswers.map(a => a.value);
+    console.log(this.exercise);
+    this.exerciseService.editOpenExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
   isUserInputValid() : boolean {
@@ -52,5 +83,9 @@ export class CreateOpenComponent implements OnInit {
 
   remove(index: number) {
     this.alternativeAnswers.splice(index, 1);
+  }
+
+  private isEditMode() : boolean {
+    return this.editId != undefined && this.editModel != undefined;
   }
 }

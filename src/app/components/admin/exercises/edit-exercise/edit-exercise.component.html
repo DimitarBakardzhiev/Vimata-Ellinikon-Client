@@ -1,0 +1,5 @@
+<breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
+<app-create-closed *ngIf="exerciseType == 0 && exercise != undefined" [editId]="exerciseId" [editModel]="exercise"></app-create-closed>
+<app-create-open *ngIf="exerciseType == 1 && exercise != undefined" [editId]="exerciseId" [editModel]="exercise"></app-create-open>
+<app-create-drag-and-drop *ngIf="exerciseType == 2 && exercise != undefined" [editId]="exerciseId" [editModel]="exercise"></app-create-drag-and-drop>
+<app-create-speaking *ngIf="exerciseType == 3 && exercise != undefined" [editId]="exerciseId" [editModel]="exercise"></app-create-speaking>

@@ -51,6 +51,7 @@ import { CreateClosedComponent } from './components/admin/exercises/create-close
 import { CreateOpenComponent } from './components/admin/exercises/create-open/create-open.component';
 import { CreateDragAndDropComponent } from './components/admin/exercises/create-drag-and-drop/create-drag-and-drop.component';
 import { CreateSpeakingComponent } from './components/admin/exercises/create-speaking/create-speaking.component';
+import { EditExerciseComponent } from './components/admin/exercises/edit-exercise/edit-exercise.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -97,7 +98,8 @@ const routes: Routes = [
     CreateClosedComponent,
     CreateOpenComponent,
     CreateDragAndDropComponent,
-    CreateSpeakingComponent
+    CreateSpeakingComponent,
+    EditExerciseComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

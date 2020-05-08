@@ -26,5 +26,6 @@
             Упражнение за слушане
         </label>
     </div>
-    <button (click)="submit()">Качи</button>
+    <button class="btn btn-primary" *ngIf="!isEditMode()" (click)="submit()">Качи</button>
+    <button class="btn btn-primary" *ngIf="isEditMode()" (click)="edit()">Редактирай</button>
 </div>

@@ -30,14 +30,14 @@
     <fieldset class="form-group">
         <legend>Алтернативни отговори (не са задължителни)</legend>
         <div class="form-check">
-            <div *ngFor="let answer of alternativeAnswers; let i = index">
+            <div class="answers" *ngFor="let answer of alternativeAnswers; let i = index">
                 <label class="form-check-label row">
                     <input type="text" class="form-control col-md-4" [(ngModel)]="answer.value">
-                    <button (click)="remove(i)">x</button>
+                    <button class="btn-remove" (click)="remove(i)">x</button>
                     <div *ngIf="answer.value.length < 1" class="text-danger">Минимум 1 символ</div>
                 </label>
             </div>
-            <button (click)="add()">Добави отговор</button>
+            <button class="btn btn-secondary" (click)="add()">Добави отговор</button>
         </div>
     </fieldset>
     <div class="form-check">
@@ -46,5 +46,6 @@
             Упражнение за слушане
         </label>
     </div>
-    <button (click)="submit()">Качи</button>
+    <button class="btn btn-primary" *ngIf="!isEditMode()" (click)="submit()">Качи</button>
+    <button class="btn btn-primary" *ngIf="isEditMode()" (click)="edit()">Редактирай</button>
 </div>
