@@ -18,7 +18,7 @@ import { SpeakerButtonComponent } from './components/lessons/speaker-button/spea
 import { ExercisesComponent } from './components/lessons/exercises/exercises.component';
 import { DidYouKnowComponent } from './components/did-you-know/did-you-know.component';
 
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultBoxComponent } from './components/result-box/result-box.component';
 import { OpenExerciseComponent } from './components/lessons/exercise-types/open-exercise/open-exercise.component';
@@ -109,7 +109,8 @@ const routes: Routes = [
     HttpClientModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   exports: [RouterModule],
   providers: [

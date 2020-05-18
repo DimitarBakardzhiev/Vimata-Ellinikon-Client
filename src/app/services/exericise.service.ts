@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ObservableLike } from 'rxjs';
 import { CreateClosedExercise } from '../models/create-exercise/create-closed-exercise';
 import { CreateOpenExercise } from '../models/create-exercise/create-open-exercise';
 import { CreateDragAndDropExercise } from '../models/create-exercise/create-drag-and-drop-exercise';
@@ -54,19 +54,19 @@ export class ExericiseService {
     return this.http.get(`${this.URL}/api/exercises/getSpeakingExercises/${lesson}`);
   }
 
-  checkOpenExercise(answer: { exerciseId: number, answer: string }) : Observable<any> {
+  checkOpenExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
     return this.http.post(`${this.URL}/api/exercises/checkOpenExercise`, answer);
   }
   
-  checkDragAndDropExercise(answer: { exerciseId: number, answer: string }) : Observable<any> {
+  checkDragAndDropExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
     return this.http.post(`${this.URL}/api/exercises/checkDragAndDropExercise`, answer);
   }
   
-  checkSpeakingExercise(answer: { exerciseId: number, answer: string }) : Observable<any> {
+  checkSpeakingExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
     return this.http.post(`${this.URL}/api/exercises/checkSpeakingExercise`, answer);
   }
   
-  checkClosedExercise(answer: { exerciseId: number, answer: string }) : Observable<any> {
+  checkClosedExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
     return this.http.post(`${this.URL}/api/exercises/checkClosedExercise`, answer);
   }
 
@@ -120,5 +120,17 @@ export class ExericiseService {
 
   searchExercisesBy(criteria: ExerciseSearchCriteria) : Observable<any> {
     return this.http.post(`${this.URL}/api/exercises/search`, criteria);
+  }
+
+  test() : Observable<any> {
+    return this.http.get(`${this.URL}/api/exercises/getTest`);
+  }
+
+  startExerciseSession(lesson: string) : Observable<any> {
+    return this.http.get(`${this.URL}/api/exercises/setSession/${lesson}`);
+  }
+
+  getExerciseSession(id: string) : Observable<any> {
+    return this.http.get(`${this.URL}/api/exercises/getSession/${id}`);
   }
 }

@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="exercises?.length > 0" class="row">
   <button (click)="check()">check</button>
   <div class="col-md-6">
     <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">
@@ -19,19 +19,24 @@
       </figure>
     </div>
     <div *ngFor="let exercise of exercises; let i = index">
-      <open-exercise *ngIf="isOpenExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></open-exercise>
-      <closed-exercise *ngIf="isClosedExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></closed-exercise>
-      <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></drag-and-drop-exercise>
-      <speaking-exercise *ngIf="isSpeakingExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" (isDoneEvent)="nextExercise($event)"></speaking-exercise>
+      <open-exercise *ngIf="isOpenExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" [sessionId]="sessionId" (isDoneEvent)="nextExercise($event)"></open-exercise>
+      <closed-exercise *ngIf="isClosedExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" [sessionId]="sessionId" (isDoneEvent)="nextExercise($event)"></closed-exercise>
+      <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" [sessionId]="sessionId" (isDoneEvent)="nextExercise($event)"></drag-and-drop-exercise>
+      <speaking-exercise *ngIf="isSpeakingExercise(exercise) && currentExerciseIndex === i" [exercise]="exercise" [sessionId]="sessionId" (isDoneEvent)="nextExercise($event)"></speaking-exercise>
     </div>
   </div>
   <div class="col-md-3 did-you-know">
     <did-you-know></did-you-know>
   </div>
 </div>
-<h1 *ngIf="!exercises || exercises.length === 0">No exercises</h1>
+<h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">No exercises</h1>
 <button (click)="previous()">previous</button>
 <button (click)="next()">next</button>
 <button (click)="test()">check</button>
 <button (click)="showToggle()">show</button>
 <button (click)="nextMedal()">next medal</button>
+
+<mat-spinner *ngIf="isLoading === true"></mat-spinner>
+
+<button (click)="testSet()">set session</button>
+<button (click)="testGet()">get session</button>

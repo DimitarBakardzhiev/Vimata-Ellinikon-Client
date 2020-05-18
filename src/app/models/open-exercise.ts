@@ -4,7 +4,8 @@ export class OpenExercise {
         public description: string,
         public content: string,
         public textToSpeechContent: boolean,
-        public isHearingExercise: boolean) {
+        public isHearingExercise: boolean,
+        public correctAnswer: string) {
 
     }
 }

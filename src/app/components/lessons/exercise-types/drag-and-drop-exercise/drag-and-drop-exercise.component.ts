@@ -12,13 +12,15 @@ import { ExericiseService } from '../../../../services/exericise.service';
 })
 export class DragAndDropExerciseComponent implements OnInit, Exercise {
 
-  @Input() exercise: DragAndDropExercise = new DragAndDropExercise(null, null, null, null, null, null, null);
+  @Input() exercise: DragAndDropExercise = new DragAndDropExercise(null, null, null, null, null, null, null, null);
 
   @Output() isDoneEvent = new EventEmitter<Boolean>();
 
   answer: string[] = [];
   hasAnswered: boolean = false;
   hasAnsweredCorrectly: boolean = null;
+
+  @Input() sessionId: string;
 
   constructor(
     private speakerService: SpeakerService,
@@ -54,11 +56,12 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
     this.hasAnswered = true;
     const answer = this.answer.join(' ').trim();
 
-    this.exerciseService.checkDragAndDropExercise({ exerciseId: this.exercise.id, answer: answer }).subscribe(data => {
+    this.exerciseService.checkDragAndDropExercise({ exerciseId: this.exercise.id, answer: answer, sessionId: this.sessionId }).subscribe(data => {
       if (data.isCorrect) {
         this.hasAnsweredCorrectly = true;
       } else {
         this.hasAnsweredCorrectly = false;
+        this.exercise.correctAnswer = data.correctAnswer;
       }
     },
     err => console.error(err));

@@ -3,5 +3,5 @@
     <span *ngIf="hasAnsweredCorrectly === false && !isSpeakingExercise" class="text-danger"><strong>Грешка:</strong> {{correctAnswer}}</span>
     <span *ngIf="hasAnsweredCorrectly === false && isSpeakingExercise" class="text-danger"><strong>Грешка,</strong> опитай пак!</span>
     <button *ngIf="!hasAnswered" [disabled]="!hasAnswer || hasAnswered" class="btn btn-primary" (click)="checkAnswer()">Провери</button>
-    <button *ngIf="hasAnswered" class="btn" [class.btn-success]="hasAnsweredCorrectly" [class.btn-danger]="!hasAnsweredCorrectly" (click)="nextExercise()">Продължи</button>
+    <button *ngIf="hasAnswered" class="btn" [class.btn-success]="hasAnsweredCorrectly" [class.btn-danger]="hasAnsweredCorrectly === false" (click)="nextExercise()">Продължи</button>
 </div>

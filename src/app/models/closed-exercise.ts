@@ -8,5 +8,6 @@ export class ClosedExercise {
         public options: ClosedExerciseOption[],
         public textToSpeechContent: boolean,
         public textToSpeechOptions: boolean,
-        public isHearingExercise: boolean) {}
+        public isHearingExercise: boolean,
+        public correctAnswer: string) {}
 }

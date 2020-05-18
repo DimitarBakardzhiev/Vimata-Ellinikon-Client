@@ -10,13 +10,15 @@ import { ExericiseService } from '../../../../services/exericise.service';
 })
 export class OpenExerciseComponent implements OnInit, Exercise {
 
-  @Input() exercise: OpenExercise = new OpenExercise(null, null, null, null, null);
+  @Input() exercise: OpenExercise = new OpenExercise(null, null, null, null, null, null);
 
   @Output() isDoneEvent = new EventEmitter<Boolean>();
   
   hasAnswered: boolean = false;
   userAnswer: string = '';
   hasAnsweredCorrectly: boolean = null;
+
+  @Input() sessionId: string;
 
   constructor(private exerciseService: ExericiseService) {
     this.exercise.description = 'Преведете на български';
@@ -31,8 +33,9 @@ export class OpenExerciseComponent implements OnInit, Exercise {
   checkAnswer() {
     this.hasAnswered = true;
     
-    this.exerciseService.checkOpenExercise({ exerciseId: this.exercise.id, answer: this.userAnswer }).subscribe(data => {
+    this.exerciseService.checkOpenExercise({ exerciseId: this.exercise.id, answer: this.userAnswer, sessionId: this.sessionId }).subscribe(data => {
       this.hasAnsweredCorrectly = data.isCorrect;
+      this.exercise.correctAnswer = data.correctAnswer;
     },
     err => console.error(err));
   }

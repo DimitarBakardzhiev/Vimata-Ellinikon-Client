@@ -19,6 +19,8 @@ export class SpeakingExerciseComponent implements OnInit {
   recognition = new ((<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition || (<any>window).mozSpeechRecognition || (<any>window).msSpeechRecognition)();
   speech: any;
 
+  @Input() sessionId: string;
+
   constructor(private exerciseService: ExericiseService) {
     this.prepareSpeechRecognition();
   }
@@ -32,7 +34,7 @@ export class SpeakingExerciseComponent implements OnInit {
     }
 
     this.hasAnswered = true;
-    this.exerciseService.checkSpeakingExercise({ exerciseId: this.exercise.id, answer: this.speech }).subscribe(data => {
+    this.exerciseService.checkSpeakingExercise({ exerciseId: this.exercise.id, answer: this.speech, sessionId: this.sessionId }).subscribe(data => {
       this.hasAnsweredCorrectly = data.isCorrect;
     },
     err => console.error(err));

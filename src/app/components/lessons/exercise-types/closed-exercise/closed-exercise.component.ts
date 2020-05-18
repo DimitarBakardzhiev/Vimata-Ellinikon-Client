@@ -13,7 +13,7 @@ import { ExericiseService } from '../../../../services/exericise.service';
 })
 export class ClosedExerciseComponent implements OnInit, Exercise {
 
-  @Input() exercise: ClosedExercise = new ClosedExercise(null, null, null, null, null, null, null);
+  @Input() exercise: ClosedExercise = new ClosedExercise(null, null, null, null, null, null, null, null);
 
   @Output() isDoneEvent = new EventEmitter<Boolean>();
 
@@ -21,15 +21,19 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
   hasAnswered: boolean = false;
   hasAnsweredCorrectly: boolean = null;
 
+  @Input() sessionId: string;
+
   constructor(
     private elem: ElementRef,
     private speakerService: SpeakerService,
     private shuffler: ShufflerService,
     private exerciseService: ExericiseService) {
+      console.log(this.exercise);
   }
 
   ngOnInit() {
     this.exercise.options = this.shuffler.shuffle(this.exercise.options);
+    console.log(this.exercise);
   }
 
   mark(option: ClosedExerciseOption) {
@@ -43,7 +47,7 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     let selectedOption = this.exercise.options.find(option => option.isMarked);
     let markedHtmlOption = this.elem.nativeElement.querySelector('.marked');
 
-    this.exerciseService.checkClosedExercise({ exerciseId: this.exercise.id, answer: selectedOption.content }).subscribe(data => {
+    this.exerciseService.checkClosedExercise({ exerciseId: this.exercise.id, answer: selectedOption.content, sessionId: this.sessionId }).subscribe(data => {
       if (data.isCorrect) {
         this.hasAnsweredCorrectly = true;
         this.markCorrect(markedHtmlOption);
@@ -51,6 +55,7 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
         this.hasAnsweredCorrectly = false;
         this.markWrong(markedHtmlOption);
         this.markCorrect(this.getCorrectOption(data.correctAnswer));
+        this.exercise.correctAnswer = data.correctAnswer;
       }
     },
     err => console.error(err));

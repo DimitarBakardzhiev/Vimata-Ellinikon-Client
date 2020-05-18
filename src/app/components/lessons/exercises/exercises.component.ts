@@ -39,56 +39,86 @@ export class ExercisesComponent implements OnInit {
   result: number = 55;
   show: boolean = true;
 
+  isLoading: boolean = true;
+  sessionId: string;
+
   constructor(private shuffler: ShufflerService,
     private exerciseService: ExericiseService) {
-    // this.exercises.push(new SpeakingExercise(0, 'Повторете', 'Είμαι καλά', true));
-    this.exerciseService.getClosedExercises(this.lesson).subscribe(data => {
-      data.forEach(exercise => {
-        this.exercises.push(new ClosedExercise(exercise.id,
-          exercise.description,
-          exercise.content,
-          exercise.options.map(o => new ClosedExerciseOption(o)),
-          exercise.textToSpeechContent,
-          exercise.textToSpeechOptions,
-          exercise.isHearingExercise))
-      });
-    }, err => console.error(err));
 
-    this.exerciseService.getOpenExercises(this.lesson).subscribe(data => {
-      data.forEach(exercise => {
-        this.exercises.push(new OpenExercise(exercise.id,
-          exercise.description,
-          exercise.content,
-          exercise.textToSpeechContent,
-          exercise.isHearingExercise));
-      });
-    });
+    this.sessionId = localStorage.getItem(this.lesson);
 
-    this.exerciseService.getDragAndDropExercises(this.lesson).subscribe(data => {
-      data.forEach(exercise => {
-        this.exercises.push(new DragAndDropExercise(exercise.id,
-          exercise.description,
-          exercise.content,
-          exercise.options,
-          exercise.textToSpeechContent,
-          exercise.textToSpeechOptions,
-          exercise.isHearingExercise));
-      });
-    });
+    debugger;
+    if (this.sessionId) {
+      this.getExistingSession(this.sessionId);
+    } else {
+      this.startNewExerciseSession();
+    }
 
-    this.exerciseService.getSpeakingExercises(this.lesson).subscribe(data => {
-      data.forEach(exercise => {
-        this.exercises.push(new SpeakingExercise(exercise.id,
-          exercise.description,
-          exercise.content,
-          exercise.isHearingExercise));
-      });
-    });
-
-    this.exercises = this.shuffler.shuffle(this.exercises);
+    //this.startNewExerciseSession();
+  
   }
 
   ngOnInit() {
+    // this.exerciseService.test().subscribe(data => {
+    //   var exercise = new OpenExercise(null, null, null, null, null, null);
+    //   Object.assign(exercise, data);
+    //   console.log(exercise);
+    //   console.log(this.isSpeakingExercise(exercise));
+    // }, err => console.error(err));
+    this.exercises = this.shuffler.shuffle(this.exercises);
+  }
+
+  private getExistingSession(sessionId: string) {
+    this.exerciseService.getExerciseSession(sessionId).subscribe(data => {
+      if (data) {
+        this.isLoading = false;
+        console.log('populating from existing');
+        this.populateExercisesFromSession(data);
+      } else {
+        console.log('populating from new session');
+        this.startNewExerciseSession();
+      }
+    }, err => console.error(err));
+  }
+
+  private startNewExerciseSession() {
+    this.exerciseService.startExerciseSession(this.lesson).subscribe(data => {
+      localStorage.setItem(this.lesson, data.id);
+      this.sessionId = data.id;
+      
+      this.isLoading = false;
+      this.populateExercisesFromSession(data);
+    }, err => {
+      console.error(err);
+      this.isLoading = false;
+    });
+  }
+
+  private populateExercisesFromSession(session: any) : void {
+    for (const exercise of session.closedExercises) {
+      let closed: ClosedExercise = Object.create(ClosedExercise.prototype);
+      exercise.options = exercise.options.map(o => new ClosedExerciseOption(o));
+      Object.assign(closed, exercise);
+      this.exercises.push(closed);
+    }
+
+    for (const exercise of session.openExercises) {
+      let open: OpenExercise = Object.create(OpenExercise.prototype);
+      Object.assign(open, exercise);
+      this.exercises.push(open);
+    }
+
+    for (const exercise of session.dragAndDropExercises) {
+      let dragAndDrop: DragAndDropExercise = Object.create(DragAndDropExercise.prototype);
+      Object.assign(dragAndDrop, exercise);
+      this.exercises.push(dragAndDrop);
+    }
+
+    for (const exercise of session.speakingExercises) {
+      let speaking: SpeakingExercise = Object.create(SpeakingExercise.prototype);
+      Object.assign(speaking, exercise);
+      this.exercises.push(speaking);
+    }
   }
 
   private isOpenExercise(exercise: any): boolean {
@@ -153,5 +183,15 @@ export class ExercisesComponent implements OnInit {
 
   check() {
     console.log(this.exercises);
+  }
+  
+  testId: string;
+
+  testSet() {
+    this.exerciseService.startExerciseSession('азбука').subscribe(data => this.testId = data.id, err => console.error(err));
+  }
+
+  testGet() {
+    this.exerciseService.getExerciseSession(this.testId).subscribe(data => console.log(data), err => console.error(err));
   }
 }

@@ -6,6 +6,6 @@ export class DragAndDropExercise {
         public options: string[],
         public textToSpeechContent: boolean,
         public textToSpeechOptions: boolean,
-        public isHearingExercise: boolean
-    ) {}
+        public isHearingExercise: boolean,
+        public correctAnswer: string) {}
 }
