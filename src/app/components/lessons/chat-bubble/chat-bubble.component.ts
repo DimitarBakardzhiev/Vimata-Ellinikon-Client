@@ -13,8 +13,5 @@ export class ChatBubbleComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.isAnswer)
-  }
-
+  ngOnInit() { }
 }

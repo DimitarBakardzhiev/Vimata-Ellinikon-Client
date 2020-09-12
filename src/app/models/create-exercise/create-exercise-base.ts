@@ -4,7 +4,7 @@ export abstract class CreateExerciseBase {
     constructor(public description: string,
         public content: string,
         public correctAnswer: string,
-        public lesson: string,
+        public lessonId: number,
         public isHearingExercise: boolean) {}
 
         isDescriptionValid() : boolean {
@@ -16,7 +16,7 @@ export abstract class CreateExerciseBase {
         }
 
         isLessonValid() : boolean {
-            return !isNullOrUndefined(this.lesson) && this.lesson.length >= 4;
+            return this.lessonId > 0;
         }
 
         isCorrectAnswerValid() : boolean {

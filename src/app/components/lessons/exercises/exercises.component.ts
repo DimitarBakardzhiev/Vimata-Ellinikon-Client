@@ -8,6 +8,9 @@ import { ShufflerService } from '../../../services/shuffler.service';
 import { SpeakingExercise } from '../../../models/speaking-exercise';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { ExericiseService } from '../../../services/exericise.service';
+import { MedalType } from '../../../models/medal-type';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exercises',
@@ -30,7 +33,7 @@ import { ExericiseService } from '../../../services/exericise.service';
 })
 export class ExercisesComponent implements OnInit {
 
-  @Input() lesson: string = 'азбука';
+  lesson: string;
 
   exercises: any[] = [];
   currentExerciseIndex: number = 0;
@@ -42,43 +45,41 @@ export class ExercisesComponent implements OnInit {
   isLoading: boolean = true;
   sessionId: string;
 
+  medal: MedalType;
+
   constructor(private shuffler: ShufflerService,
-    private exerciseService: ExericiseService) {
+    private exerciseService: ExericiseService,
+    private route: ActivatedRoute) {
 
+    this.route.paramMap.subscribe(data => {
+      this.lesson = data.get('lesson');
+
+      if (this.lesson === undefined) {
+        console.error('Lesson undefined');
+      }
+    });
     this.sessionId = localStorage.getItem(this.lesson);
-
-    debugger;
+    
     if (this.sessionId) {
       this.getExistingSession(this.sessionId);
     } else {
       this.startNewExerciseSession();
     }
 
-    //this.startNewExerciseSession();
-  
   }
 
   ngOnInit() {
-    // this.exerciseService.test().subscribe(data => {
-    //   var exercise = new OpenExercise(null, null, null, null, null, null);
-    //   Object.assign(exercise, data);
-    //   console.log(exercise);
-    //   console.log(this.isSpeakingExercise(exercise));
-    // }, err => console.error(err));
-    this.exercises = this.shuffler.shuffle(this.exercises);
   }
 
   private getExistingSession(sessionId: string) {
     this.exerciseService.getExerciseSession(sessionId).subscribe(data => {
       if (data) {
         this.isLoading = false;
-        console.log('populating from existing');
         this.populateExercisesFromSession(data);
       } else {
-        console.log('populating from new session');
         this.startNewExerciseSession();
       }
-    }, err => console.error(err));
+    }, err => this.startNewExerciseSession());
   }
 
   private startNewExerciseSession() {
@@ -119,6 +120,8 @@ export class ExercisesComponent implements OnInit {
       Object.assign(speaking, exercise);
       this.exercises.push(speaking);
     }
+    
+    this.exercises = this.shuffler.shuffle(this.exercises);
   }
 
   private isOpenExercise(exercise: any): boolean {
@@ -151,16 +154,21 @@ export class ExercisesComponent implements OnInit {
 
   private nextExercise(wasCorrectAnswer: Boolean) {
     this.currentExerciseIndex++;
-    if (wasCorrectAnswer === true) {
-      this.correctAnswers++;
-    }
 
     if (this.currentExerciseIndex === this.exercises.length) {
-      this.result = this.correctAnswers / this.exercises.length * 100;
-      console.log(`${this.result} %`);
-      // send result to server
-      return;
+
+      this.exerciseService.endSession(this.sessionId).subscribe(data => {
+        this.medal = <MedalType>data;
+        console.log(this.medal);
+      }, err => console.error(err));
     }
+  }
+
+  testMedal() {
+    this.exerciseService.endSession(this.sessionId).subscribe(data => {
+      this.medal = <MedalType>data;
+      console.log(this.medal === MedalType.Gold);
+    }, err => console.error(err));
   }
 
   private showToggle() {
@@ -183,6 +191,22 @@ export class ExercisesComponent implements OnInit {
 
   check() {
     console.log(this.exercises);
+  }
+
+  private isGold() : boolean {
+    return this.medal === MedalType.Gold;
+  } 
+  
+  private isSilver() : boolean {
+    return this.medal === MedalType.Silver;
+  }
+  
+  private isBronze() : boolean {
+    return this.medal === MedalType.Bronze;
+  }
+
+  private isFailed() : boolean {
+    return this.medal === MedalType.Failed;
   }
   
   testId: string;

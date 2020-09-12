@@ -47,7 +47,7 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     let selectedOption = this.exercise.options.find(option => option.isMarked);
     let markedHtmlOption = this.elem.nativeElement.querySelector('.marked');
 
-    this.exerciseService.checkClosedExercise({ exerciseId: this.exercise.id, answer: selectedOption.content, sessionId: this.sessionId }).subscribe(data => {
+    this.exerciseService.checkExercise({ exerciseId: this.exercise.id, answer: selectedOption.content, sessionId: this.sessionId }).subscribe(data => {
       if (data.isCorrect) {
         this.hasAnsweredCorrectly = true;
         this.markCorrect(markedHtmlOption);

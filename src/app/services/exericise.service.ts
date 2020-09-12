@@ -38,84 +38,32 @@ export class ExericiseService {
     return this.http.post(`${this.URL}/api/exercises/createSpeakingExercise`, exercise);
   }
 
-  getClosedExercises(lesson: string) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/getClosedExercises/${lesson}`);
+  checkExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
+    return this.http.post(`${this.URL}/api/exercises/checkExercise`, answer);
   }
 
-  getOpenExercises(lesson: string) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/getOpenExercises/${lesson}`);
-  }
-
-  getDragAndDropExercises(lesson: string) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/getDragAndDropExercises/${lesson}`);
-  }
-
-  getSpeakingExercises(lesson: string) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/getSpeakingExercises/${lesson}`);
-  }
-
-  checkOpenExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
-    return this.http.post(`${this.URL}/api/exercises/checkOpenExercise`, answer);
-  }
-  
-  checkDragAndDropExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
-    return this.http.post(`${this.URL}/api/exercises/checkDragAndDropExercise`, answer);
-  }
-  
-  checkSpeakingExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
-    return this.http.post(`${this.URL}/api/exercises/checkSpeakingExercise`, answer);
-  }
-  
-  checkClosedExercise(answer: { exerciseId: number, answer: string, sessionId: string }) : Observable<any> {
-    return this.http.post(`${this.URL}/api/exercises/checkClosedExercise`, answer);
-  }
-
-  getClosedExerciseForEdition(exerciseId: number) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/editClosed/${exerciseId}`);
+  getExerciseForEdition(exerciseId: number) : Observable<any> {
+    return this.http.get(`${this.URL}/api/exercises/edit/${exerciseId}`);
   }
 
   editClosedExercise(exerciseId: number, exercise: CreateClosedExercise) : Observable<any> {
     return this.http.put(`${this.URL}/api/exercises/editClosedExercise/${exerciseId}`, exercise);
   }
 
-  getOpenExerciseForEdition(exerciseId: number) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/editOpen/${exerciseId}`);
-  }
-
   editOpenExercise(exerciseId: number, exercise: CreateOpenExercise) : Observable<any> {
     return this.http.put(`${this.URL}/api/exercises/editOpenExercise/${exerciseId}`, exercise);
-  }
-
-  getDragAndDropExerciseForEdition(exerciseId: number) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/editDragAndDrop/${exerciseId}`);
   }
 
   editDragAndDropExercise(exerciseId: number, exercise: CreateDragAndDropExercise) : Observable<any> {
     return this.http.put(`${this.URL}/api/exercises/editDragAndDropExercise/${exerciseId}`, exercise);
   }
 
-  getSpeakingExerciseForEdition(exerciseId: number) : Observable<any> {
-    return this.http.get(`${this.URL}/api/exercises/editSpeaking/${exerciseId}`);
-  }
-
   editSpeakingExercise(exerciseId: number, exercise: CreateSpeakingExercise) : Observable<any> {
     return this.http.put(`${this.URL}/api/exercises/editSpeakingExercise/${exerciseId}`, exercise);
   }
 
-  removeClosedExercise(exerciseId: number) : Observable<any> {
-    return this.http.delete(`${this.URL}/api/exercises/removeClosed/${exerciseId}`);
-  }
-
-  removeOpenExercise(exerciseId: number) : Observable<any> {
-    return this.http.delete(`${this.URL}/api/exercises/removeOpen/${exerciseId}`);
-  }
-
-  removeDragAndDropExercise(exerciseId: number) : Observable<any> {
-    return this.http.delete(`${this.URL}/api/exercises/removeDragAndDrop/${exerciseId}`);
-  }
-
-  removeSpeakingExercise(exerciseId: number) : Observable<any> {
-    return this.http.delete(`${this.URL}/api/exercises/removeSpeaking/${exerciseId}`);
+  removeExercise(exerciseId: number) : Observable<any> {
+    return this.http.delete(`${this.URL}/api/exercises/remove/${exerciseId}`);
   }
 
   searchExercisesBy(criteria: ExerciseSearchCriteria) : Observable<any> {
@@ -132,5 +80,9 @@ export class ExericiseService {
 
   getExerciseSession(id: string) : Observable<any> {
     return this.http.get(`${this.URL}/api/exercises/getSession/${id}`);
+  }
+
+  endSession(id: string) : Observable<any> {
+    return this.http.get(`${this.URL}/api/exercises/endSession/${id}`);
   }
 }

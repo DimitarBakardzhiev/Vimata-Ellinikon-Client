@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
-import { Router } from '@angular/router';
 
 declare var responsiveVoice: any;
 @Component({
@@ -16,7 +15,7 @@ export class AlphabetComponent implements OnInit {
 
   breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Азбука', '/азбука')];
 
-  constructor(private router: Router) {
+  constructor() {
       this.alphabet = [
         { letter: 'Α α', pronunciation: 'Άλφα', example: 'Αλβανία', transcription: '[а]' },
         { letter: 'Β β', pronunciation: 'Βήτα', example: 'Βουλγαρία', transcription: '[в]' },

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Attribute } from '@angular/core';
 import { ExericiseService } from '../../../../services/exericise.service';
 import { CreateClosedExercise } from '../../../../models/create-exercise/create-closed-exercise';
 import {Router} from '@angular/router';
@@ -10,11 +10,11 @@ import {Router} from '@angular/router';
 })
 export class CreateClosedComponent implements OnInit {
 
-  lessons: string[];
+  lessons: { id: number, title: string }[];
   options: { value: string }[] = [{value: ''}, {value: ''}];
   optionsRadios: number = -1;
 
-  exercise: CreateClosedExercise = new CreateClosedExercise('', '', '', [], '', false, false, false);
+  exercise: CreateClosedExercise = new CreateClosedExercise('', '', '', [], 0, false, false, false);
 
   @Input() editId: number;
   @Input() editModel: any;
@@ -38,13 +38,12 @@ export class CreateClosedComponent implements OnInit {
         this.editModel.content,
         '',
         [],
-        this.editModel.lesson,
+        this.editModel.lessonId,
         this.editModel.textToSpeechContent,
         this.editModel.textToSpeechOptions,
         this.editModel.isHearingExercise
       );
 
-      console.log(this.exercise.lesson)
       this.options = this.editModel.options.map(o => { return { value: o } });
       for (let i = 0; i < this.editModel.options.length; i++) {
         if (this.editModel.options[i] == this.editModel.correctAnswer) {
@@ -58,9 +57,10 @@ export class CreateClosedComponent implements OnInit {
   }
 
   check() {
-    console.log(this.exercise);
+    var asd = document.querySelector('input[type="radio"]');
     console.log(this.optionsRadios);
-    console.log(this.options);
+    console.log(asd);
+    
   }
 
   add() {
@@ -80,7 +80,7 @@ export class CreateClosedComponent implements OnInit {
 
     this.exercise.options = this.options.map(o => o.value);
     this.exercise.correctAnswer = this.options[this.optionsRadios].value;
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.createClosedExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
@@ -92,6 +92,7 @@ export class CreateClosedComponent implements OnInit {
 
     this.exercise.options = this.options.map(o => o.value);
     this.exercise.correctAnswer = this.options[this.optionsRadios].value;
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.editClosedExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 

@@ -1,22 +1,53 @@
 <div class="container">
-  <form class="col-md-6 authentication-form">
+  <form class="col-md-6 authentication-form" [formGroup]="signupForm">
     <div class="error-message" *ngIf="errors">
       <ul>
-        <li *ngFor="let error of erros">{{ error }}</li>
+        <li *ngFor="let error of errors">{{ error }}</li>
       </ul>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Имейл</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]="userData.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Въведете имейл">
+      <input type="email" class="form-control" name="email" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Въведете имейл">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+        <ul>
+          <li *ngIf="email.errors.required || email.errors.email">
+            Въведете валиден имейл!
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Парола</label>
-      <input type="password" class="form-control" name="password" [(ngModel)]="userData.password" id="exampleInputPassword1" placeholder="Парола">
+      <input type="password" class="form-control" name="password" formControlName="password" id="exampleInputPassword1" placeholder="Парола">
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+        <ul>
+          <li *ngIf="password.errors.required">
+            Въведете парола!
+          </li>
+          <li *ngIf="password.errors.minlength">
+            Минимална дължина 6 символа!
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="form-group">
       <label for="confirmPassword">Потвръждение на парола</label>
-      <input type="password" class="form-control" name="confirmPassowrd" [(ngModel)]="userData.confirmPassword" id="confirmPassword" placeholder="Парола">
+      <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" id="confirmPassword" placeholder="Парола">
+      <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="error-message">
+        <ul>
+          <li *ngIf="confirmPassword.errors.required">
+            Потвърдете паролата!
+          </li>
+        </ul>
+      </div>
+      <div class="error-message" *ngIf="signupForm.hasError('notSame')">
+        <ul>
+          <li>
+            Паролите не съвпадат!
+          </li>
+        </ul>
+      </div>
     </div>
-    <button type="submit" (click)="signup()" class="btn btn-primary">Регистрация</button>
+    <button type="submit" (click)="signup()" class="btn btn-primary" [disabled]="!signupForm.valid">Регистрация</button>
   </form>
 </div>

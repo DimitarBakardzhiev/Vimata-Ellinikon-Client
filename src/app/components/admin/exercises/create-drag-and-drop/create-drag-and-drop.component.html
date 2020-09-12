@@ -17,8 +17,8 @@
     </div>
     <div *ngIf="lessons" class="form-group">
         <label for="lesson">Урок</label>
-        <select class="form-control" id="lesson" [(ngModel)]="exercise.lesson">
-          <option *ngFor="let lesson of lessons">{{lesson}}</option>
+        <select class="form-control" id="lesson" [(ngModel)]="exercise.lessonId">
+          <option *ngFor="let lesson of lessons" value="{{lesson.id}}">{{lesson.title}}</option>
         </select>
     </div>
     <fieldset class="form-group">

@@ -26,14 +26,15 @@ import { AdjectivesComponent } from './components/lessons/topics-all/adjectives/
 import { AdministrationComponent } from './components/admin/administration/administration.component';
 import { CreateExerciseComponent } from './components/admin/exercises/create-exercise/create-exercise.component';
 import { EditExerciseComponent } from './components/admin/exercises/edit-exercise/edit-exercise.component';
+import { AdminGuard } from './infrastructure/admin.guard';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
   { path: 'регистрация', component: SignupComponent },
 
-  { path: 'администрация' , component: AdministrationComponent },
-  { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent },
-  { path: 'администрация/упражнения/редактиране' , component: EditExerciseComponent },
+  { path: 'администрация' , component: AdministrationComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'администрация/упражнения/редактиране' , component: EditExerciseComponent, canActivate: [AuthGuard, AdminGuard] },
 
   { path: 'азбука', component: AlphabetComponent, canActivate: [AuthGuard] },
   { path: 'четене', component: ReadingComponent, canActivate: [AuthGuard] },

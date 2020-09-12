@@ -34,7 +34,7 @@ export class SpeakingExerciseComponent implements OnInit {
     }
 
     this.hasAnswered = true;
-    this.exerciseService.checkSpeakingExercise({ exerciseId: this.exercise.id, answer: this.speech, sessionId: this.sessionId }).subscribe(data => {
+    this.exerciseService.checkExercise({ exerciseId: this.exercise.id, answer: this.speech, sessionId: this.sessionId }).subscribe(data => {
       this.hasAnsweredCorrectly = data.isCorrect;
     },
     err => console.error(err));

@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class CreateSpeakingComponent implements OnInit {
 
-  lessons: string[];
-  exercise: CreateSpeakingExercise = new CreateSpeakingExercise('', '', '', '', false);
+  lessons: { id: number, title: string}[];
+  exercise: CreateSpeakingExercise = new CreateSpeakingExercise('', '', '', 0, false);
 
   @Input() editId: number;
   @Input() editModel: any;
@@ -30,7 +30,7 @@ export class CreateSpeakingComponent implements OnInit {
         this.editModel.description,
         this.editModel.content,
         this.editModel.correctAnswer,
-        this.editModel.lesson,
+        this.editModel.lessonId,
         this.editModel.isHearingExercise);
     }
   }
@@ -41,7 +41,7 @@ export class CreateSpeakingComponent implements OnInit {
       return;
     }
 
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.createSpeakingExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
@@ -51,7 +51,7 @@ export class CreateSpeakingComponent implements OnInit {
       return;
     }
 
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.editSpeakingExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 

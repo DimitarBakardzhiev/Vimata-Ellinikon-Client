@@ -52,6 +52,9 @@ import { CreateOpenComponent } from './components/admin/exercises/create-open/cr
 import { CreateDragAndDropComponent } from './components/admin/exercises/create-drag-and-drop/create-drag-and-drop.component';
 import { CreateSpeakingComponent } from './components/admin/exercises/create-speaking/create-speaking.component';
 import { EditExerciseComponent } from './components/admin/exercises/edit-exercise/edit-exercise.component';
+import { ErrorBoxComponent } from './components/error-box/error-box.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ExercisesButtonComponent } from './components/lessons/exercises-button/exercises-button.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -99,7 +102,9 @@ const routes: Routes = [
     CreateOpenComponent,
     CreateDragAndDropComponent,
     CreateSpeakingComponent,
-    EditExerciseComponent
+    EditExerciseComponent,
+    ErrorBoxComponent,
+    ExercisesButtonComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -110,7 +115,8 @@ const routes: Routes = [
     MatCardModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
   providers: [

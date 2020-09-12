@@ -14,6 +14,9 @@
       <li *ngIf="!authService.isAuthenticated()" class="nav-item">
         <a class="nav-link" routerLink="/регистрация">Регистрация</a>
       </li>
+      <li *ngIf="authService.isAdmin()" class="nav-item">
+        <a class="nav-link" routerLink="/администрация">Администрация</a>
+      </li>
       <li *ngIf="authService.isAuthenticated()" class="nav-item">
         <a class="nav-link" style="cursor: pointer" (click)="logout()">Изход</a>
       </li>

@@ -11,8 +11,8 @@
     </div>
     <div *ngIf="lessons" class="form-group">
         <label for="lesson">Урок</label>
-        <select class="form-control" id="lesson" [(ngModel)]="criteria.lesson">
-          <option *ngFor="let lesson of lessons">{{lesson}}</option>
+        <select class="form-control" id="lesson" [(ngModel)]="criteria.lessonId">
+          <option *ngFor="let lesson of lessons" value="{{lesson.id}}">{{lesson.title}}</option>
         </select>
     </div>
     <button class="btn btn-primary" (click)="search()">Филтрирай</button>
@@ -40,9 +40,10 @@
                         Редактиране
                     </button>
                 </td>
-                <td><button class="btn btn-link" (click)="delete(exercise)">Изтриване</button></td>
+                <td><button class="btn btn-link" (click)="delete(exercise.exerciseId)">Изтриване</button></td>
             </tr>
         </tbody>
     </table>
     <h3 *ngIf="exercises?.length === 0">Не бяха намерени упражнения</h3>
 </div>
+<button (click)="check()">check</button>

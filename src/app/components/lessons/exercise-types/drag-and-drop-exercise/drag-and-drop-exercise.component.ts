@@ -56,7 +56,7 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
     this.hasAnswered = true;
     const answer = this.answer.join(' ').trim();
 
-    this.exerciseService.checkDragAndDropExercise({ exerciseId: this.exercise.id, answer: answer, sessionId: this.sessionId }).subscribe(data => {
+    this.exerciseService.checkExercise({ exerciseId: this.exercise.id, answer: answer, sessionId: this.sessionId }).subscribe(data => {
       if (data.isCorrect) {
         this.hasAnsweredCorrectly = true;
       } else {

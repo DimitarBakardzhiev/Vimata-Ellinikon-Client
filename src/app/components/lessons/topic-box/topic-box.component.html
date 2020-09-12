@@ -1,4 +1,7 @@
 <div class="container">
-<img *ngIf="topic.image" [src]="topic.image" />
-<div>{{topic.title}}</div>
+    <img *ngIf="topic.image" [src]="topic.image" />
+    <div>{{topic.title}}</div>
+    <img *ngIf="topic.medal === 0" class="medal" src="assets/imgs/medals/gold.png" alt="Златен медал">
+    <img *ngIf="topic.medal === 1" class="medal" src="assets/imgs/medals/silver.png" alt="Сребърен медал">
+    <img *ngIf="topic.medal === 2" class="medal" src="assets/imgs/medals/bronze.png" alt="Бронзов медал">
 </div>

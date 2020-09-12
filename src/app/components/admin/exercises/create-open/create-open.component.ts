@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CreateOpenComponent implements OnInit {
 
-  lessons: string[];
+  lessons: { id: number, title: string }[];
 
-  exercise: CreateOpenExercise = new CreateOpenExercise('', '', '', '', false, false, []);
+  exercise: CreateOpenExercise = new CreateOpenExercise('', '', '', 0, false, false, []);
 
   alternativeAnswers: { value: string }[] = [];
 
@@ -33,7 +33,7 @@ export class CreateOpenComponent implements OnInit {
         this.editModel.description,
         this.editModel.content,
         this.editModel.correctAnswer,
-        this.editModel.lesson,
+        this.editModel.lessonId,
         this.editModel.textToSpeechContent,
         this.editModel.isHearingExercise,
         this.editModel.alternativeAnswers
@@ -54,7 +54,7 @@ export class CreateOpenComponent implements OnInit {
     }
 
     this.exercise.alternativeAnswers = this.alternativeAnswers.map(a => a.value);
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.createOpenExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
@@ -65,7 +65,7 @@ export class CreateOpenComponent implements OnInit {
     }
     
     this.exercise.alternativeAnswers = this.alternativeAnswers.map(a => a.value);
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.editOpenExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 

@@ -9,6 +9,12 @@ form.authentication-form {
     cursor: pointer;
     border-bottom: 2px dashed $primary;
 }
+
+.error-message {
+    color: red;
+    font-size: 16px;
+}
+
 html, body { height: 100%; }
 body { 
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;

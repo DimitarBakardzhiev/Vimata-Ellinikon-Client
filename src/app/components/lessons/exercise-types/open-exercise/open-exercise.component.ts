@@ -33,7 +33,7 @@ export class OpenExerciseComponent implements OnInit, Exercise {
   checkAnswer() {
     this.hasAnswered = true;
     
-    this.exerciseService.checkOpenExercise({ exerciseId: this.exercise.id, answer: this.userAnswer, sessionId: this.sessionId }).subscribe(data => {
+    this.exerciseService.checkExercise({ exerciseId: this.exercise.id, answer: this.userAnswer, sessionId: this.sessionId }).subscribe(data => {
       this.hasAnsweredCorrectly = data.isCorrect;
       this.exercise.correctAnswer = data.correctAnswer;
     },

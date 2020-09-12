@@ -2,20 +2,23 @@
   <button (click)="check()">check</button>
   <div class="col-md-6">
     <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">
-      <figure *ngIf="result === 100"  class="figure">
+      <figure *ngIf="isGold()"  class="figure">
         <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
         <img src="/assets/imgs/medals/gold.png" alt="Златен медал" class="figure-img img-fluid rounded">
         <figcaption class="figure-caption">Поздравления завършихте урока безгрешно!</figcaption>
       </figure>
-      <figure *ngIf="result >= 75 && result < 100" class="figure">
+      <figure *ngIf="isSilver()" class="figure">
         <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
         <img src="/assets/imgs/medals/silver.png" alt="Сребърен медал" class="figure-img img-fluid rounded">
         <figcaption class="figure-caption">Поздравления завършихте урока с висок резултат!</figcaption>
       </figure>
-      <figure *ngIf="result >= 50 && result < 75" class="figure">
+      <figure *ngIf="isBronze()" class="figure">
         <h1><speak [text]="'Συγχαρητήρια'"></speak></h1>
         <img src="/assets/imgs/medals/bronze.png" alt="Бронзов медал" class="figure-img img-fluid rounded">
         <figcaption class="figure-caption">Поздравления завършихте урока успешно!</figcaption>
+      </figure>
+      <figure *ngIf="isFailed()" class="figure">
+        <figcaption class="figure-caption">Опитай пак!</figcaption>
       </figure>
     </div>
     <div *ngFor="let exercise of exercises; let i = index">
@@ -29,7 +32,7 @@
     <did-you-know></did-you-know>
   </div>
 </div>
-<h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">No exercises</h1>
+<h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">Временно няма качени упражнения.</h1>
 <button (click)="previous()">previous</button>
 <button (click)="next()">next</button>
 <button (click)="test()">check</button>
@@ -40,3 +43,4 @@
 
 <button (click)="testSet()">set session</button>
 <button (click)="testGet()">get session</button>
+<button (click)="testMedal()">medal test</button>

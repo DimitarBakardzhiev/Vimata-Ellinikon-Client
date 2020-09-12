@@ -18,8 +18,8 @@
     </div>
     <div *ngIf="lessons" class="form-group">
         <label for="lesson">Урок</label>
-        <select class="form-control" id="lesson" [(ngModel)]="exercise.lesson">
-          <option *ngFor="let lesson of lessons">{{lesson}}</option>
+        <select class="form-control" id="lesson" [(ngModel)]="exercise.lessonId">
+          <option *ngFor="let lesson of lessons" value="{{lesson.id}}">{{lesson.title}}</option>
         </select>
     </div>
     <fieldset class="form-group">
@@ -27,7 +27,7 @@
         <div class="form-check">
             <div class="answers" *ngFor="let option of options; let i = index">
                 <label class="form-check-label row">
-                    <input type="radio" class="form-check-input" [(ngModel)]="optionsRadios" value="{{i}}" [checked]="optionsRadios == i">
+                    <input type="radio" class="form-check-input" [(ngModel)]="optionsRadios" value="{{i}}" [attr.checked]="optionsRadios == i">
                     <input type="text" class="form-control col-md-4" [(ngModel)]="option.value">
                     <button class="btn-remove" (click)="remove(i)">x</button>
                     <div *ngIf="option.value.length < 1" class="text-danger">Минимум 1 символ</div>

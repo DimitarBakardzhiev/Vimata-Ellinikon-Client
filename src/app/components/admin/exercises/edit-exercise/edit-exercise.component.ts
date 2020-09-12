@@ -29,49 +29,27 @@ export class EditExerciseComponent implements OnInit {
       this.exerciseId = params.exerciseId;
       this.exerciseType = params.exerciseType;
 
-      switch (this.exerciseType.toLocaleString()) {
-        case ExerciseType.Closed.toLocaleString():
-          console.log('closed');
-          this.exerciseService.getClosedExerciseForEdition(this.exerciseId).subscribe(data => {
-            console.log(data);
-            this.exercise = <CreateClosedExercise>data;
-          });
+      this.exerciseService.getExerciseForEdition(this.exerciseId).subscribe(data => {
 
-          break;
-        case ExerciseType.Open.toLocaleString():
-          console.log('open');
-
-          this.exerciseService.getOpenExerciseForEdition(this.exerciseId).subscribe(data => {
-            console.log(data);
-            this.exercise = <CreateOpenExercise>data;
-          });
-
-          break;
-        case ExerciseType.DragAndDrop.toLocaleString():
-          console.log('drag n drop');
-
-          this.exerciseService.getDragAndDropExerciseForEdition(this.exerciseId).subscribe(data => {
-            console.log(data);
-            this.exercise = <CreateDragAndDropExercise>data;
-          });
-
-          break;
-        case ExerciseType.Speaking.toLocaleString():
-          console.log('speaking');
-
-          this.exerciseService.getSpeakingExerciseForEdition(this.exerciseId).subscribe(data => {
-            console.log(data);
-            this.exercise = <CreateSpeakingExercise>data;
-          });
-
-          break;
-      
-        default:
-          console.error('Invalid exercise type');
-          break;
-      }
-
-
+        switch (this.exerciseType.toLocaleString()) {
+          case ExerciseType.Closed.toLocaleString():
+              this.exercise = <CreateClosedExercise>data;
+            break;
+          case ExerciseType.Open.toLocaleString():
+              this.exercise = <CreateOpenExercise>data;
+            break;
+          case ExerciseType.DragAndDrop.toLocaleString():
+              this.exercise = <CreateDragAndDropExercise>data;
+            break;
+          case ExerciseType.Speaking.toLocaleString():
+              this.exercise = <CreateSpeakingExercise>data;
+            break;
+        
+          default:
+              console.error('Invalid exercise type');
+            break;
+        }
+      });
     });
   }
 

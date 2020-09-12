@@ -1,0 +1,15 @@
+@import '../../../variables.scss';
+
+.exercises-btn {
+    cursor: pointer;
+    color: $primary;
+    border: 3px solid $primary;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 2rem;
+    margin: 0 auto 1rem auto;
+
+    img {
+        height: 5rem;
+    }
+}

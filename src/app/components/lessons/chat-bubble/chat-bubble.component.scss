@@ -1,15 +1,13 @@
-@import '../../../variables.scss';
-
 $answer-color: #e9ecef;
 
 .speech-bubble {
 	position: relative;
-	background: $primary;
+	background: dimgray;
     border-radius: .4em;
     width: max-content;
     padding: 1rem;
     color: white;
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .speech-bubble:after {
@@ -20,7 +18,7 @@ $answer-color: #e9ecef;
 	width: 0;
 	height: 0;
 	border: 20px solid transparent;
-	border-right-color: $primary;
+	border-right-color: dimgray;
 	border-left: 0;
 	border-top: 0;
 	margin-top: -10px;

@@ -21,10 +21,9 @@
     <tbody>
       <tr *ngFor="let word of vocabulary">
         <td><speak [text]="word.word" [voice]="voice"></speak></td>
-        <!-- <td><speak [text]="word.translation" [voice]="voice"></speak></td> -->
         <td>{{word.translation}}</td>
       </tr>
     </tbody>
   </table>
+  <exercises-button [lesson]="'азбука'"></exercises-button>
 </div>
-<a [routerLink]="['/exercises']">Упражнения</a>

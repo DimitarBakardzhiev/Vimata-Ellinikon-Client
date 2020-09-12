@@ -4,12 +4,12 @@ export class CreateOpenExercise extends CreateExerciseBase {
     constructor(public description: string,
         public content: string,
         public correctAnswer: string,
-        public lesson: string,
+        public lessonId: number,
         public textToSpeechContent: boolean,
         public isHearingExercise: boolean,
         public alternativeAnswers: string[]) {
 
-            super(description, content, correctAnswer, lesson, isHearingExercise);
+            super(description, content, correctAnswer, lessonId, isHearingExercise);
         }
 
         areAlternativeAnswersValid() : boolean {

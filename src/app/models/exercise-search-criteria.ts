@@ -1,6 +1,6 @@
 export class ExerciseSearchCriteria {
-    constructor(public lesson: string = undefined, 
-        public description: string = undefined, 
-        public content: string = undefined) {
+    constructor(public lessonId: number = 0, 
+        public description: string = '', 
+        public content: string = '') {
     }
 }

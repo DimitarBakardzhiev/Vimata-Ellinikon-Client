@@ -1,20 +1,12 @@
 <breadcrumb [breadcrumbs]="breadcrumbs"></breadcrumb>
-<p>
-  <button (click)="test()">test auth</button>
-  <a [routerLink]="['/администрация']">Администрация</a>
-</p>
-
+<div *ngIf="errorMsg" class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Грешка!</h4>
+  <p class="mb-0">{{errorMsg}}</p>
+</div>
 <div class="row">
   <div *ngFor="let topic of topics"  class="col-md-3 topic-container">
     <a [routerLink]="[topic.routerLink]" [state]="{breadcrumbs: breadcrumbs}"><topic-box [topic]="topic"></topic-box></a>
   </div>
 </div>
 <br>
-<div *ngFor="let exercise of exercises">
-  <open-exercise *ngIf="isOpenExercise(exercise)" [exercise]="exercise"></open-exercise>
-  <closed-exercise *ngIf=isClosedExercise(exercise) [exercise]="exercise"></closed-exercise>
-  <drag-and-drop-exercise *ngIf="isDragAndDropExercise(exercise)" [exercise]="exercise"></drag-and-drop-exercise>
-</div>
-<div *ngIf="speech">{{speech}}</div>
-<button (click)="listen()">Listen</button>
-<button (click)="change()">change</button>

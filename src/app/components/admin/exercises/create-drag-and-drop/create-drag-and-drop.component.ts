@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class CreateDragAndDropComponent implements OnInit {
 
-  lessons: string[];
-  exercise: CreateDragAndDropExercise = new CreateDragAndDropExercise('', '', '', [], '', false, false, false);
+  lessons: { id: number, title: string }[];
+  exercise: CreateDragAndDropExercise = new CreateDragAndDropExercise('', '', '', [], 0, false, false, false);
 
   options: { value: string }[] = [{ value: '' }, { value: '' }];
 
@@ -33,7 +33,7 @@ export class CreateDragAndDropComponent implements OnInit {
         this.editModel.content,
         this.editModel.correctAnswer,
         [],
-        this.editModel.lesson,
+        this.editModel.lessonId,
         this.editModel.textToSpeechContent,
         this.editModel.textToSpeechOptions,
         this.editModel.isHearingExercise
@@ -59,7 +59,7 @@ export class CreateDragAndDropComponent implements OnInit {
     }
 
     this.exercise.options = this.options.map(p => p.value);
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.createDragAndDropExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
@@ -70,7 +70,7 @@ export class CreateDragAndDropComponent implements OnInit {
     }
 
     this.exercise.options = this.options.map(p => p.value);
-    console.log(this.exercise);
+    this.exercise.lessonId = Number(this.exercise.lessonId);
     this.exerciseService.editDragAndDropExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
   }
 
