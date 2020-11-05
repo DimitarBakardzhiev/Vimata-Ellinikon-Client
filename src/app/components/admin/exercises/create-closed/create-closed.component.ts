@@ -70,6 +70,11 @@ export class CreateClosedComponent implements OnInit {
   remove(index: number) {
     console.log(index);
     this.options.splice(index, 1);
+
+    // reset radio button when marked answer is removed
+    if (this.optionsRadios == index) {
+      this.optionsRadios = -1;
+    }
   }
 
   submit() {
