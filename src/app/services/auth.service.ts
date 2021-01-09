@@ -5,6 +5,7 @@ import { LoginModel } from '../models/login-model';
 import { Observable } from 'rxjs';
 import { SignupModel } from '../models/signup-model';
 import * as jwt_decode from "jwt-decode";
+import { ChangePasswordModel } from '../models/change-password-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,14 @@ export class AuthService {
 
   public signup(userData: SignupModel) : Observable<any> {
     return this.http.post(`${this.HOST}:${this.PORT}/api/users/signup`, userData);
+  }
+
+  public resetPassword(email: string) : Observable<any> {
+    return this.http.get(`${this.HOST}:${this.PORT}/api/users/resetPasswordConfirmation/${email}`)
+  }
+
+  public changePassword(passwordData: ChangePasswordModel) : Observable<any> {
+    return this.http.post(`${this.HOST}:${this.PORT}/api/users/changePassword`, passwordData);
   }
 
   public isAuthenticated() : boolean {

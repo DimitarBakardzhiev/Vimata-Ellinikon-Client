@@ -55,6 +55,8 @@ import { EditExerciseComponent } from './components/admin/exercises/edit-exercis
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExercisesButtonComponent } from './components/lessons/exercises-button/exercises-button.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -104,7 +106,9 @@ const routes: Routes = [
     CreateSpeakingComponent,
     EditExerciseComponent,
     ErrorBoxComponent,
-    ExercisesButtonComponent
+    ExercisesButtonComponent,
+    ChangePasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

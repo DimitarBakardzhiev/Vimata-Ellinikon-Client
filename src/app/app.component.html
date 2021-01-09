@@ -18,6 +18,9 @@
         <a class="nav-link" routerLink="/администрация">Администрация</a>
       </li>
       <li *ngIf="authService.isAuthenticated()" class="nav-item">
+        <a class="nav-link" style="cursor: pointer" routerLink="/промяна-на-парола">Промяна на парола</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()" class="nav-item">
         <a class="nav-link" style="cursor: pointer" (click)="logout()">Изход</a>
       </li>
     </ul>

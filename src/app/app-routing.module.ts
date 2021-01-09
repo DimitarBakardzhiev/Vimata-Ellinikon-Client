@@ -27,10 +27,14 @@ import { AdministrationComponent } from './components/admin/administration/admin
 import { CreateExerciseComponent } from './components/admin/exercises/create-exercise/create-exercise.component';
 import { EditExerciseComponent } from './components/admin/exercises/edit-exercise/edit-exercise.component';
 import { AdminGuard } from './infrastructure/admin.guard';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
   { path: 'регистрация', component: SignupComponent },
+  { path: 'промяна-на-парола', component: ChangePasswordComponent },
+  { path: 'забравена-парола', component: ResetPasswordComponent },
 
   { path: 'администрация' , component: AdministrationComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent, canActivate: [AuthGuard, AdminGuard] },
