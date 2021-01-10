@@ -11,8 +11,8 @@ import { AuthService } from '../../services/auth.service';
 export class ResetPasswordComponent implements OnInit {
 
   private resetPasswordForm: FormGroup;
-  private message: String;
-  private errorMsg: String;
+  private message: string;
+  private errorMessage: string;
   
   constructor(private authService: AuthService) { }
 
@@ -30,10 +30,10 @@ export class ResetPasswordComponent implements OnInit {
       err => {
         switch ((err as HttpErrorResponse).status) {
           case 400:
-            this.errorMsg = 'Не съществува потребител, който да съответства на въведения имейл адрес.';
+            this.errorMessage = 'Не съществува потребител, който да съответства на въведения имейл адрес.';
             break;
           default:
-            this.errorMsg = 'Възникна непозната грешна! Моля, свържете се с администратор!';
+            this.errorMessage = 'Възникна непозната грешна! Моля, свържете се с администратор!';
             break;
         }
       }

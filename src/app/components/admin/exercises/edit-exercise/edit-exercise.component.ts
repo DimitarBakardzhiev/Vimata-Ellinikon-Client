@@ -22,6 +22,8 @@ export class EditExerciseComponent implements OnInit {
 
   exercise: any;
 
+  errorMessage: string;
+
   constructor(private route: ActivatedRoute,
     private exerciseService: ExericiseService) {
 
@@ -47,6 +49,7 @@ export class EditExerciseComponent implements OnInit {
         
           default:
               console.error('Invalid exercise type');
+              this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!'
             break;
         }
       });

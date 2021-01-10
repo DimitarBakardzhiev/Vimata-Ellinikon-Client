@@ -1,30 +1,19 @@
 <div class="container" *ngIf="exercise">
-      <h1>{{exercise.description}}</h1>
-      <div class="exercise-content" *ngIf="!exercise.isHearingExercise">
-        <speak *ngIf="exercise.textToSpeechContent" [text]="exercise.content"></speak>
-        <span *ngIf="!exercise.textToSpeechContent">{{exercise.content}}</span>
-      </div>
-      <speaker-button *ngIf="exercise.isHearingExercise" [text]="exercise.content"></speaker-button>
-      <div class="form-group">
-        <textarea class="form-control" [(ngModel)]="userAnswer" cols="30" rows="10"></textarea>
-      </div>
-      <!-- <button class="btn btn-primary" (click)="checkAnswer()" [disabled]="!userAnswer || hasAnswered">Провери</button>
-      <button *ngIf="hasAnswered" class="btn btn-success" (click)="nextExercise()">Продължи</button> -->
-      <result-box
-      [hasAnsweredCorrectly]="hasAnsweredCorrectly"
-      [hasAnswered]="hasAnswered"
-      [hasAnswer]="userAnswer?.length > 0"
-      [correctAnswer]="exercise.correctAnswer"
-      (isDoneEvent)="nextExercise()"
-      (checkAnswerEvent)="checkAnswer()"></result-box>
-    <!-- <div class="col-md-6">
-      <div *ngIf="hasAnsweredCorrectly === false" class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Грешка: </strong>{{exercise.correctAnswer}}
-      </div>
-      <div *ngIf="hasAnsweredCorrectly === true" class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Браво!</strong> Верен отговор.
-      </div>
-    </div> -->
+  <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
+  <h1>{{exercise.description}}</h1>
+  <div class="exercise-content" *ngIf="!exercise.isHearingExercise">
+    <speak *ngIf="exercise.textToSpeechContent" [text]="exercise.content"></speak>
+    <span *ngIf="!exercise.textToSpeechContent">{{exercise.content}}</span>
+  </div>
+  <speaker-button *ngIf="exercise.isHearingExercise" [text]="exercise.content"></speaker-button>
+  <div class="form-group">
+    <textarea class="form-control" [(ngModel)]="userAnswer" cols="30" rows="10"></textarea>
+  </div>
+  <result-box
+  [hasAnsweredCorrectly]="hasAnsweredCorrectly"
+  [hasAnswered]="hasAnswered"
+  [hasAnswer]="userAnswer?.length > 0"
+  [correctAnswer]="exercise.correctAnswer"
+  (isDoneEvent)="nextExercise()"
+  (checkAnswerEvent)="checkAnswer()"></result-box>
 </div>

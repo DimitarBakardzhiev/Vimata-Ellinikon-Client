@@ -21,6 +21,8 @@ export class SpeakingExerciseComponent implements OnInit {
 
   @Input() sessionId: string;
 
+  errorMessage: string;
+
   constructor(private exerciseService: ExericiseService) {
     this.prepareSpeechRecognition();
   }
@@ -37,7 +39,7 @@ export class SpeakingExerciseComponent implements OnInit {
     this.exerciseService.checkExercise({ exerciseId: this.exercise.id, answer: this.speech, sessionId: this.sessionId }).subscribe(data => {
       this.hasAnsweredCorrectly = data.isCorrect;
     },
-    err => console.error(err));
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   listen() {

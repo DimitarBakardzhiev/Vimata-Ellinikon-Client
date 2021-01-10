@@ -22,6 +22,8 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
 
   @Input() sessionId: string;
 
+  errorMessage: string;
+
   constructor(
     private speakerService: SpeakerService,
     private shuffler: ShufflerService,
@@ -64,7 +66,7 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
         this.exercise.correctAnswer = data.correctAnswer;
       }
     },
-    err => console.error(err));
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   nextExercise() {

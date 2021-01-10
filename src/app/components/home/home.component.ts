@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   topics: TopicModel[];
   breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/')];
-  errorMsg: string;
+  errorMessage: string;
 
   constructor(private lessonService: LessonService) {
 
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-    }, err => this.errorMsg = 'Възникна проблем при свързването със сървъра. Медалите не могат да се визуализират в момента.');
+    }, err => this.errorMessage = 'Възникна проблем при свързването със сървъра. Медалите не могат да се визуализират в момента.');
   }
 
   ngOnInit() {}

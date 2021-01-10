@@ -1,4 +1,5 @@
 <div *ngIf="exercises?.length > 0" class="row">
+  <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
   <button (click)="check()">check</button>
   <div class="col-md-6">
     <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">

@@ -16,12 +16,14 @@ export class CreateSpeakingComponent implements OnInit {
   @Input() editId: number;
   @Input() editModel: any;
 
+  errorMessage: string;
+
   constructor(private exerciseService: ExericiseService,
     private router: Router) {
     this.exerciseService.getAllLessons().subscribe(data => { 
       this.lessons = data;
     },
-    err => console.error(err));
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   ngOnInit() {
@@ -42,7 +44,9 @@ export class CreateSpeakingComponent implements OnInit {
     }
 
     this.exercise.lessonId = Number(this.exercise.lessonId);
-    this.exerciseService.createSpeakingExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+    this.exerciseService.createSpeakingExercise(this.exercise).subscribe(
+      data => this.router.navigate(['/администрация']),
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   edit() {
@@ -52,7 +56,9 @@ export class CreateSpeakingComponent implements OnInit {
     }
 
     this.exercise.lessonId = Number(this.exercise.lessonId);
-    this.exerciseService.editSpeakingExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+    this.exerciseService.editSpeakingExercise(this.editId, this.exercise).subscribe(
+      data => this.router.navigate(['/администрация']),
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   isUserInputValid() : boolean {

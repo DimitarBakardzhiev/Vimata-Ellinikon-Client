@@ -1,4 +1,5 @@
 <div class="container" *ngIf="exercise">
+  <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
   <h1>{{exercise.description}}</h1>
   <div *ngIf="!exercise.isHearingExercise">
     <speak *ngIf="exercise.textToSpeechContent" [text]="exercise.content"></speak>

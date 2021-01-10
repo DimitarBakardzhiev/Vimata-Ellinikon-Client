@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class ChangePasswordComponent implements OnInit {
 
   private changePasswordForm: FormGroup;
-  private errorMsg: string;
+  private errorMessage: string;
 
   constructor(private authService: AuthService,
     private router: Router) { }
@@ -43,13 +43,13 @@ export class ChangePasswordComponent implements OnInit {
     }, err => {
       switch ((err as HttpErrorResponse).status) {
         case 400:
-          this.errorMsg = 'Въведени са невалидни данни! Паролата остава непроменена.';
+          this.errorMessage = 'Въведени са невалидни данни! Паролата остава непроменена.';
           break;
         case 403:
-          this.errorMsg = 'Въведената стара парола е грешна!';
+          this.errorMessage = 'Въведената стара парола е грешна!';
           break;
         default:
-          this.errorMsg = 'Възникна непозната грешна! Моля, свържете се с администратор!';
+          this.errorMessage = 'Възникна непозната грешна! Моля, свържете се с администратор!';
           break;
       }
     });

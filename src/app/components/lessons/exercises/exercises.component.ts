@@ -11,6 +11,7 @@ import { ExericiseService } from '../../../services/exericise.service';
 import { MedalType } from '../../../models/medal-type';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-exercises',
@@ -46,6 +47,8 @@ export class ExercisesComponent implements OnInit {
   sessionId: string;
 
   medal: MedalType;
+
+  errorMessage: string;
 
   constructor(private shuffler: ShufflerService,
     private exerciseService: ExericiseService,
@@ -90,7 +93,7 @@ export class ExercisesComponent implements OnInit {
       this.isLoading = false;
       this.populateExercisesFromSession(data);
     }, err => {
-      console.error(err);
+      this.errorMessage = 'Поради грешка на сървъра упражненията не могат да се заредят! Моля, свържете се с администратор!'
       this.isLoading = false;
     });
   }
@@ -160,7 +163,19 @@ export class ExercisesComponent implements OnInit {
       this.exerciseService.endSession(this.sessionId).subscribe(data => {
         this.medal = <MedalType>data;
         console.log(this.medal);
-      }, err => console.error(err));
+      }, err => {
+        switch ((err as HttpErrorResponse).status) {
+          case 404:
+            this.errorMessage = 'Сесията не е намерена! Моля, свържете се с администратор!';
+            break;
+          case 400:
+            this.errorMessage = 'Сесията не е завършена! Моля, свържете се с администратор!';
+            break;
+          default:
+            this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!';
+            break;
+        }
+      });
     }
   }
 

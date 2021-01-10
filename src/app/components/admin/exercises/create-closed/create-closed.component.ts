@@ -19,13 +19,14 @@ export class CreateClosedComponent implements OnInit {
   @Input() editId: number;
   @Input() editModel: any;
 
+  errorMessage: string;
+
   constructor(private exerciseService: ExericiseService,
     private router: Router) {
     this.exerciseService.getAllLessons().subscribe(data => { 
       this.lessons = data;
     }, 
-    err => console.error(err));
-
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   ngOnInit() {
@@ -86,7 +87,9 @@ export class CreateClosedComponent implements OnInit {
     this.exercise.options = this.options.map(o => o.value);
     this.exercise.correctAnswer = this.options[this.optionsRadios].value;
     this.exercise.lessonId = Number(this.exercise.lessonId);
-    this.exerciseService.createClosedExercise(this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+    this.exerciseService.createClosedExercise(this.exercise).subscribe(
+      data => this.router.navigate(['/администрация']),
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   edit() {
@@ -98,7 +101,9 @@ export class CreateClosedComponent implements OnInit {
     this.exercise.options = this.options.map(o => o.value);
     this.exercise.correctAnswer = this.options[this.optionsRadios].value;
     this.exercise.lessonId = Number(this.exercise.lessonId);
-    this.exerciseService.editClosedExercise(this.editId, this.exercise).subscribe(data => this.router.navigate(['/администрация']), err => console.error(err));
+    this.exerciseService.editClosedExercise(this.editId, this.exercise).subscribe(
+      data => this.router.navigate(['/администрация']),
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   isUserInputValid() : boolean {

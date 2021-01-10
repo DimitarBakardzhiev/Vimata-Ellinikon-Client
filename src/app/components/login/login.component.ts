@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  private errorMsg: string;
+  private errorMessage: string;
   private loginForm: FormGroup;
 
   constructor(private authService: AuthService,
@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
     }, error => {
       if (error.status === 0) {
-        this.errorMsg = 'Възникна проблем при свързване със сървъра. Моля опитайте по-късно.'
+        this.errorMessage = 'Възникна проблем при свързване със сървъра. Моля опитайте по-късно.'
       } else if (Math.floor(error.status / 100) === 4) {
-        this.errorMsg = 'Грешен потребител или парола.'
+        this.errorMessage = 'Грешен потребител или парола.'
       }
     });
   }

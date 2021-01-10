@@ -20,6 +20,8 @@ export class OpenExerciseComponent implements OnInit, Exercise {
 
   @Input() sessionId: string;
 
+  errorMessage: string;
+
   constructor(private exerciseService: ExericiseService) {
     this.exercise.description = 'Преведете на български';
     this.exercise.content = 'Καφέ';
@@ -37,7 +39,7 @@ export class OpenExerciseComponent implements OnInit, Exercise {
       this.hasAnsweredCorrectly = data.isCorrect;
       this.exercise.correctAnswer = data.correctAnswer;
     },
-    err => console.error(err));
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   nextExercise() {

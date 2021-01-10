@@ -1,5 +1,6 @@
 <button (click)="check()">check</button>
 <div class="container">
+    <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
     <div class="form-group">
         <label for="description">Условие</label>
         <input type="text" class="form-control" id="description" [(ngModel)]="exercise.description">

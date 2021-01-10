@@ -17,6 +17,8 @@ export class AdministrationComponent implements OnInit {
   lessons: { id: number, title: string }[];
   criteria: ExerciseSearchCriteria = new ExerciseSearchCriteria();
   exercises: { exerciseId: number, description: string, content: string, lesson: string, type: ExerciseType }[];
+
+  errorMessage: string;
   
   constructor(private router: Router,
     private exerciseService: ExericiseService) {
@@ -25,9 +27,11 @@ export class AdministrationComponent implements OnInit {
     this.lessons = data;
     this.lessons.unshift({ id: null, title: null });
     },
-    err => console.error(err));
+    err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
 
-    this.exerciseService.searchExercisesBy(this.criteria).subscribe(data => this.exercises = data, err => console.error(err));
+    this.exerciseService.searchExercisesBy(this.criteria).subscribe(
+      data => this.exercises = data,
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   ngOnInit() {
@@ -43,7 +47,9 @@ export class AdministrationComponent implements OnInit {
 
   search() {
     this.criteria.lessonId = Number(this.criteria.lessonId);
-    this.exerciseService.searchExercisesBy(this.criteria).subscribe(data => this.exercises = data, err => console.error(err));
+    this.exerciseService.searchExercisesBy(this.criteria).subscribe(
+      data => this.exercises = data,
+      err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
   }
 
   clear() {
@@ -58,7 +64,7 @@ export class AdministrationComponent implements OnInit {
 
       this.exerciseService.removeExercise(exerciseId).subscribe(
         data => this.exercises = this.exercises.filter(e => e.exerciseId !== exerciseId),
-        err => console.error(err));
+        err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
     }
   }
 }
