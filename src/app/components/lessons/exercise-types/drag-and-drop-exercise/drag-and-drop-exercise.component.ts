@@ -28,12 +28,6 @@ export class DragAndDropExerciseComponent implements OnInit, Exercise {
     private speakerService: SpeakerService,
     private shuffler: ShufflerService,
     private exerciseService: ExericiseService) {
-
-    this.exercise.description = 'Преведете на гръцки';
-    this.exercise.content = 'буквата кси';
-    this.exercise.textToSpeechContent = false;
-    this.exercise.options = ['ξ', 'ω', 'σ', 'το', 'γράμμα', 'άλφα', 'λέξη', 'η', 'χ'];
-    this.exercise.textToSpeechOptions = true;
   }
 
   ngOnInit() {

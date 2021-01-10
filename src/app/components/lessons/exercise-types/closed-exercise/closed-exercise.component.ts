@@ -30,12 +30,10 @@ export class ClosedExerciseComponent implements OnInit, Exercise {
     private speakerService: SpeakerService,
     private shuffler: ShufflerService,
     private exerciseService: ExericiseService) {
-      console.log(this.exercise);
   }
 
   ngOnInit() {
     this.exercise.options = this.shuffler.shuffle(this.exercise.options);
-    console.log(this.exercise);
   }
 
   mark(option: ClosedExerciseOption) {

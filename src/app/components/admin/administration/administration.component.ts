@@ -37,10 +37,6 @@ export class AdministrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  check() {
-    console.log(this.criteria);
-  }
-
   editRedirect() {
     this.router.navigate(['/администрация/упражнения/редактиране'], { queryParams: { exerciseId: 10, exerciseType: ExerciseType.Closed } });
   }
@@ -60,7 +56,6 @@ export class AdministrationComponent implements OnInit {
 
   delete(exerciseId: number) {
     if (confirm('Наистина ли искате да изтриете това упражнение?')) {
-      console.log('confirmed');
 
       this.exerciseService.removeExercise(exerciseId).subscribe(
         data => this.exercises = this.exercises.filter(e => e.exerciseId !== exerciseId),

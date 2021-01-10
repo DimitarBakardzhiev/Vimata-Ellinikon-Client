@@ -32,8 +32,6 @@ export class CreateClosedComponent implements OnInit {
   ngOnInit() {
     if (this.editModel != undefined) {
 
-      console.log(this.editModel);
-
       this.exercise = new CreateClosedExercise(
         this.editModel.description,
         this.editModel.content,
@@ -52,16 +50,7 @@ export class CreateClosedComponent implements OnInit {
           break;
         }
       }
-      
-      console.log(this.optionsRadios)
     }
-  }
-
-  check() {
-    var asd = document.querySelector('input[type="radio"]');
-    console.log(this.optionsRadios);
-    console.log(asd);
-    
   }
 
   add() {
@@ -69,7 +58,6 @@ export class CreateClosedComponent implements OnInit {
   }
 
   remove(index: number) {
-    console.log(index);
     this.options.splice(index, 1);
 
     // reset radio button when marked answer is removed

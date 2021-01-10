@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
 
   private signup() : void {
     this.authService.signup(this.signupForm.value as SignupModel).subscribe((data) => {
-      console.log(data);
       this.authService.setSession(data.token);
       this.router.navigate(['']);
     }, (err) => {

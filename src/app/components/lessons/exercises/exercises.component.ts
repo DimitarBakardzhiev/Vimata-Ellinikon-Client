@@ -143,18 +143,6 @@ export class ExercisesComponent implements OnInit {
     return exercise instanceof SpeakingExercise;
   }
 
-  private test() {
-    console.log(this.currentExerciseIndex);
-  }
-
-  private previous() {
-    this.currentExerciseIndex--;
-  }
-
-  private next() {
-    this.currentExerciseIndex++;
-  }
-
   private nextExercise(wasCorrectAnswer: Boolean) {
     this.currentExerciseIndex++;
 
@@ -162,7 +150,6 @@ export class ExercisesComponent implements OnInit {
 
       this.exerciseService.endSession(this.sessionId).subscribe(data => {
         this.medal = <MedalType>data;
-        console.log(this.medal);
       }, err => {
         switch ((err as HttpErrorResponse).status) {
           case 404:
@@ -179,17 +166,6 @@ export class ExercisesComponent implements OnInit {
     }
   }
 
-  testMedal() {
-    this.exerciseService.endSession(this.sessionId).subscribe(data => {
-      this.medal = <MedalType>data;
-      console.log(this.medal === MedalType.Gold);
-    }, err => console.error(err));
-  }
-
-  private showToggle() {
-    this.show = !this.show;
-  }
-
   private nextMedal() {
     switch (this.result) {
       case 55:
@@ -202,10 +178,6 @@ export class ExercisesComponent implements OnInit {
         this.result = 55;
         break;
     }
-  }
-
-  check() {
-    console.log(this.exercises);
   }
 
   private isGold() : boolean {
@@ -222,15 +194,5 @@ export class ExercisesComponent implements OnInit {
 
   private isFailed() : boolean {
     return this.medal === MedalType.Failed;
-  }
-  
-  testId: string;
-
-  testSet() {
-    this.exerciseService.startExerciseSession('азбука').subscribe(data => this.testId = data.id, err => console.error(err));
-  }
-
-  testGet() {
-    this.exerciseService.getExerciseSession(this.testId).subscribe(data => console.log(data), err => console.error(err));
   }
 }

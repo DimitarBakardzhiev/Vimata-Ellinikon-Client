@@ -23,10 +23,6 @@ export class OpenExerciseComponent implements OnInit, Exercise {
   errorMessage: string;
 
   constructor(private exerciseService: ExericiseService) {
-    this.exercise.description = 'Преведете на български';
-    this.exercise.content = 'Καφέ';
-    this.exercise.textToSpeechContent = true;
-    this.exercise.isHearingExercise = false;
   }
 
   ngOnInit() {

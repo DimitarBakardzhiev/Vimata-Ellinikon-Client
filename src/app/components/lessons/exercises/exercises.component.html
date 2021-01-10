@@ -1,6 +1,5 @@
 <div *ngIf="exercises?.length > 0" class="row">
   <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
-  <button (click)="check()">check</button>
   <div class="col-md-6">
     <div [@enterAnimation] class="medal" *ngIf="currentExerciseIndex === exercises.length">
       <figure *ngIf="isGold()"  class="figure">
@@ -34,14 +33,4 @@
   </div>
 </div>
 <h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">Временно няма качени упражнения.</h1>
-<button (click)="previous()">previous</button>
-<button (click)="next()">next</button>
-<button (click)="test()">check</button>
-<button (click)="showToggle()">show</button>
-<button (click)="nextMedal()">next medal</button>
-
 <mat-spinner *ngIf="isLoading === true"></mat-spinner>
-
-<button (click)="testSet()">set session</button>
-<button (click)="testGet()">get session</button>
-<button (click)="testMedal()">medal test</button>

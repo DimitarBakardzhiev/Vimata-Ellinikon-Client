@@ -44,8 +44,6 @@ export class CreateOpenComponent implements OnInit {
       if (this.editModel.alternativeAnswers.length > 0) {
         this.alternativeAnswers = this.editModel.alternativeAnswers.map(a => { return { value: a } });
       }
-
-      console.log(this.exercise);
     }
   }
 

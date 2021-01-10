@@ -50,7 +50,6 @@ export class CreateDragAndDropComponent implements OnInit {
   }
 
   remove(index: number) {
-    console.log(index);
     this.options.splice(index, 1);
   }
 
