@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-expressions',
@@ -8,10 +9,11 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class ExpressionsComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Изрази', '/изрази')];
+  title: string = 'Изрази';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/изрази')];
   vocabulary: { expression: string, translation: string }[] = [];
 
-  constructor() {
+  constructor(private titleService: Title) {
     this.vocabulary = [
       { expression: 'Κάνω', translation: 'Правя' },
       { expression: 'Μένω', translation: 'Живея (пребивавам)' },
@@ -25,6 +27,8 @@ export class ExpressionsComponent implements OnInit {
       { expression: 'Πού μένεις;', translation: 'Къде живееш?' },
       { expression: 'Μένω στην Αθήνα', translation: 'Живея в Атина' },
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

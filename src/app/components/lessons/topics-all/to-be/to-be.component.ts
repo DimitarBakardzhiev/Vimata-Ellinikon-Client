@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-to-be',
@@ -8,11 +9,11 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class ToBeComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Глагол съм', '/съм')];
-
+  title: string = 'Глагол съм';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/съм')];
   forms: { pronoun: string, verbForm: string, example: string, translation: string }[] = [];
 
-  constructor() {
+  constructor(private titleService: Title) {
     this.forms = [
       { pronoun: 'Εγώ', verbForm: 'είμαι', example: 'ο Στυλιανός', translation: 'Аз съм Стилианос' },
       { pronoun: 'Εσύ', verbForm: 'είσαι', example: 'η Ελένη', translation: 'Ти си Елени' },
@@ -24,7 +25,9 @@ export class ToBeComponent implements OnInit {
       { pronoun: 'Αυτοί', verbForm: 'είναι', example: 'ο Μάκης και η Στέλλα', translation: 'Те са Макис и Стела' },
       { pronoun: 'Αυτές', verbForm: 'είναι', example: 'η Λιάνα και η Ελένη', translation: 'Те са Лиана и Елени' },
       { pronoun: 'Αυτά', verbForm: 'είναι', example: 'τα παιδιά', translation: 'Те са децата' },
-    ]
+    ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

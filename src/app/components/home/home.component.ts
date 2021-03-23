@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TopicModel } from '../../models/topic-model';
 import { BreadCrumb } from '../breadcrumb/bread-crumb';
 import { LessonService } from '../../services/lesson.service';
-import { MedalType } from '../../models/medal-type';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/')];
   errorMessage: string;
 
-  constructor(private lessonService: LessonService) {
+  constructor(private lessonService: LessonService, private titleService: Title) {
 
     this.topics = [
       new TopicModel('Азбука', '../../../assets/imgs/lessons/alfa_omega.png', '/азбука'),
@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit {
         }
       }
     }, err => this.errorMessage = 'Възникна проблем при свързването със сървъра. Медалите не могат да се визуализират в момента.');
+
+    this.titleService.setTitle('Vimata Ellinikon');
   }
 
   ngOnInit() {}

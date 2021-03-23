@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 declare var responsiveVoice: any;
 @Component({
@@ -12,10 +13,11 @@ export class AlphabetComponent implements OnInit {
   alphabet: { letter: string, pronunciation: string, example: string, transcription: string }[] = [];
   voice: string = 'Female';
   vocabulary: { word: string, translation: string }[] = [];
+  title: string = 'Азбука';
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Азбука', '/азбука')];
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/азбука')];
 
-  constructor() {
+  constructor(private titleService: Title) {
       this.alphabet = [
         { letter: 'Α α', pronunciation: 'Άλφα', example: 'Αλβανία', transcription: '[а]' },
         { letter: 'Β β', pronunciation: 'Βήτα', example: 'Βουλγαρία', transcription: '[в]' },
@@ -47,6 +49,8 @@ export class AlphabetComponent implements OnInit {
         { word: 'γράμμα', translation: 'буква' },
         { word: 'το γράμμα', translation: 'буквата' },
       ];
+
+      this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

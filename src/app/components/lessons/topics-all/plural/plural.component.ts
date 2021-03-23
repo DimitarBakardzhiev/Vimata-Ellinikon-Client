@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-plural',
@@ -8,11 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class PluralComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Множествено число', '/множествено-число')];
+  title: string = 'Множествено число';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/множествено-число')];
 
   vocabulary: { word: string, translation: string }[] = [];
 
-  constructor() {
+  constructor(private titleService: Title) {
     this.vocabulary = [
       { word: 'χυμός', translation: 'сок' },
       { word: 'αναπτήρας', translation: 'запалка' },
@@ -21,6 +23,8 @@ export class PluralComponent implements OnInit {
       { word: 'σκηνή', translation: 'сцена, палатка' },
       { word: 'ψωμί', translation: 'хляб' },
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

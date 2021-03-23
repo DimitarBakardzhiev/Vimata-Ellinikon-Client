@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-numbers',
@@ -8,9 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class NumbersComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Числа', '/числа')];
+  title: string = 'Числа';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/числа')];
   
-  constructor() { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(this.title);
+  }
 
   ngOnInit() {
   }

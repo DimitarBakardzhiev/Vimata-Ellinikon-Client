@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-clock',
@@ -8,11 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class ClockComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Часовник', '/часовник')];
+  title: string = 'Часовник';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/часовник')];
 
   clocks: { time: string, img: string }[] = [];
   
-  constructor() {
+  constructor(private titleService: Title) {
     this.clocks = [
       { time: 'Η ώρα είναι πέντε', img: 'assets/imgs/lessons/clocks/5.jpg' },
       { time: 'Η ώρα είναι έντεκα και τέταρτο', img: 'assets/imgs/lessons/clocks/tetarto.webp' },
@@ -20,6 +22,8 @@ export class ClockComponent implements OnInit {
       { time: 'Η ώρα είναι δέκα παρά τέταρτο', img: 'assets/imgs/lessons/clocks/quarter-to.png' },
       { time: 'Η ώρα είναι έξι παρά πέντε', img: 'assets/imgs/lessons/clocks/5-to.gif' }
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

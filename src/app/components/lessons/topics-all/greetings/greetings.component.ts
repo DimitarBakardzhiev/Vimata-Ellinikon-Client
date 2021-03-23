@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-greetings',
@@ -8,11 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class GreetingsComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Поздрави', '/поздрави')];
+  title: string = 'Поздрави'
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/поздрави')];
 
   vocabulary: { expression: string, translation: string }[] = [];
 
-  constructor() {
+  constructor(private titleService: Title) {
     this.vocabulary = [
       { expression: 'Γεια σου', translation: 'Здравей'},
       { expression: 'Γεια σας', translation: 'Здравейте'},
@@ -24,6 +26,8 @@ export class GreetingsComponent implements OnInit {
       { expression: 'Είμαι από την Βουλγαρία', translation: 'Аз съм от България'},
       { expression: 'Χαίρω πολύ', translation: 'Приятно ми е (да се запознаем)'}
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

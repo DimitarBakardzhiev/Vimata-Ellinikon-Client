@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 
 @Component({
@@ -8,9 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class ReadingComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Четене', '/четене')];
+  title: string = 'Четене';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/четене')];
 
-  constructor() { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(this.title);
+  }
 
   ngOnInit() {
   }

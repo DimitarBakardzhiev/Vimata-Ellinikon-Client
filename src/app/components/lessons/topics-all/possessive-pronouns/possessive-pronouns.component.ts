@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-possessive-pronouns',
@@ -8,9 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class PossessivePronounsComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Притежание', '/притежание')];
+  title: string = 'Притежание';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/притежание')];
   
-  constructor() { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(this.title);
+  }
 
   ngOnInit() {
   }

@@ -32,5 +32,7 @@
     <did-you-know></did-you-know>
   </div>
 </div>
-<h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">Временно няма качени упражнения.</h1>
+<div class="container">
+  <h1 *ngIf="(!exercises || exercises.length === 0) && !isLoading">Временно няма качени упражнения.</h1>
+</div>
 <mat-spinner *ngIf="isLoading === true"></mat-spinner>

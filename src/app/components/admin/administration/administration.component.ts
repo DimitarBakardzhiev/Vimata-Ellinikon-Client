@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ExerciseType } from '../../../models/exercise-type';
 import { ExericiseService } from '../../../services/exericise.service';
 import { ExerciseSearchCriteria } from '../../../models/exercise-search-criteria';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-administration',
@@ -21,7 +22,8 @@ export class AdministrationComponent implements OnInit {
   errorMessage: string;
   
   constructor(private router: Router,
-    private exerciseService: ExericiseService) {
+    private exerciseService: ExericiseService,
+    private titleService: Title) {
 
     this.exerciseService.getAllLessons().subscribe(data => { 
     this.lessons = data;
@@ -32,6 +34,8 @@ export class AdministrationComponent implements OnInit {
     this.exerciseService.searchExercisesBy(this.criteria).subscribe(
       data => this.exercises = data,
       err => this.errorMessage = 'Възникна непозната грешка! Моля, свържете се с администратор!');
+
+    this.titleService.setTitle('Vimata Ellinikon - Администрация');
   }
 
   ngOnInit() {

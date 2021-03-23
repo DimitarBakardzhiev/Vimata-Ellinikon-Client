@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-verbs3',
@@ -8,11 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class Verbs3Component implements OnInit {
   
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Глаголи изключения', '/глаголи-изключения')];
+  title: string = 'Глаголи изключения';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/глаголи-изключения')];
 
   vocabulary: { word: string, translation: string }[] = [];
 
-  constructor() {
+  constructor(private titleService: Title) {
     this.vocabulary = [
       { word: 'λέω', translation: 'казвам, наричам' },
       { word: 'πάω', translation: 'ходя, отивам' },
@@ -22,6 +24,8 @@ export class Verbs3Component implements OnInit {
       { word: 'φταίω', translation: 'виновен съм' },
       { word: 'ακούω', translation: 'чувам' },
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

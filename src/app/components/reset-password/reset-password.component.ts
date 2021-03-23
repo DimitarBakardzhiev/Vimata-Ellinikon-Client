@@ -29,7 +29,7 @@ export class ResetPasswordComponent implements OnInit {
       this.message = 'Инструкции за възстановяване на паролата Ви са изпратени на посочения имейл адрес.',
       err => {
         switch ((err as HttpErrorResponse).status) {
-          case 400:
+          case 404:
             this.errorMessage = 'Не съществува потребител, който да съответства на въведения имейл адрес.';
             break;
           default:

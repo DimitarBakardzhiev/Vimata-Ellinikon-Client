@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-adjectives',
@@ -8,11 +9,12 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class AdjectivesComponent implements OnInit {
 
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Прилагателни', '/прилагателни')];
+  title: string = 'Прилагателни';
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/прилагателни')];
 
   vocabulary: { word: string, translation: string }[] = [];
   
-  constructor() {
+  constructor(private titleService: Title) {
     this.vocabulary = [
       { word: 'καλός', translation: 'добър' },
       { word: 'κακός', translation: 'лош' },
@@ -23,6 +25,8 @@ export class AdjectivesComponent implements OnInit {
       { word: 'ωραίος', translation: 'хубав, красив' },
       { word: 'καινούργιος', translation: 'нов (за предмет)' },
     ];
+
+    this.titleService.setTitle(this.title);
   }
 
   ngOnInit() {

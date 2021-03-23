@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChangePasswordModel } from '../../models/change-password-model';
 import { AuthService } from '../../services/auth.service';
@@ -16,7 +17,10 @@ export class ChangePasswordComponent implements OnInit {
   private errorMessage: string;
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private titleService: Title) {
+      this.titleService.setTitle('Vimata Ellinikon - Промяна на парола');
+    }
 
   ngOnInit() {    
     this.changePasswordForm = new FormGroup({
