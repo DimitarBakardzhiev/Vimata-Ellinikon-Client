@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 
 @Component({
@@ -9,8 +11,8 @@ import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 })
 export class ReadingComponent implements OnInit {
 
-  title: string = 'Четене';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/четене')];
+  title: string = LessonTitles.Reading;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
 
   constructor(private titleService: Title) {
     this.titleService.setTitle(this.title);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 import { Title } from '@angular/platform-browser';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
 
 @Component({
   selector: 'app-negation',
@@ -9,8 +11,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class NegationComponent implements OnInit {
 
-  title: string = 'Отрицание';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/отрицание')];
+  title: string = LessonTitles.Negation;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
 
   vocabulary: { expression: string, translation: string }[] = [];
   

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 import { Title } from '@angular/platform-browser';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
 
 @Component({
   selector: 'app-clock',
@@ -9,8 +11,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ClockComponent implements OnInit {
 
-  title: string = 'Часовник';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/часовник')];
+  title: string = LessonTitles.Clock;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
 
   clocks: { time: string, img: string }[] = [];
   

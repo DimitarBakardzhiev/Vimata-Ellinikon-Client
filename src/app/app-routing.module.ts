@@ -29,6 +29,8 @@ import { EditExerciseComponent } from './components/admin/exercises/edit-exercis
 import { AdminGuard } from './infrastructure/admin.guard';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LessonTitleLessonRouteMapping } from './infrastructure/lesson-title-lesson-route-mapping';
+import { LessonTitles } from './infrastructure/lesson-titles';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
@@ -40,24 +42,24 @@ const routes: Routes = [
   { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'администрация/упражнения/редактиране' , component: EditExerciseComponent, canActivate: [AuthGuard, AdminGuard] },
 
-  { path: 'азбука', component: AlphabetComponent, canActivate: [AuthGuard] },
-  { path: 'четене', component: ReadingComponent, canActivate: [AuthGuard] },
-  { path: 'поздрави', component: GreetingsComponent, canActivate: [AuthGuard] },
-  { path: 'съм', component: ToBeComponent, canActivate: [AuthGuard] },
-  { path: 'изрази', component: ExpressionsComponent, canActivate: [AuthGuard] },
-  { path: 'спрежение-1', component: VerbsComponent, canActivate: [AuthGuard] },
-  { path: 'родове', component: GendersComponent, canActivate: [AuthGuard] },
-  { path: 'четене-2', component: ReadingPart2Component, canActivate: [AuthGuard] },
-  { path: 'винителен-падеж', component: AccusativeComponent, canActivate: [AuthGuard] },
-  { path: 'спрежение-2', component: Verbs2Component, canActivate: [AuthGuard] },
-  { path: 'отрицание', component: NegationComponent, canActivate: [AuthGuard] },
-  { path: 'числа', component: NumbersComponent, canActivate: [AuthGuard] },
-  { path: 'притежание', component: PossessivePronounsComponent, canActivate: [AuthGuard] },
-  { path: 'часовник', component: ClockComponent, canActivate: [AuthGuard] },
-  { path: 'глаголи-изключения', component: Verbs3Component, canActivate: [AuthGuard] },
-  { path: 'на-пазар', component: ShoppingComponent, canActivate: [AuthGuard] },
-  { path: 'множествено-число', component: PluralComponent, canActivate: [AuthGuard] },
-  { path: 'прилагателни', component: AdjectivesComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Alphabet), component: AlphabetComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Reading), component: ReadingComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Greetings), component: GreetingsComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.VerbToBe), component: ToBeComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Expressions), component: ExpressionsComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Verbs1), component: VerbsComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.GenderAndArticles), component: GendersComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Reading2), component: ReadingPart2Component, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Accusative), component: AccusativeComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Verbs2), component: Verbs2Component, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Negation), component: NegationComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Numbers), component: NumbersComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Genitive), component: PossessivePronounsComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Clock), component: ClockComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.VerbExceptions), component: Verbs3Component, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Shopping), component: ShoppingComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Plural), component: PluralComponent, canActivate: [AuthGuard] },
+  { path: LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Adjectives), component: AdjectivesComponent, canActivate: [AuthGuard] },
 
   { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
   

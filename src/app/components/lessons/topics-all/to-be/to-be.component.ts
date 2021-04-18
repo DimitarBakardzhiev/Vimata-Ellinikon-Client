@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 import { Title } from '@angular/platform-browser';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
 
 @Component({
   selector: 'app-to-be',
@@ -9,8 +11,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ToBeComponent implements OnInit {
 
-  title: string = 'Глагол съм';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/съм')];
+  title: string = LessonTitles.VerbToBe;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
   forms: { pronoun: string, verbForm: string, example: string, translation: string }[] = [];
 
   constructor(private titleService: Title) {

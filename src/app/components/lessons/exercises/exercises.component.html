@@ -1,3 +1,4 @@
+<breadcrumb *ngIf="breadcrumbs" [breadcrumbs]="breadcrumbs"></breadcrumb>
 <div *ngIf="exercises?.length > 0" class="row">
   <error-box *ngIf="errorMessage" [message]="errorMessage"></error-box>
   <div class="col-md-6">

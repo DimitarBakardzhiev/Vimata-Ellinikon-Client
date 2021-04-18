@@ -2,16 +2,16 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OpenExercise } from '../../../models/open-exercise';
 import { ClosedExercise } from '../../../models/closed-exercise';
 import { DragAndDropExercise } from '../../../models/drag-and-drop-exercise';
-import { Topic } from '../../../models/topic';
 import { ClosedExerciseOption } from '../../../models/closed-exercise-option';
 import { ShufflerService } from '../../../services/shuffler.service';
 import { SpeakingExercise } from '../../../models/speaking-exercise';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { ExericiseService } from '../../../services/exericise.service';
 import { MedalType } from '../../../models/medal-type';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { BreadCrumb } from '../../breadcrumb/bread-crumb';
+import { StateService } from 'src/app/services/state.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exercises',
@@ -35,6 +35,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ExercisesComponent implements OnInit {
 
   lesson: string;
+  breadcrumbs: BreadCrumb[];
 
   exercises: any[] = [];
   currentExerciseIndex: number = 0;
@@ -52,15 +53,19 @@ export class ExercisesComponent implements OnInit {
 
   constructor(private shuffler: ShufflerService,
     private exerciseService: ExericiseService,
+    private stateService: StateService,
     private route: ActivatedRoute) {
 
-    this.route.paramMap.subscribe(data => {
-      this.lesson = data.get('lesson');
+    if (this.stateService.data) {
+      this.lesson = this.stateService.data.lesson;
+      this.breadcrumbs = this.stateService.data.breadcrumbs;
+      this.breadcrumbs.push(new BreadCrumb('Упражнения', '.'));
+    } else {
+      this.route.paramMap.subscribe(params => {
+        this.lesson = params.get('lesson');
+      });
+    }
 
-      if (this.lesson === undefined) {
-        console.error('Lesson undefined');
-      }
-    });
     this.sessionId = localStorage.getItem(this.lesson);
     
     if (this.sessionId) {

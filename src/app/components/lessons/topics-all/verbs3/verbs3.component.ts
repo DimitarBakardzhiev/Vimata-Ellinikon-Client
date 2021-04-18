@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 import { Title } from '@angular/platform-browser';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
 
 @Component({
   selector: 'app-verbs3',
@@ -9,8 +11,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class Verbs3Component implements OnInit {
   
-  title: string = 'Глаголи изключения';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/глаголи-изключения')];
+  title: string = LessonTitles.VerbExceptions;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
 
   vocabulary: { word: string, translation: string }[] = [];
 

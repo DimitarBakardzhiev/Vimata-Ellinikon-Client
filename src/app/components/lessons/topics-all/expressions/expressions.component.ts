@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadCrumb } from '../../../breadcrumb/bread-crumb';
 import { Title } from '@angular/platform-browser';
+import { LessonTitles } from 'src/app/infrastructure/lesson-titles';
+import { LessonTitleLessonRouteMapping } from 'src/app/infrastructure/lesson-title-lesson-route-mapping';
 
 @Component({
   selector: 'app-expressions',
@@ -9,8 +11,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ExpressionsComponent implements OnInit {
 
-  title: string = 'Изрази';
-  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, '/изрази')];
+  title: string = LessonTitles.Expressions;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb(this.title, `/${LessonTitleLessonRouteMapping.Routes.get(this.title)}`)];
   vocabulary: { expression: string, translation: string }[] = [];
 
   constructor(private titleService: Title) {

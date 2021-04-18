@@ -1,0 +1,20 @@
+export enum LessonTitles {
+    Alphabet = 'Азбука',
+    Reading = 'Четене',
+    VerbToBe = 'Глагол съм',
+    Greetings = 'Поздрави',
+    Numbers = 'Числа',
+    Expressions = 'Изрази',
+    Reading2 = 'Четене-2',
+    Verbs1 = 'Първо спрежение',
+    GenderAndArticles = 'Родове и членуване',
+    Accusative = 'Винителен падеж',
+    Verbs2 = 'Второ спрежение',
+    Negation = 'Отрицание',
+    Genitive = 'Притежание',
+    Clock = 'Часовник',
+    VerbExceptions = 'Глаголи изключения',
+    Shopping = 'На пазар',
+    Plural = 'Множествено число',
+    Adjectives = 'Прилагателни'
+}
