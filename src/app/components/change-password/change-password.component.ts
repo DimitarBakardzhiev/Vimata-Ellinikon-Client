@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChangePasswordModel } from '../../models/change-password-model';
 import { AuthService } from '../../services/auth.service';
+import { BreadCrumb } from '../breadcrumb/bread-crumb';
 
 @Component({
   selector: 'app-change-password',
@@ -15,6 +16,7 @@ export class ChangePasswordComponent implements OnInit {
 
   private changePasswordForm: FormGroup;
   private errorMessage: string;
+  breadcrumbs: BreadCrumb[] = [new BreadCrumb('Начало', '/'), new BreadCrumb('Промяна на парола', '/промяна-на-парола')];
 
   constructor(private authService: AuthService,
     private router: Router,

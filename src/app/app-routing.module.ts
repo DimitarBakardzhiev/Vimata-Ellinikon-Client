@@ -31,12 +31,14 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LessonTitleLessonRouteMapping } from './infrastructure/lesson-title-lesson-route-mapping';
 import { LessonTitles } from './infrastructure/lesson-titles';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 const routes: Routes = [
   { path: 'вход', component: LoginComponent },
   { path: 'регистрация', component: SignupComponent },
   { path: 'промяна-на-парола', component: ChangePasswordComponent },
   { path: 'забравена-парола', component: ResetPasswordComponent },
+  { path: 'профил', component: UpdateUserComponent },
 
   { path: 'администрация' , component: AdministrationComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'администрация/ново-упражнение' , component: CreateExerciseComponent, canActivate: [AuthGuard, AdminGuard] },

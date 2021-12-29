@@ -57,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ExercisesButtonComponent } from './components/lessons/exercises-button/exercises-button.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -108,7 +109,8 @@ const routes: Routes = [
     ErrorBoxComponent,
     ExercisesButtonComponent,
     ChangePasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UpdateUserComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
