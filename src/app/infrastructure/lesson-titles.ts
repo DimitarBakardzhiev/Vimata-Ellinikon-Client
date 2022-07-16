@@ -5,7 +5,7 @@ export enum LessonTitles {
     Greetings = 'Поздрави',
     Numbers = 'Числа',
     Expressions = 'Изрази',
-    Reading2 = 'Четене-2',
+    Reading2 = 'Четене 2',
     Verbs1 = 'Първо спрежение',
     GenderAndArticles = 'Родове и членуване',
     Accusative = 'Винителен падеж',

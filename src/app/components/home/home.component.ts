@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       new TopicModel(LessonTitles.VerbToBe, '../../../assets/imgs/lessons/to-be.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.VerbToBe)}`),
       new TopicModel(LessonTitles.Greetings, '../../../assets/imgs/lessons/greetings.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Greetings)}`),
       new TopicModel(LessonTitles.Numbers, '../../../assets/imgs/lessons/numbers.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Numbers)}`),
-      new TopicModel(LessonTitles.Greetings, '../../../assets/imgs/lessons/greetings.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Greetings)}`),
+      new TopicModel(LessonTitles.Expressions, '../../../assets/imgs/lessons/greetings.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Expressions)}`),
       new TopicModel(LessonTitles.Reading2, '../../../assets/imgs/lessons/book.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Reading2)}`),
       new TopicModel(LessonTitles.Verbs1, '../../../assets/imgs/lessons/conjugation1.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.Verbs1)}`),
       new TopicModel(LessonTitles.GenderAndArticles, '../../../assets/imgs/lessons/genders.png', `/${LessonTitleLessonRouteMapping.Routes.get(LessonTitles.GenderAndArticles)}`),

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2, ViewChild } from '@angular/core';
 import { SpeakingExercise } from '../../../../models/speaking-exercise';
 import { ExericiseService } from '../../../../services/exericise.service';
 
@@ -23,7 +23,7 @@ export class SpeakingExerciseComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(private exerciseService: ExericiseService) {
+  constructor(private exerciseService: ExericiseService, private renderer2: Renderer2) {
     this.prepareSpeechRecognition();
   }
 
@@ -44,7 +44,13 @@ export class SpeakingExerciseComponent implements OnInit {
 
   listen() {
     this.recognition.start();
-    setTimeout(() => this.hasGivenAnswer = true, 2000);
+    let microphone = document.getElementsByClassName('microphone-icon')[0];
+    this.renderer2.setStyle(microphone, 'background-color', 'red');
+
+    setTimeout((initialColor) => {
+      this.hasGivenAnswer = true;
+      this.renderer2.setStyle(microphone, 'background-color', '#2FA4E7');
+    }, 3000);
   }
 
   private prepareSpeechRecognition() {

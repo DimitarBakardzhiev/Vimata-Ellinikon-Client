@@ -155,6 +155,7 @@ export class ExercisesComponent implements OnInit {
 
       this.exerciseService.endSession(this.sessionId).subscribe(data => {
         this.medal = <MedalType>data;
+        localStorage.removeItem(this.lesson);
       }, err => {
         switch ((err as HttpErrorResponse).status) {
           case 404:
